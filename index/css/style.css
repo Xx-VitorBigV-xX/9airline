@@ -1,0 +1,319 @@
+:root{
+    ---azul_background:#00A3F5;
+    ---text1:#3544A0;
+    ---textsombra1:#F5ED0C;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    outline: none;border:none;
+    text-decoration: none;
+    text-transform:capitalize;
+    transition: .2 linear;
+}
+html{
+    font-size:62.5%;
+    scroll-behavior:smooth;
+    scroll-padding-top: 6rem;
+    overflow-x:hidden;
+}
+section{
+    padding:2rem 10%;
+}
+
+.sobre{
+    text-align: center;
+    font-size: 4rem;
+    color: var(---azul_background);
+    padding: 1rem;
+    margin:2rem 0;
+    background: rgba(51, 150, 255, .09);
+}
+.destino{
+    text-align: center;
+    font-size: 4rem;
+    color: var(---azul_background);
+    padding: 1rem;
+    margin:2rem 0;
+    background: rgba(51, 150, 255, .09);
+} 
+.destino span{
+    color: var(---text1);
+}
+
+.sobre span{
+    color: var(---text1);
+}
+
+.btn{
+    display: inline-block;
+    margin-top: 1rem;
+    border-radius: 5rem ;
+    background-color: var(---azul_background);
+    color:#fff;
+    padding: .9rem 3.5rem;
+    cursor: pointer;
+    font-size: 1.7rem;
+}
+.btn:hover{
+    background-color:var(---text1);
+}
+header{
+    position: fixed;
+    top: 0;left: 0;right: 0;
+    background: #009FE5;
+    padding: 1rem 9%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    box-shadow: 0.5rem 1rem rgba(0,0,0,.1);
+}
+header .logo{
+    text-decoration: none;
+    font-size: 3rem;
+    color:var(---textsombra1);
+    font-weight: bolder;
+}
+header .logo span{
+    color:#fff
+}
+.btnAdm{
+    display: inline-block;
+    width: max-content;
+    background-color: var(---text1);
+    border:2px solid ---azul_background;
+    padding: 1rem 3rem;
+    border-radius: 4rem;
+    color: #fff;
+}
+.btnAdm:hover{
+    background-color:#557cbf;
+}
+header .navbar a{
+    font-size:2rem;
+    padding: 0 1.5rem;
+    color:#fff;
+}
+header .navbar a:hover{
+    color: var(---text1);
+}
+
+
+.casa{
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    background:url(../image/creative-plane-business-concept-illustration-design-flight-travel-aircraft-background-freedom-flat-blue-sky-cartoon-launch-company-vector.jpg)no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+
+
+
+/*refgerencia coluna de botão para excluir os a linha das tabelas*/
+.td-acoes{
+    text-align: center; /* text-aling : alinhador de texto  valor:center (centro)*/
+}
+.btn-exluir{
+    background-color: red;
+}
+
+.escolha{
+    display:flex;
+    align-items:center;
+    min-height: 100vh;
+    background: #00A3F5;
+
+}
+.escolha .container-text-center h3{
+    font-size: 6rem;
+    color:var(---text1);
+}
+
+.casa .content{
+    max-width: 50rem;
+}
+.casa .content h3{
+    font-size: 6rem;
+    color:var(---text1);
+}
+.casa .content span{
+    font-size:3.5rem;
+    color:var(---azul_background);
+    padding: 1rem 0e ;
+    line-height: 1.5;
+}
+.casa .content p{
+    color: var(---text1);
+    font-size: 2.5rem;
+    padding: 5rem 0;
+    padding-top: 1rem;
+    line-height: 1.5;
+}
+
+.sobre .row{
+    display:flex;
+    align-items: center;
+    gap:2rem;
+    flex-wrap: wrap;
+    padding: 2rem 0;
+    padding-bottom: 3rem;
+
+
+}
+ .sobre .row .video-container{
+    flex:1 1 40rem;
+    position: relative;
+}
+.sobre .row .video-container video{
+    width: 100%;
+    border: 1.5rem solid #fff;
+    border-radius: .5rem;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0.1);
+    height: 100%;
+    object-fit: cover;
+}
+.sobre .row .video-container h3{
+    position:absolute;
+    top: 20%;transform: translatey(-70%);
+    font-size: 3rem;
+    color: var(---text1);
+    background: #fff;
+    padding: 1rem 2rem;
+    text-align:center;
+    mix-blend-mode: screen;
+}
+.sobre .row .content{
+    flex:1 1 40rem;
+    top:20%;
+    text-align: left;
+}
+.sobre .row .content h3{
+    font-size: 3rem;
+    color:#3544A0
+}
+.sobre .row .content p{
+    font-size: 1.5rem;
+    padding: 5rem 0;
+    padding-top: 1rem;
+    line-height: 1.5;
+}
+.icones-contanier{
+    background: #eee;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+.icones-contanier .icones{
+    background: #fff;
+    border: 1rem solid rgba(0,0,0,.1);
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    flex: 1 1 25rem;
+}
+.icones-contanier .icones img{
+    height:5rem;
+    margin-right:2rem;
+}
+.icones-contanier .icones h3{
+    color:var(---text1);
+    font-size:2rem;
+}
+.icones-contanier .icones span{
+    color:var(---azul_background);
+    font-size:1.7rem;
+}
+.destino .box-contanier{
+    display: flex;
+    flex-wrap: wrap;
+    gap:1.5rem;
+}
+ .destino .box-contanier .box{
+    flex:1 1 30rem;
+    box-shadow: 0 .5rem 1.5rem;
+    border-radius: .5rem;
+    border:.1rem solid;
+    position: relative;
+} 
+
+.destino .box-contanier .box .city{
+    position:absolute;
+    top:1rem;left:1rem;
+    padding: .7rem 1rem;
+    font-size: 2rem;
+    color: var(---text1);
+    background: rgba(51, 150, 255, .09);
+    z-index:1;
+    border-radius: .5rem;
+}
+
+.destino .box-contanier .box .image{
+    position:relative;
+    text-align: center;
+    padding-top: 8rem;
+    overflow: hidden;
+}
+.destino .box-contanier .box .image img{
+   height:25rem;
+   width: 500px;
+}
+.destino .box-contanier .box:hover  {
+   transform: scale(1.1);
+}
+ 
+
+
+@media (max-width:991px){
+    html{
+        font-size:55%;
+        
+    }
+    header{
+        padding:2rem;
+    }
+    section{
+        padding: 2rem;
+    }
+    .casa{
+        background-position:left ;
+    }
+}
+
+@media (max-width:768px){
+    header
+    header .navbar{
+        position:absolute;
+        top: 0;left: 0;right:0;
+        background: #00A3F5;
+        border-top: .1rem solid rgba(0,0,0,.1);
+    }
+    header .navbar a{
+        margin:1.5rem;
+        padding: 1.5rem;
+        background: #3544A0;
+        color: antiquewhite;
+        border:.1rem solid rgba(0,0,0,.1);
+        display:block;
+    }
+    .casa .content h3{
+        font-size: 5rem;
+    }
+    .casa .content span{
+        font-size: 2.5rem;
+    }
+}
+@media(max-wi0dth:450px){
+    html{
+        font-size: 50%;    }
+    .sobre{
+        font-size:3rem;
+    }
+}

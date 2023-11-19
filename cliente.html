@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9Airline</title>
+    <script type="text/javascript" src="/js/script.js" defer></script>
+    <link rel="stylesheet" href="/index/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css"
+      crossorigin=""
+    />
+</head>
+  <header>
+    <a href="/pagina_principal.html" class="logo"
+      >9airline <span><i class="ri-flight-takeoff-line"></i></span
+    ></a>
+
+      
+  </header>
+
+
+  <body >
+    <div class="position-relative">
+      <div class="position-absolute top-30 start-50 translate-middle rounded"
+        style="background-color: #00A3F5; margin-top: -12%;  padding: 1% 5%;">
+        <h2>Passagens aéreas</h2>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="idaEVolta" checked>
+          <label class="form-check-label" for="idaEVolta">
+            Ida e volta
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="ida">
+          <label class="form-check-label" for="ida">
+            Somente ida
+          </label>
+        </div>
+        <form class="row row-cols-lg-auto g-3 align-items-center">
+
+
+          <div class="col-12">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Data Volta" 
+                >
+            </div>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary" onclick="listarVoos()">Buscar</button>
+          </div>
+      </div>
+      </form>
+    </div>
+      <table id="tblTrechos" cellspacing="5" cellpadding="10" class="table table-striped" style="margin-top: 520px;">
+        <thead>
+          <tr>
+            <th width="5%" class="leftText">Nome</th>
+            <th width="10%" class="leftText">Origem</th>
+            <th width="20%" class="leftText">Destino</th>
+            <th width="10%" class="centerText">Aeronave</th>  
+          </tr>
+        </thead>
+        <tbody id="dados-aeronave"></tbody>
+      </table>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+
+      </script>
+  </body>
+</html>
