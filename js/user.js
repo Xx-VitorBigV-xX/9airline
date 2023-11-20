@@ -10,9 +10,9 @@ const mostrarBotao = document.getElementById('mostrarBotao');
 
 
     // Número total de assentos
-    const totalAssentos = 50;
+    const totalAssentos = 252;
     // Número de colunas desejado
-    const colunas = 6; // Altere este valor conforme necessário
+    const colunas = 9; // Altere este valor conforme necessário
     const linhas = 2; // Altere este valor conforme necessário
 
     // Elemento onde os assentos serão adicionados
