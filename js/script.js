@@ -44,10 +44,10 @@ function CriarElemento(aeronaves) {
     const row = document.createElement("tr");
     row.innerHTML = 
       `<td id="td-Numero_de_identificacao" class="leftText">${aeronave[0]}</td>
-      <td class="leftText">${aeronave[1]}</td>
       <td class="leftText">${aeronave[2]}</td>
-      <td class="centerText">${aeronave[3]}</td>
+      <td class="leftText">${aeronave[1]}</td>
       <td class="centerText">${aeronave[4]}</td>
+      <td class="centerText">${aeronave[3]}</td>
       <td class="td-acoes" style="text-align: center;"> <button id="btnExcluir" class="btnExcluir" style="color:withe;cursor:pointer;font-weigth:bold;padding:5px;background-color:red;border-radius:5px;display:inline-block;"> excluir</button>`;
 
     elementoAeronaveID.appendChild(row);
