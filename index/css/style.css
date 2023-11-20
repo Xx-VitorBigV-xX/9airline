@@ -104,21 +104,6 @@ header .navbar a:hover{
 
 
 
-.assento {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    margin: 5px;
-    border: 1px solid #ccc;
-    background-color: #eee;
-    cursor: pointer;
-}
-
-.assento.selecionado {
-    background-color: #3498db;
-    color: #fff;
-}
-
 
 
 .casa{

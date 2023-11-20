@@ -1,0 +1,104 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    background-color: rgb(75, 75, 209);
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+  }
+  .casa{
+    display: flex;
+    /* width: 2440px;*/
+    height: 360px; 
+    background:url(/index/image/baner-1440x360.jpeg);
+    background-size:contain; /*A imagem de fundo é dimensionada para cobrir todo o contêiner, mantendo a proporção e cortando o excesso se necessário.*/
+    align-items: center;
+    justify-content: center;
+  }
+  .container {
+    width: 40%;
+    /* margin: 20px auto; */
+    margin-top: 350px; 
+    
+  }
+  form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(75, 75, 209);
+    
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  input[type="text"],
+  input[type="email"],
+  select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+#minhaSecao{
+    align-items: center;
+
+}
+  .mostrarBotao{
+    background-color: rgb(75, 75, 209);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .mostrarBotao:hover {
+    background-color: rgb(75, 75, 209);
+  }
+  .oculta {
+    display: none;}
+
+    #mapa-assentos {
+        width: 200px;
+        display: grid;/* Duas colunas */
+        grid-template-columns: repeat(1, 1fr); 
+        grid-template-rows: repeat(1, 1fr);  
+        grid-row-gap: 1em;
+        /* grid-template-columns: 3rem; */
+        margin-right: 450px;
+
+    }
+
+
+    
+    .assento {
+        width: 40px;
+        height: 40px;
+        /* margin: 5px; */
+        border: 1px solid #ccc;
+        background-color: #eee;
+        cursor: pointer;
+        border-radius: 30%;
+        
+      
+    }
+    /* Adiciona margem à direita a cada terceiro assento */
+    .assento:nth-child(3n) {
+    margin-right: 50px; 
+}
+.assento:nth-child(1) {
+    margin-right: 0px; 
+
+}
+
+    
+    .assento.selecionado {
+        background-color: #3498db;
+        color: #fff;
+    }
+    

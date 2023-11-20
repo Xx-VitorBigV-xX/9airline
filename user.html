@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>9airline</title>
+    <link rel="stylesheet" href="/index/css/user.css">
+    <script type="text/javascript" src="/js/user.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Compra de Passagem Aérea</h1>
+  </header>
+ <section class="casa">
+    <div class="container" >
+    <form class="form">
+      <label for="destino">Destino</label>
+      <input type="text" id="destino" name="destino" >
+
+      <label for="origem">Origem</label>
+      <input type="text" id="origem" name="origem" >
+
+      <label for="dataVoo">Data do voo</label>
+      <input type="date" id="dataVoo" name="dataVoo" ><br>
+      
+      <label for="passagem">Quantidade de passagens</label>
+      <input type="number" id="passagem" name="passagem"><br>
+      
+      <label for="classe">Forma de pagamento</label>
+      <select id="pagamento" name="pagamento">
+        <option value="cartaoCredito">Cartão de credito</option>
+        <option value="cartaoDebito">Cartão de debito</option>
+        <option value="boleto">Boleto</option>
+      </select>
+      
+      <button class="mostrarBotao" id="mostrarBotao">Mostrar Seção</button>
+    </form>
+  </div>
+ </section> 
+ <section id="minhaSecao" class="oculta">
+    <div class="mapa-assentos-contanier">
+        <h2>Mapa de Assentos</h2>
+
+    <div id="mapa-assentos">
+        <!-- Os assentos serão adicionados dinamicamente aqui -->
+    </div>
+    </div>
+    
+    
+</section>
+</body>
+</html>
