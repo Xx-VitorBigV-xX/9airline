@@ -45,10 +45,10 @@ body {
     border-radius: 4px;
     border: 1px solid #ccc;
   }
-#minhaSecao{
-    align-items: center;
+    .minhaSecao{
+        background-color: #fff;
+    }
 
-}
   .mostrarBotao{
     background-color: rgb(75, 75, 209);
     color: #fff;
@@ -64,17 +64,23 @@ body {
     display: none;}
 
     #mapa-assentos {
+       
         display: grid;/* Duas colunas */
         background-color: brown;
         border-radius: 80%;
         border: 2px solid black ;
+        
      
     }
-.mapa-assentos-contanier{
+.mapa-assentos-contanier{ 
     margin-top: 250px;
     display: grid;
     justify-content: center; /*alinhar os itens ao longo do eixo principal do contêiner*/
     align-items: center;
+    background: url(/index/image/asas.png)no-repeat;
+    background-size: 700px;
+    background-position: center;
+    background-position-x: center;
 }
 
     
@@ -86,37 +92,35 @@ body {
         background-color: #eee;
         cursor: pointer;
         border-radius: 30%;
+        margin: 3px;
         
       
     }
-    /* Adiciona margem à direita a cada terceiro assento */
-    .assento:nth-child(3n) {
-    margin-right: 50px; 
-}
-.assento:nth-child(9n+1) {  /* pegar  todos os elemento da primeira coluna*/
-    margin-right: 0px; 
-    margin-left: 50px;
-
-}
-/* Seletor para a primeira linha de assentos */
-.assento:nth-child(n + 1):nth-child(-n + 9) {
-    margin-top: 500px;
-    /* Estilos específicos para a primeira linha */
-}
-.assento:nth-last-child(-n + 9) {
-    margin-bottom: 500px;
-    /* Estilos específicos para a última linha */
-}
 
 
-/* seletor em CSS que seleciona elementos com base em sua posição em relação aos seus pais. 
-Ele permite selecionar elementos com base em sua ordem de criança, começando do primeiro elemento. */
-/* :nth-child(2n): Seleciona todos os elementos pares.
-:nth-child(odd): Seleciona todos os elementos ímpares.
-:nth-child(3n + 1): Seleciona todos os elementos que têm um índice de 1, 4, 7, etc. (múltiplos de 3 mais 1). */
-    
     .assento.selecionado {
         background-color: #3498db;
         color: #fff;
     }
+
+    /* Estilos específicos para as asas esquerda e direita */
+.asa {
+    height: 140px; /* Ajuste a altura conforme necessário */
+    background-color: #3498db; /* Cor de fundo da asa */
+    position: absolute;
+}
+
+.asa.esquerda {
+    width: 50px; /* Ajuste a largura conforme necessário */
+    left: 0; /* Posiciona a asa à esquerda */
+    transform: translateY(10%); /* Ajusta a posição verticalmente */
+}
+
+.asa.direita {
+    width: 50px; /* Ajuste a largura conforme necessário */
+    top: 50%; /* Posiciona a asa no centro verticalmente */
+    right: 0; /* Posiciona a asa à direita */
+    transform: translateY(-50%); /* Ajusta a posição verticalmente */
+}
+
     
