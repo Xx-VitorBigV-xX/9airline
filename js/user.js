@@ -10,9 +10,11 @@ const mostrarBotao = document.getElementById('mostrarBotao');
 
 
   // Número total de assentos
-const totalAssentos = 20;
+const totalAssentos = 40;
+// Array contendo as letras do alfabeto
+const letrasDoAlfabeto = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 // Número de colunas desejado
-const colunas = 2;
+const colunas = 4;
 let margemPar = 0;
 let margemTres = 0;
 
@@ -46,12 +48,12 @@ for (let i = 1; i <= totalAssentos; i++) {
 
     // Adiciona margem para elementos da primeira linha
     if (linhaAtual === 0) {
-        assento.style.marginTop = '700px';
+        assento.style.marginTop = '500px';
     }
 
     // Adiciona margem para elementos da última linha
     if (linhaAtual === Math.floor((totalAssentos - 1) / colunas)) {
-        assento.style.marginBottom = '700px';
+        assento.style.marginBottom = '500px';
     }
 
     // Adiciona margens para a primeira coluna
@@ -69,6 +71,9 @@ for (let i = 1; i <= totalAssentos; i++) {
     if ((margemTres !== 0 || (margemPar !== 0 && margemTres !== 0)) && (colunaAtual + 1) % 3 === 0) {
         assento.style.marginRight = margemTres + 'px';
     }
+    const letraAtual = letrasDoAlfabeto[colunaAtual];
+    assento.textContent = `${letraAtual}${i}`;
+
 
     assento.addEventListener('click', selecionarAssento);
     mapaAssentos.appendChild(assento);
@@ -136,3 +141,8 @@ function selecionarAssento() {
     Chamada e Exibição no Console:
 
     Chama essas funções e exibe o resultado no console.*/ 
+
+
+
+
+//------------------------------ LISTAR VOOS -----------------------------------------
