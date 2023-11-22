@@ -11,13 +11,14 @@ const mostrarBotao = document.getElementById('mostrarBotao');
 
   // Número total de assentos
 const totalAssentos = 40;
+//fazer um codigo que verifica o total de assentos
 // Array contendo as letras do alfabeto
 const letrasDoAlfabeto = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 // Número de colunas desejado
 const colunas = 4;
 let margemPar = 0;
 let margemTres = 0;
-
+//OBS se tiver duas colunas tem que a margem left tem que ser 100px
 // Verifica se o número de colunas é múltiplo de 2
 if (colunas % 2 === 0) {
     margemPar = 50;
@@ -41,6 +42,11 @@ for (let i = 1; i <= totalAssentos; i++) {
     // Calcula a linha e coluna com base no índice atual
     const colunaAtual = (i - 1) % colunas;
     const linhaAtual = Math.floor((i - 1) / colunas);
+    /*totalAssentos - 1: Subtrai 1 do número total de assentos. 
+    Isso é feito porque, quando dividir pelos números de colunas, queremos garantir que a última linha seja tratada corretamente. 
+    Se tivermos, 20 assentos e 5 colunas, precisamos considerar que a última linha terá apenas 4 assentos.
+    Math.floor((totalAssentos - 1) / colunas): Divide o resultado do passo anterior pelo número de colunas e arredonda para baixo usando Math.floor. 
+    Isso nos dá o número da última linha completa na grade de assentos.*/ 
 
     // Define o estilo de grid para os assentos
     assento.style.gridColumn = colunaAtual + 1;
@@ -57,19 +63,23 @@ for (let i = 1; i <= totalAssentos; i++) {
     }
 
     // Adiciona margens para a primeira coluna
-    if (colunaAtual === 0) {
+    if (colunas === 2 && colunaAtual === 0){
+        assento.style.marginRight = '0px';
+        assento.style.marginLeft = '100px';
+    }
+     else if (colunaAtual === 0) {
         assento.style.marginRight = '0px';
         assento.style.marginLeft = '50px';
     }
 
     // Adiciona margem para colunas pares apenas se a coluna não for múltiplo de 3
     if (margemPar !== 0 && margemTres === 0 && (colunaAtual + 1) % 2 === 0) {
-        assento.style.marginRight = margemPar + 'px';
+        assento.style.marginRight = margemPar + 'px'; //a margem px esta sendo passada pela variavel 
     }
 
     // Adiciona margem para colunas múltiplos de 3 ou múltiplos de 2 e 3
     if ((margemTres !== 0 || (margemPar !== 0 && margemTres !== 0)) && (colunaAtual + 1) % 3 === 0) {
-        assento.style.marginRight = margemTres + 'px';
+        assento.style.marginRight = margemTres + 'px';//a margem px esta sendo passada pela variavel 
     }
     const letraAtual = letrasDoAlfabeto[colunaAtual];
     assento.textContent = `${letraAtual}${i}`;
@@ -86,20 +96,20 @@ function selecionarAssento() {
     this.classList.toggle('selecionado');
 }
 
-// Resto do código...
 
+// debugando para saber se o codigo esta pegando  a primeira linha e a ultima linha
     
     function calcularElementosPrimeiraLinha(totalAssentos, colunas) {
         // Calcula quantas linhas existem
-        const linhas = Math.ceil(totalAssentos / colunas);
+        const linhas = Math.ceil(totalAssentos / colunas);//Calcula o número total de linhas necessárias para alocar todos os assentos, usa a função math.ceil para aredondar  o numero de linha  para cima, pois é uma divisão e vai dar numero quebrado 
         // Calcula quantos elementos estão na última linha
-        const elementosPrimeiraLinha = totalAssentos - (linhas - 1) * colunas;
+        const elementosPrimeiraLinha = totalAssentos - (linhas - 1) * colunas; //esta é para pegar o numero de elementos(assentos) que foram preenchidos antes da ultima linha, pois a ultima linha pode dar um numero que nao é o numero total de colunas quebrará o codigo
         return elementosPrimeiraLinha;
     }
     
     function calcularElementosUltimaLinha(totalAssentos, colunas) {
         // Calcula quantas linhas existem
-        const linhas = Math.ceil(totalAssentos / colunas);
+        const linhas = Math.ceil(totalAssentos / colunas); // esta conta serve para saber  quantas linhas precisam para acomodar os assentos de acordo com o numero total de assentos e o numero de colunas 
         // Calcula quantos elementos estão na última linha
         const elementosUltimaLinha = totalAssentos % colunas || colunas;
         return elementosUltimaLinha;

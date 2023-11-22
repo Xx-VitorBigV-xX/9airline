@@ -1,20 +1,65 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+/* Declação de variáveis de variaveis de com 
+ ---nome da da variavel:cor   */
+:root{
+  ---azul_background:#00A3F5;
+  ---text1:#3544A0;
+  ---textsombra1:#F5ED0C;
+}
+
+/* Definição Padrão do  */
+  *{
     margin: 0;
     padding: 0;
-  }
-  header {
-    background-color: rgb(75, 75, 209);
-    color: #fff;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    outline: none;border:none;
+    text-decoration: none;
+    text-transform:capitalize;
+    transition: .2 linear;
+}
+/*margin:  Define a margem de um elemento como zero. A margem é o espaço fora da borda de um elemento.
+padding:  Define o preenchimento de um elemento como zero. O preenchimento é o espaço entre o conteúdo de um elemento e sua borda.
+box-sizing: border-box;: Essa propriedade define como o tamanho de um elemento é calculado. border-box inclui o preenchimento e a borda na largura e altura totais do elemento, em vez de adicioná-los fora do elemento.
+font-family: Verdana, Geneva, Tahoma, sans-serif;: Especifica a família de fontes para o conteúdo de texto. Define uma lista priorizada de nomes de famílias de fontes e/ou nomes genéricos de famílias.
+outline: none;: Remove a contorno que é geralmente aplicado aos elementos quando estão em foco. Isso é frequentemente usado para remover a borda de foco padrão em elementos de entrada.
+border: none;: Define a borda de um elemento como nenhum. Isso remove qualquer borda ao redor do elemento.
+text-decoration: none;: Remove a decoração de texto, como sublinhado, sobrelinhado e tachado. Isso é comumente usado para remover o sublinhado padrão de hiperlinks.
+text-transform: capitalize;: Transforma o texto para capitalizar o primeiro caractere de cada palavra. Por exemplo, se você tiver "olá mundo", será exibido como "Olá Mundo".
+transition: 0.2s linear;: Adiciona um efeito de transição às propriedades especificadas. Neste caso, é uma transição linear ao longo de uma duração de 0,2 segundos. Isso é frequentemente usado para animações suaves ou alterações de estado.  */
+
+  header{
+    height: 57px;
+    position: fixed;
+    top: 0;left: 0;right: 0;
+    background: #009FE5;
+    padding: 1rem 9%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    box-shadow: 0.5rem 1rem rgba(0,0,0,.1);
+}
+
+
+
+
+header .logo{
     text-align: center;
-    padding: 10px 0;
-  }
+    /* width: 168px; */
+    /* height: 37px; */
+    text-decoration: none;
+    font-size: 1.9rem;
+    color:#F5ED0C;
+    font-weight: bolder;
+}
+header .logo span{
+      color:#fff
+}
+
   .casa{
     display: flex;
     /* width: 2440px;*/
-    height: 360px; 
-    background:url(/index/image/baner-1440x360.jpeg);
+    background:url(/index/image/baner-1440x360.jpeg)no-repeat;
     background-size:contain; /*A imagem de fundo é dimensionada para cobrir todo o contêiner, mantendo a proporção e cortando o excesso se necessário.*/
     align-items: center;
     justify-content: center;
@@ -29,7 +74,7 @@ body {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(75, 75, 209);
+    box-shadow: 0 0 10px var(---azul_background);
     
   }
   label {
@@ -45,17 +90,20 @@ body {
     border-radius: 4px;
     border: 1px solid #ccc;
   }
+
+/* ----------------------------------------- SESSÃO-MAPA-DE-ASSENTOS ---------------- */
     .minhaSecao{
         background-color: #fff;
     }
-
   .mostrarBotao{
-    background-color: rgb(75, 75, 209);
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
+    display: inline-block;
+    margin-top: 1rem;
+    border-radius: 5rem ;
+    background-color: var(---azul_background);
+    color:#fff;
+    padding: .9rem 3.5rem;
     cursor: pointer;
+    font-size: 1rem;
   }
   .mostrarBotao:hover {
     background-color: rgb(75, 75, 209);
@@ -64,7 +112,7 @@ body {
     display: none;}
 
     #mapa-assentos {
-        display: grid;/* Duas colunas */
+        display: grid;
         background-color: lightgrey;
         border-radius: 40%;
         border: 1px solid  ;
@@ -72,14 +120,51 @@ body {
      
     }
 .mapa-assentos-contanier{ 
-    margin-top: 250px;
+    margin-top: 90px;
     display: grid;
     justify-content: center; /*alinhar os itens ao longo do eixo principal do contêiner*/
     align-items: center;
-   
+    
+  /*============================== CONDIGURANDO LEGENDA DO ASSENTO */ 
+}
+/* Titulo  do contanier */
+.mapa-assentos-contanier h2{
+  font-size: 3rem;
+  color: #3544A0;
+  text-align: center;
 }
 
-    
+/* Configuração da legenda dos assentos */
+.legenda img{
+  width: 64px;
+  height: 64px;
+}
+.AssentoVazio{
+  display: flex; 
+  margin-top: 45px;
+}
+.AssentoOcupado{
+  display: flex; 
+  margin-top: 15px;
+}
+.AssentoSelecionado{
+  display: flex; 
+  margin-top: 15px;
+}
+.AssentoSelecionado label{
+  margin-top: 15px;
+  margin-left: 9px;
+}
+.AssentoOcupado label{
+  margin-top: 15px;
+  margin-left: 9px;
+}
+.AssentoVazio label{
+  margin-top: 15px;
+  margin-left: 9px;
+}
+
+  /* ===========================  configurando os assentos ============================== */
     .assento {
         font-weight: bold;
         width: 104px;
@@ -95,28 +180,36 @@ body {
 /* cinza -> ocupado 
    azul claro -> seletor
    azul Escuro -> normal*/
-
+    /* Caso seja clicado o vai trocar a imagem para uma igual mas com cor diferente  */
     .assento.selecionado {
       background-image: url(/index/image/assentoLightBlue.png);}
 
-    /* Estilos específicos para as asas esquerda e direita */
-.asa {
-    height: 140px; /* Ajuste a altura conforme necessário */
-    background-color: #3498db; /* Cor de fundo da asa */
-    position: absolute;
+
+
+
+    /* configurando a proporção da tela para deixar responsiva */
+@media (max-width:991px){
+/* permite aplicar estilos condicionalmente, 
+com base nas características da mídia, como largura da tela, altura da tela, */
+  header{
+      padding:2rem;
+  }
+  .casa .content h3{
+    font-size: 5rem;
+}
+.casa .content span{
+    font-size: 2.5rem;
+}
 }
 
-.asa.esquerda {
-    width: 50px; /* Ajuste a largura conforme necessário */
-    left: 0; /* Posiciona a asa à esquerda */
-    transform: translateY(10%); /* Ajusta a posição verticalmente */
+@media (max-width:768px){
+  header .navbar a{
+      margin:1.5rem;
+      padding: 1.5rem;
+      background: #3544A0;
+      color: antiquewhite;
+      border:.1rem solid rgba(0,0,0,.1);
+      display:block;
+  }
+  
 }
-
-.asa.direita {
-    width: 50px; /* Ajuste a largura conforme necessário */
-    top: 50%; /* Posiciona a asa no centro verticalmente */
-    right: 0; /* Posiciona a asa à direita */
-    transform: translateY(-50%); /* Ajusta a posição verticalmente */
-}
-
-    

@@ -231,7 +231,7 @@ header .navbar a:hover{
     font-size:2rem;
 }
 .icones-contanier .icones span{
-    color:var(---azul_background);
+    color:var(---text1);
     font-size:1.7rem;
 }
 .destino .box-contanier{

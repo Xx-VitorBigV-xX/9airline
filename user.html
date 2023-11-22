@@ -5,23 +5,32 @@
   <meta charset="UTF-8">
   <title>9airline</title>
     <link rel="stylesheet" href="/index/css/user.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css"
+    crossorigin=""
+  />
     <script type="text/javascript" src="/js/user.js" defer></script>
 </head>
 <body>
   <header>
-    <h1>Compra de Passagem Aérea</h1>
+    <a href="/pagina_principal.html" class="logo"
+      >9airline <span><i class="ri-flight-takeoff-line"></i></span
+    ></a>
   </header>
+
  <section class="casa">
     <div class="container" >
     <form class="form">
+      <label for="origem">Origem</label>
+      <select name="origem" id="origem" >
+        <option value="cartaoCredito">Cartão de credito</option>
+        <option value="cartaoDebito">Cartão de debito</option>
+        <option value="boleto">Boleto</option>
+      </select>
+
       <label for="destino">Destino</label>
       <input type="text" id="destino" name="destino" >
-
-      <label for="origem">Origem</label>
-      <input type="text" id="origem" name="origem" >
-
-      <label for="dataVoo">Data do voo</label>
-      <input type="date" id="dataVoo" name="dataVoo" ><br>
       
       <label for="passagem">Quantidade de passagens</label>
       <input type="number" id="passagem" name="passagem"><br>
@@ -41,9 +50,13 @@
     
     <div class="testeSobreposicao">
         <div class="mapa-assentos-contanier">
-        <h2>Mapa de Assentos</h2>
-        
-
+          <div class="legenda" style="display: block; margin-bottom: 90px;">
+              <h2>Mapa de Assentos</h2>
+              <div class="AssentoVazio"><img src="/index/image/assentoDarkBlue.png" alt=""><label class="LabelAssentoVazio" for="AssentoVazio">Assento Vazio</label></div>
+              <div class="AssentoOcupado"><img src="/index/image/assentoGrey.png" alt=""><label class="LabelAssentoOcupado" for="AssentoOcupado">Assento Ocupado</label></div>
+              <div class="AssentoSelecionado"><img src="/index/image/assentoLightBlue.png" alt=""><label class="LabelAssentoSelecionando" for="AssentoSelecionando">Assento selecionado</label></div>
+            </div>
+          
     <div id="mapa-assentos">
         <!-- Os assentos serão adicionados dinamicamente aqui -->
     </div>
