@@ -144,6 +144,7 @@ header .navbar a:hover{
 .casa .content h3{
     font-size: 6rem;
     color:var(---text1);
+    font-weight: bolder;
 }
 .casa .content span{
     font-size:3.5rem;

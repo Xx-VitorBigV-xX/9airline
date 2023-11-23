@@ -55,7 +55,6 @@ header .logo{
 header .logo span{
       color:#fff
 }
-
   .casa{
     display: flex;
     /* width: 2440px;*/
@@ -77,7 +76,23 @@ header .logo span{
     box-shadow: 0 0 10px var(---azul_background);
     
   }
-  label {
+  form select{
+    width: 100%;
+  }
+  .selecOrigem{
+      display: flex
+  }
+  .selectCidadeOrigem{
+    width: 40%;
+    margin-right: 105px;
+  }
+  .selectAeroportoOrigem{
+    width: 40%;
+  }
+  .selectAeroportoOrigem select{
+    height: 30px;
+  }
+    label {
     display: block;
     margin-bottom: 5px;
   }
