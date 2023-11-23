@@ -11,6 +11,7 @@
     crossorigin=""
   />
     <script type="text/javascript" src="/js/user.js" defer></script>
+    
 </head>
 <body>
   <header>
@@ -21,16 +22,33 @@
 
  <section class="casa">
     <div class="container" >
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Ida/Volta</button>
+          <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Volta</button>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0"></div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0"></div>
+      </div>
+<!-- ===================================================  FORMULARIO DE BUSCA AEREA ============================================= -->
     <form class="form">
       <label for="origem">Origem</label>
       <select name="origem" id="origem" >
-        <option value="cartaoCredito">Cartão de credito</option>
-        <option value="cartaoDebito">Cartão de debito</option>
-        <option value="boleto">Boleto</option>
+        <option value="*">cidade</option>
+        <!-- <option value="campinas">campinas</option>
+        <option value="São Paulo">São Paulo</option>
+        <option value="Rio de Janeiro">Rio de Janeiro</option> -->
       </select>
 
       <label for="destino">Destino</label>
-      <input type="text" id="destino" name="destino" >
+      <select name="origem" id="AeroportoOrigem" >
+        <!-- <option value="*">cidade</option>
+        <option value="campinas">campinas</option>
+        <option value="São Paulo">São Paulo</option>
+        <option value="Rio de Janeiro">Rio de Janeiro</option> -->
+      </select>
       
       <label for="passagem">Quantidade de passagens</label>
       <input type="number" id="passagem" name="passagem"><br>

@@ -115,7 +115,7 @@ function selecionarAssento() {
         return elementosUltimaLinha;
     }
     
-    chmada
+    // chmada
     const elementosPrimeiraLinha = calcularElementosPrimeiraLinha(totalAssentos, colunas);
     const elementosUltimaLinha = calcularElementosUltimaLinha(totalAssentos, colunas);
     
@@ -155,4 +155,198 @@ function selecionarAssento() {
 
 
 
-//------------------------------ LISTAR VOOS -----------------------------------------
+//------------------------------ LISTAR VOOS -----------------------------------------//
+//--------------------------------requisições--------------------------------------
+
+async function requestListaVoo() {
+    const requestOptions = {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    };
+    const response = await fetch('http://localhost:3000/listarVoo', requestOptions);
+    return response.json();
+  }
+
+async function requestBuscaAeroporto() {
+    const requestOptions = {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    };
+    const response = await fetch('http://localhost:3000/BuscarAeroportosAtravesDeCidades', requestOptions);
+    return response.json();
+  } 
+
+  async function requestListCidade() {
+    const requestOptions = {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    };
+    const response = await fetch('http://localhost:3000/listarCidades', requestOptions);
+    return response.json();
+  
+  }
+
+
+//--------------------------------------------------------- BUSCA AERONAVES APARTIR DA CIDADE
+async function consultacidade() {
+
+    requestListCidade().then(customResponse => {
+      if (customResponse.status === "SUCCESS") {
+         console.log("retornou cidade");
+         console.log(customResponse.payload);
+        CriarElementoSelectCidades(JSON.parse(JSON.stringify(customResponse.payload)))
+  
+      } else {
+        console.log(customResponse.message);
+      }
+    })
+    .catch((e) => {
+      console.log("Não foi possível exibir." + e);
+    }); 
+  }consultacidade()
+  
+  function CriarElementoSelectCidades(cidades) {
+
+    const elementoCidadesDestinoID=document.getElementById("origem");
+    for (let i = 0; i < cidades.length; i++){
+      const cidade = cidades[i];
+      console.log(cidades)
+      console.log("dados da cidades: " + JSON.stringify(cidade));
+  
+      const row = document.createElement("option");
+      row.innerHTML = 
+        `<option  value="${cidade[1]}">${cidade[1]}</option>
+        `;
+        elementoCidadesDestinoID.appendChild(row);
+    }
+    console.log("select cidade origem criada?");
+    }
+// ===============================================================================================================================
+ async function consultavoo() {
+
+    requestListaVoo().then(customResponse => {
+        if (customResponse.status === "SUCCESS") {
+           console.log("retornou");
+           console.log(customResponse.payload);
+        } else {
+          console.log(customResponse.message);
+        }
+      })
+      .catch((e) => {
+        console.log("Não foi possível exibir." + e);
+      });
+        
+        
+    }
+    consultavoo();
+//======================================================================= 
+const selectorOrigem = document.getElementById('origem')
+ selectorOrigem.addEventListener('change', async (event) => {
+    const busca = getDadosForm();
+    console.log('Dados da -- após getDadosForm:',busca);
+    CriarElementoSelectAeroportoOrigem(busca)
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    enviarParaApiInserir(busca);
+});
+
+  
+async function BuscaAeroporto() {
+    
+
+    requestBuscaAeroporto().then(customResponse => {
+      if (customResponse.payload !== 'undefined') {
+         console.log("retornou");
+         console.log("busca aqui",customResponse.payload);
+        } else {
+        console.log(customResponse.message);
+      }
+    })
+    .catch((e) => {
+      console.log("Não foi possível exibir." + e);
+    });
+  }
+
+  
+ 
+function getDadosForm() { // pegando o dado do formulario e checando se nao esta vazio
+    const getCidadeOrigem = document.querySelector('#origem');
+    if (getCidadeOrigem.value.trim() === '' ) {
+        console.error('Campo vazio');
+        return;
+    }
+    const busca = {
+        nome: getCidadeOrigem.value,//passando parametro para api
+    };
+    console.log('Dados da select após getDadosForm:', busca);
+    return busca;
+}
+
+async function CriarElementoSelectAeroportoOrigem(busca) {
+
+    const elementoAeroportoOrigemID=document.getElementById("AeroportoOrigem");
+    elementoAeroportoOrigemID.children.value='';
+   
+    for (let i = 0; i < busca.length; i++){
+      const buscas = busca[i];
+      console.log('->',busca)
+      console.log("dados da busca: " + JSON.stringify(buscas));
+  
+      const row = document.createElement("option");
+      row.innerHTML = 
+        `<option  value="${buscas[0]}">${buscas[0]}</option>
+        `;
+        elementoAeroportoOrigemID.appendChild(row);
+    }
+    console.log("select aeroporto criada?");
+    }
+    async function enviarParaApiInserir(busca) {
+        let resposta;
+      
+        try {
+          console.log('Enviando dados para a API:', busca);
+      
+          // Transformando os parâmetros em uma string de consulta
+          const parametrosConsulta = new URLSearchParams({ nome: busca.nome }).toString();
+
+      
+          // Adicione um pequeno atraso para facilitar a visualização das mensagens de console
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          console.log("esta vindo",parametrosConsulta)
+      
+          // Adicionando os parâmetros de consulta à URL
+          const url = `http://localhost:3000/BuscarAeroportosAtravesDeCidades?${parametrosConsulta}`;
+      
+          // Fazendo a requisição GET sem o corpo
+          resposta = await fetch(url, {
+            method: 'GET',
+            headers: {
+              Accept: 'application/json',
+              'Content-type': 'application/json'
+            },
+          });
+        
+          // console.log('Resposta da API:', await resposta.json());
+      
+          if (resposta.ok) {
+            console.log('BUSCA REALIZADA COM SUCESSO');
+            const dadosResposta = await resposta.json();
+            CriarElementoSelectAeroportoOrigem(dadosResposta.payload);
+            console.log("busca aqui",dadosResposta.payload);
+
+
+
+            // limparCamposAeronave();
+          } else {
+            console.log('Erro na busca');
+          }
+        } catch (erro) {
+          console.error(erro);
+        }
+      }
+     
+
+
+
+
+
+   BuscaAeroporto();
