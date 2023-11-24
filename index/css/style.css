@@ -1,15 +1,16 @@
+/* definindo variáveis */
 :root{
     ---azul_background:#00A3F5;
     ---text1:#3544A0;
     ---textsombra1:#F5ED0C;
 }
-
+/* definindo um padrão para página pagina */
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin: 0; /* margin padrão -=> espaço externo*/
+    padding: 0; /* padding  espaço interno da caixa*/
+    box-sizing: border-box; /* alterar a propriedade padrão da box model, usada para calcular larguras (widths) e alturas (heights) dos elementos*/ /* Em uma página WEB, cada elemento é representado como um box retangular. Determinar o tamanho, propriedades - como sua cor, fundo, estilo das bordas - e a posição desses boxes é o objetivo do mecanismo de renderização.*/
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    outline: none;border:none;
+    outline: none;border:none;/* propriedade abreviada para configurar uma ou mais das propriedades de contorno visualização otica https://developer.mozilla.org/pt-BR/docs/Web/CSS/outline  usar o site  para rodar o codigo de exemplo https://www.w3schools.com/html/html_editor.asp*/
     text-decoration: none;
     text-transform:capitalize;
     transition: .2 linear;
