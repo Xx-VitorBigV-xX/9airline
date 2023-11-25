@@ -196,6 +196,7 @@ async function consultacidade() {
          console.log("retornou cidade");
          console.log(customResponse.payload);
         CriarElementoSelectCidades(JSON.parse(JSON.stringify(customResponse.payload)))
+
         CriarElementoSelectCidadesDestino(JSON.parse(JSON.stringify(customResponse.payload)))
       } else {
         console.log(customResponse.message);
@@ -207,7 +208,26 @@ async function consultacidade() {
   }consultacidade()
  //Criando elementeo no select para Elemento Cidade -------------------------------------------------    
   function CriarElementoSelectCidades(cidades) {
-    const elementoCidadesID=document.getElementById("origem");
+
+
+            // Seletor da cidade de origem
+const elementoCidadesID = document.getElementById("origem");
+
+    // Seletor da cidade de destino
+    const elementoCidadesDestinoID = document.getElementById("Destino");
+
+// Adicionar evento de mudança para a cidade de origem
+  elementoCidadesID.addEventListener('change', async (event) => {
+    const cidadeOrigem = elementoCidadesID.value;
+    const cidadeDestino = elementoCidadesDestinoID.value;
+
+    // Verificar se a cidade de destino é igual à cidade de origem
+    if (cidadeDestino === cidadeOrigem) {
+        console.error('A cidade de destino não pode ser igual à cidade de origem.');
+        // Adicione o código adicional ou mensagem que deseja exibir quando a condição não for atendida.
+        return;
+    }  })
+
     for (let i = 0; i < cidades.length; i++){
       const cidade = cidades[i];
       console.log(cidades)
@@ -224,7 +244,26 @@ async function consultacidade() {
 
  //Criando elementeo no select para Elemento Cidade -------------------------------------------------    
   function CriarElementoSelectCidadesDestino(cidades) {
-    const elementoCidadesDestinoID=document.getElementById("Destino");
+
+    
+
+            // Seletor da cidade de origem
+const elementoCidadesID = document.getElementById("origem");
+
+// Seletor da cidade de destino
+const elementoCidadesDestinoID = document.getElementById("Destino");
+
+// Adicionar evento de mudança para a cidade de origem
+elementoCidadesDestinoID.addEventListener('change', async (event) => {
+const cidadeOrigem = elementoCidadesID.value;
+const cidadeDestino = elementoCidadesDestinoID.value;
+
+// Verificar se a cidade de destino é igual à cidade de origem
+if (cidadeOrigem === cidadeDestino ) {
+    console.error('A cidade de destino não pode ser igual à cidade de origem.');
+    // Adicione o código adicional ou mensagem que deseja exibir quando a condição não for atendida.
+    return;
+}  })
     for (let i = 0; i < cidades.length; i++){
       const cidade = cidades[i];
       console.log(cidades)
@@ -261,10 +300,17 @@ async function consultacidade() {
 const selectorOrigem = document.getElementById('origem')
  selectorOrigem.addEventListener('change', async (event) => {
     const busca = getDadosForm();
-    console.log('Dados da -- após getDadosForm:',busca);
+    console.log('seletor origem -> ',selectorOrigem.value)
+    if(selectorOrigem.value === selectorDestino.value){
+      exibirMensagemErro('A cidade de destino não pode ser igual à cidade de origem.');
+
+    }else{
+      console.log('Dados da -- após getDadosForm:',busca);
     // CriarElementoSelectAeroportoOrigem(busca)
     await new Promise(resolve => setTimeout(resolve, 1000));
     enviarParaApiInserir(busca);
+    }
+    
 });
 
   
@@ -323,9 +369,14 @@ const selectorDestino = document.getElementById('Destino')
 selectorDestino.addEventListener('change', async (event) => {
     const buscaDestino = getDadosFormDestino();
     console.log('Dados da -- após getDadosForm:',buscaDestino);
-    CriarElementoSelectAeroportoDestino(buscaDestino)
+    if(selectorOrigem.value === selectorDestino.value){
+      exibirMensagemErro('A cidade de destino não pode ser igual à cidade de origem.');
+    }else{
+       CriarElementoSelectAeroportoDestino(buscaDestino)
     await new Promise(resolve => setTimeout(resolve, 1000));
     enviarParaApiInserir2(buscaDestino);
+    }
+   
 });
 function getDadosFormDestino() { // pegando o dado do formulario e checando se nao esta vazio
     const getCidadeDestino = document.querySelector('#Destino');
@@ -461,7 +512,21 @@ async function CriarElementoSelectAeroportoDestino(buscaDestino) {
     }
     
      
+// Função para exibir mensagem de erro na página
+function exibirMensagemErro(mensagem) {
+  // Crie um elemento de parágrafo para a mensagem de erro
+  const mensagemErro = document.createElement('p');
+  mensagemErro.style.color = 'red'; // Pode estilizar a mensagem de erro como desejar
+  mensagemErro.textContent = mensagem;
+  setTimeout(() => {
+    mensagemErro.style.display = 'none';
+  }, 3000);
 
+  
+
+  // Adicione a mensagem de erro ao corpo do documento (ou ao local desejado na sua estrutura HTML)
+  document.body.appendChild(mensagemErro);
+}
 
 
 
