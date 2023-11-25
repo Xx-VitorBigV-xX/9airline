@@ -90,7 +90,7 @@ header .logo span{
     width: 40%;
   }
   .selectAeroportoOrigem select{
-    height: 30px;
+    /* height: 30px; */
   }
     label {
     display: block;
