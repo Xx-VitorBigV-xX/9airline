@@ -36,9 +36,13 @@ if (colunas % 3 === 0) {
 }
 
 // Elemento onde os assentos serão adicionados
+
+
+
+
+
+
 const mapaAssentos = document.getElementById('mapa-assentos');
-
-
 // Adiciona os assentos ao mapa
 for (let i = 1; i <= totalAssentos; i++) {
     const assento = document.createElement('div');
@@ -91,7 +95,9 @@ for (let i = 1; i <= totalAssentos; i++) {
     assento.textContent = `${letraAtual}${i}`;
 
 
-    assento.addEventListener('click', selecionarAssento);
+  assento.addEventListener('click', (selecionarAssento));
+
+
     mapaAssentos.appendChild(assento);
 }
 
@@ -99,9 +105,8 @@ for (let i = 1; i <= totalAssentos; i++) {
 
 // Função para selecionar/deselecionar um assento
 function selecionarAssento() {
-    this.classList.toggle('selecionado');
+this.classList.toggle('selecionado');
 }
-
 
 // debugando para saber se o codigo esta pegando  a primeira linha e a ultima linha
     
@@ -214,26 +219,9 @@ async function consultacidade() {
   }consultacidade()
  //Criando elementeo no select para Elemento Cidade -------------------------------------------------    
   function CriarElementoSelectCidades(cidades) {
-
-
             // Seletor da cidade de origem
 const elementoCidadesID = document.getElementById("origem");
-
     // Seletor da cidade de destino
-    const elementoCidadesDestinoID = document.getElementById("Destino");
-
-// Adicionar evento de mudança para a cidade de origem
-  elementoCidadesID.addEventListener('change', async (event) => {
-    const cidadeOrigem = elementoCidadesID.value;
-    const cidadeDestino = elementoCidadesDestinoID.value;
-
-    // Verificar se a cidade de destino é igual à cidade de origem
-    if (cidadeDestino === cidadeOrigem) {
-        console.error('A cidade de destino não pode ser igual à cidade de origem.');
-        // Adicione o código adicional ou mensagem que deseja exibir quando a condição não for atendida.
-        return;
-    }  })
-
     for (let i = 0; i < cidades.length; i++){
       const cidade = cidades[i];
       console.log(cidades)
@@ -572,7 +560,7 @@ PegarBotao.addEventListener('click', (event) => {
 
   console.log('<|><|><|><|><|>', getDadosForm(), getDadosFormDestino(),getDadosDataIdaForm(), getDadosDataVoltaForm());
 });
-//MANDA PARA A API --------------------------------------------------------------------------------   
+//MANDA PARA A API  BUSCAR--------------------------------------------------------------------------------   
 async function enviarParaApiBuscarVoo(buscaDataIda) {
   let respostaURL;
   try {
@@ -604,7 +592,7 @@ async function enviarParaApiBuscarVoo(buscaDataIda) {
     if (respostaURL.ok) {
       console.log('BUSCA REALIZADA COM SUCESSO');
       const dadosResposta = await respostaURL.json();
-
+      CriarElementoSelectVoo(dadosResposta.payload);
       console.log("resposta aqui",dadosResposta.payload);
 
 
@@ -615,4 +603,22 @@ async function enviarParaApiBuscarVoo(buscaDataIda) {
   } catch (erro) {
     console.error(erro);
   }
+}
+
+function CriarElementoSelectVoo(voos) {
+  // Seletor da cidade de origem
+const elementoVooID = document.getElementById("voos_Disponiveis");
+// Seletor da cidade de destino
+for (let i = 0; i < voos.length; i++){
+const voo = voos[i];
+console.log(voos)
+console.log("dados da cidades: " + JSON.stringify(voo));
+
+const row = document.createElement("option");
+row.innerHTML = 
+`<option  value="${voo[6]}">${voo[7]}</option>
+`;
+elementoVooID.appendChild(row);
+}
+console.log("select cidade origem criada?");
 }
