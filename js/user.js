@@ -1,3 +1,9 @@
+// CONSULTA DA TABELA DE ASSENTOS
+
+
+
+
+
 const mostrarBotao = document.getElementById('mostrarBotao');
         const minhaSecao = document.getElementById('minhaSecao');
 
@@ -278,24 +284,7 @@ if (cidadeOrigem === cidadeDestino ) {
     console.log("select cidade destino criada?");
     }
 
-// CONSULTA VOO ---------------------------------------------------------------------------------------
- async function consultavoo() {
 
-    requestListaVoo().then(customResponse => {
-        if (customResponse.status === "SUCCESS") {
-           console.log("retornou");
-           console.log(customResponse.payload);
-        } else {
-          console.log(customResponse.message);
-        }
-      })
-      .catch((e) => {
-        console.log("Não foi possível exibir." + e);
-      });
-        
-        
-    }
-    consultavoo();
 //CONSTRUTOR DO ELEMENTO SELECT DA AEROPORTO ORIGEM ----------------------------------------------------------  
 const selectorOrigem = document.getElementById('origem')
  selectorOrigem.addEventListener('change', async (event) => {
@@ -529,6 +518,101 @@ function exibirMensagemErro(mensagem) {
 }
 
 
-
-
    BuscaAeroporto();
+
+
+// BUSCA POR DATA =================================================
+// CONSULTA VOO ---------------------------------------------------
+ async function consultavoo() {
+
+    requestListaVoo().then(customResponse => {
+        if (customResponse.status === "SUCCESS") {
+           console.log("retornou");
+           console.log(customResponse.payload);
+        } else {
+          console.log(customResponse.message);
+        }
+      })
+      .catch((e) => {
+        console.log("Não foi possível exibir." + e);
+      });  
+    }
+    consultavoo();
+
+function getDadosDataIdaForm(){
+  const getdataIda = document.querySelector('#DataIda')
+  if(getdataIda.value.trim()===''){
+    console.erro('campo Vazio');
+    return;
+  }
+  const buscaDataIda ={
+    dia_partida:getdataIda.value
+  }
+  console.log('Dados data ->>>', buscaDataIda);
+  return buscaDataIda;
+}
+function getDadosDataVoltaForm() {
+  const getdataVolta = document.querySelector('#DataVolta');
+  if (getdataVolta.value.trim() === '') {
+    console.error('campo Vazio');
+    return;
+  }
+  const busca = {
+    dia_partida: getdataVolta.value
+  };
+  console.log('Dados data ->>>', busca);
+  return busca;
+}
+
+const PegarBotao = document.getElementById('buscar_voo');
+PegarBotao.addEventListener('click', (event) => {
+  event.preventDefault();
+  const buscaDataIda = getDadosDataIdaForm();
+  enviarParaApiBuscarVoo(buscaDataIda);
+
+  console.log('<|><|><|><|><|>', getDadosForm(), getDadosFormDestino(),getDadosDataIdaForm(), getDadosDataVoltaForm());
+});
+//MANDA PARA A API --------------------------------------------------------------------------------   
+async function enviarParaApiBuscarVoo(buscaDataIda) {
+  let respostaURL;
+  try {
+    console.log('Enviando dados para a API DATA:', buscaDataIda);
+
+    // Transformando os parâmetros em uma string de consulta
+    const parametrosConsulta = new URLSearchParams({dia_partida: buscaDataIda.dia_partida}).toString();
+    
+
+    // Adicione um pequeno atraso para facilitar a visualização das mensagens de console
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    console.log("esta vindo@@@",parametrosConsulta)
+
+    // Adicionando os parâmetros de consulta à URL
+    const url = `http://localhost:3000/BuscarVooAtravezDaDataIda?${parametrosConsulta}`;
+
+    // Fazendo a requisição GET sem o corpo
+    respostaURL = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-type': 'application/json'
+      },
+    });
+  
+    // console.log('Resposta da API:', await resposta.json());
+
+
+    if (respostaURL.ok) {
+      console.log('BUSCA REALIZADA COM SUCESSO');
+      const dadosResposta = await respostaURL.json();
+
+      console.log("resposta aqui",dadosResposta.payload);
+
+
+
+    } else {
+      console.log('Erro na busca');
+    }
+  } catch (erro) {
+    console.error(erro);
+  }
+}
