@@ -1,8 +1,14 @@
 // CONSULTA DA TABELA DE ASSENTOS
+let valorSelecionadoVoo6Global;
+let valorSelectVoo7Global;
+let valorselectdados1Global;
+let valorselecionadoVoo4Global;
+let valorDoAssento;
+const btnAssento = document.getElementById('btnAssento')
+btnAssento.addEventListener('click',()=>{
+  console.log('jaguariuna',valorDoAssento);
 
-
-
-
+})
 
 const mostrarBotao = document.getElementById('mostrarBotao');
         const minhaSecao = document.getElementById('minhaSecao');
@@ -11,12 +17,18 @@ const mostrarBotao = document.getElementById('mostrarBotao');
         mostrarBotao.addEventListener('click',function() {
             console.log('Clicou');
             event.preventDefault();
+            consultaAssentos()
+            CostroiAssento()
+
+            // PegaElemento(valorSelecionadoVoo6Global);
+
             // Alterna a classe 'oculta' para mostrar ou ocultar a seção
             minhaSecao.classList.toggle('oculta'); });
 
-
+function CostroiAssento(dadosResposta,tamanho){
   // Número total de assentos
-const totalAssentos = 40;
+console.log('numero##',tamanho)
+const totalAssentos = tamanho
 //fazer um codigo que verifica o total de assentos
 // Array contendo as letras do alfabeto
 const letrasDoAlfabeto = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -45,10 +57,10 @@ if (colunas % 3 === 0) {
 const mapaAssentos = document.getElementById('mapa-assentos');
 // Adiciona os assentos ao mapa
 for (let i = 1; i <= totalAssentos; i++) {
+    
     const assento = document.createElement('div');
     assento.className = 'assento';
-    assento.textContent = i;
-
+    console.log('valor do assento:',assento)
     // Calcula a linha e coluna com base no índice atual
     const colunaAtual = (i - 1) % colunas;
     const linhaAtual = Math.floor((i - 1) / colunas);
@@ -92,46 +104,62 @@ for (let i = 1; i <= totalAssentos; i++) {
         assento.style.marginRight = margemTres + 'px';//a margem px esta sendo passada pela variavel 
     }
     const letraAtual = letrasDoAlfabeto[colunaAtual];
-    assento.textContent = `${letraAtual}${i}`;
+    const assentoValue = `${letraAtual}${i}`;
+    const assentoPAPI = `${i}`;
+    assento.textContent = assentoValue;
 
 
-  assento.addEventListener('click', (selecionarAssento));
+    console.log('valor do assento:',assento,assentoPAPI)
+    // assento.textContent = dadosResposta.payload[i];
+
+
+    assento.addEventListener('click', () => {
+      selecionarAssento(assento, assentoPAPI);
+  });
 
 
     mapaAssentos.appendChild(assento);
 }
 
 
+}
+
+
 
 // Função para selecionar/deselecionar um assento
-function selecionarAssento() {
-this.classList.toggle('selecionado');
+function selecionarAssento(assento, assentoPAPI) {
+  assento.classList.toggle('selecionado');
+ 
+  console.log('XXX',assentoPAPI)
+  
 }
+
+
 
 // debugando para saber se o codigo esta pegando  a primeira linha e a ultima linha
     
-    function calcularElementosPrimeiraLinha(totalAssentos, colunas) {
-        // Calcula quantas linhas existem
-        const linhas = Math.ceil(totalAssentos / colunas);//Calcula o número total de linhas necessárias para alocar todos os assentos, usa a função math.ceil para aredondar  o numero de linha  para cima, pois é uma divisão e vai dar numero quebrado 
-        // Calcula quantos elementos estão na última linha
-        const elementosPrimeiraLinha = totalAssentos - (linhas - 1) * colunas; //esta é para pegar o numero de elementos(assentos) que foram preenchidos antes da ultima linha, pois a ultima linha pode dar um numero que nao é o numero total de colunas quebrará o codigo
-        return elementosPrimeiraLinha;
-    }
+    // function calcularElementosPrimeiraLinha(totalAssentos, colunas) {
+    //     // Calcula quantas linhas existem
+    //     const linhas = Math.ceil(totalAssentos / colunas);//Calcula o número total de linhas necessárias para alocar todos os assentos, usa a função math.ceil para aredondar  o numero de linha  para cima, pois é uma divisão e vai dar numero quebrado 
+    //     // Calcula quantos elementos estão na última linha
+    //     const elementosPrimeiraLinha = totalAssentos - (linhas - 1) * colunas; //esta é para pegar o numero de elementos(assentos) que foram preenchidos antes da ultima linha, pois a ultima linha pode dar um numero que nao é o numero total de colunas quebrará o codigo
+    //     return elementosPrimeiraLinha;
+    // }
     
-    function calcularElementosUltimaLinha(totalAssentos, colunas) {
-        // Calcula quantas linhas existem
-        const linhas = Math.ceil(totalAssentos / colunas); // esta conta serve para saber  quantas linhas precisam para acomodar os assentos de acordo com o numero total de assentos e o numero de colunas 
-        // Calcula quantos elementos estão na última linha
-        const elementosUltimaLinha = totalAssentos % colunas || colunas;
-        return elementosUltimaLinha;
-    }
+    // function calcularElementosUltimaLinha(totalAssentos, colunas) {
+    //     // Calcula quantas linhas existem
+    //     const linhas = Math.ceil(totalAssentos / colunas); // esta conta serve para saber  quantas linhas precisam para acomodar os assentos de acordo com o numero total de assentos e o numero de colunas 
+    //     // Calcula quantos elementos estão na última linha
+    //     const elementosUltimaLinha = totalAssentos % colunas || colunas;
+    //     return elementosUltimaLinha;
+    // }
     
-    // chmada
-    const elementosPrimeiraLinha = calcularElementosPrimeiraLinha(totalAssentos, colunas);
-    const elementosUltimaLinha = calcularElementosUltimaLinha(totalAssentos, colunas);
+    // // chmada
+    // const elementosPrimeiraLinha = calcularElementosPrimeiraLinha(totalAssentos, colunas);
+    // const elementosUltimaLinha = calcularElementosUltimaLinha(totalAssentos, colunas);
     
-    console.log("Elementos na primeira linha:", elementosPrimeiraLinha);
-    console.log("Elementos na última linha:", elementosUltimaLinha);
+    // console.log("Elementos na primeira linha:", elementosPrimeiraLinha);
+    // console.log("Elementos na última linha:", elementosUltimaLinha);
     
 
     /* COMENTARIOS 
@@ -197,6 +225,15 @@ async function requestBuscaAeroporto() {
   
   }
 
+  
+  // async function requestListAssentos() {
+  //   const requestOptions = {
+  //     method: 'GET',
+  //     headers: { 'Content-Type': 'application/json' },
+  //   };
+  //   const response = await fetch('http://localhost:3000/listarAssentos', requestOptions);
+  //   return response.json();
+  // }
 
 //--------------------------------------------------------- BUSCA AEROPORTOS APARTIR DA CIDADE
 async function consultacidade() {
@@ -541,6 +578,7 @@ function getDadosDataIdaForm(){
 }
 function getDadosDataVoltaForm() {
   const getdataVolta = document.querySelector('#DataVolta');
+  //passar cidade como parametro tmb
   if (getdataVolta.value.trim() === '') {
     console.error('campo Vazio');
     return;
@@ -603,7 +641,7 @@ async function enviarParaApiBuscarVoo(buscaDataIda) {
   } catch (erro) {
     console.error(erro);
   }
-}
+}//---------------------------------------------------------------------------------
 
 function CriarElementoSelectVoo(voos) {
   // Seletor da cidade de origem
@@ -616,9 +654,81 @@ console.log("dados da cidades: " + JSON.stringify(voo));
 
 const row = document.createElement("option");
 row.innerHTML = 
-`<option  value="${voo[6]}">${voo[7]}</option>
+`<option value="${voo[6]}">${voo[7]}</option>
 `;
+
 elementoVooID.appendChild(row);
+  valorselectdados1Global=voo[1];
+  valorselecionadoVoo4Global=voo[4]
+  valorSelectVoo7Global = voo[7];
+  valorSelecionadoVoo6Global = voo[6];
+  console.log('Valor selecionado de voo[6]:', valorSelecionadoVoo6Global);
+  PegaElemento(valorSelecionadoVoo6Global);
+
 }
 console.log("select cidade origem criada?");
 }
+
+
+function consultaAssentos() {
+         console.log("retornou");
+         console.log('parametro^^',valorSelecionadoVoo6Global)
+         enviarParaApiBuscarAssento(valorSelecionadoVoo6Global,valorSelectVoo7Global,valorselectdados1Global,valorselecionadoVoo4Global)
+    .catch((e) => {
+      console.log("Não foi possível exibir." + e);
+    });  
+  }
+  consultaAssentos();
+  function PegaElemento(voo){
+    console.log('voo**:',voo)
+
+    }
+    async function enviarParaApiBuscarAssento(valorSelecionadoVoo6Global,valorSelectVoo7Global,valorselectdados1Global,valorselecionadoVoo4Global) {
+      console.log('/**')
+      let respostaURL;
+      try {
+        console.log('Enviando dados para a API PARA BUSCAR ASSENTO:', valorSelecionadoVoo6Global,valorSelectVoo7Global,valorselectdados1Global,valorselecionadoVoo4Global);
+    
+        // Transformando os parâmetros em uma string de consulta
+        const parametrosConsulta = new URLSearchParams({FK_numero_de_identificacao: valorSelecionadoVoo6Global,FK_NOME_trecho:valorSelectVoo7Global,dia_partida:valorselectdados1Global,horario_partida:valorselecionadoVoo4Global}).toString();
+
+    
+        // Adicione um pequeno atraso para facilitar a visualização das mensagens de console
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        console.log("PARAMETRO",parametrosConsulta)
+    
+        // Adicionando os parâmetros de consulta à URL
+        const url = `http://localhost:3000/listarAssentos?${parametrosConsulta}`;
+    
+        // Fazendo a requisição GET sem o corpo
+        respostaURL = await fetch(url, {
+          method: 'GET',
+          headers: {
+            Accept: 'application/json',
+            'Content-type': 'application/json'
+          },
+        });
+      
+        // console.log('Resposta da API:', await resposta.json());
+    
+    
+        if (respostaURL.ok) {
+          console.log('A S S E N T O ');
+          const dadosResposta = await respostaURL.json();
+
+          const tamanhoResposta = dadosResposta.payload.length;
+          console.log('Tamanho da resposta:', tamanhoResposta);
+
+          CostroiAssento(dadosResposta.payload,tamanhoResposta)
+          console.log("resposta aqui",dadosResposta.payload);
+    
+    
+    
+        } else {
+          console.log('Erro na busca');
+        }
+      } catch (erro) {
+        console.error(erro);
+      }
+    }
+  
