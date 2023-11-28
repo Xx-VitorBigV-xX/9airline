@@ -4,12 +4,20 @@ let valorSelectVoo7Global;
 let valorselectdados1Global;
 let valorselecionadoVoo4Global;
 let valorDoAssento;
+let listaDeStatus;
+let valorDoStatus;
+
 const btnAssento = document.getElementById('btnAssento')
 btnAssento.addEventListener('click',()=>{
-  console.log('jaguariuna',valorDoAssento);
-
+const json ={
+  FK_numero_de_identificacao:valorSelecionadoVoo6Global,
+  FK_NOME_trecho:valorSelectVoo7Global,
+  horario_partida:valorselecionadoVoo4Global,
+  dia_partida:valorselectdados1Global,
+  numero:valorDoAssento,
+}
+eviarParaApiMudarStatus(json);
 })
-
 const mostrarBotao = document.getElementById('mostrarBotao');
         const minhaSecao = document.getElementById('minhaSecao');
 
@@ -17,8 +25,9 @@ const mostrarBotao = document.getElementById('mostrarBotao');
         mostrarBotao.addEventListener('click',function() {
             console.log('Clicou');
             event.preventDefault();
-            consultaAssentos()
-            CostroiAssento()
+            consultaAssentos();
+           
+            CostroiAssento(); 
 
             // PegaElemento(valorSelecionadoVoo6Global);
 
@@ -27,7 +36,7 @@ const mostrarBotao = document.getElementById('mostrarBotao');
 
 function CostroiAssento(dadosResposta,tamanho){
   // Número total de assentos
-console.log('numero##',tamanho)
+// console.log('numero##',tamanho)
 const totalAssentos = tamanho
 //fazer um codigo que verifica o total de assentos
 // Array contendo as letras do alfabeto
@@ -57,9 +66,21 @@ if (colunas % 3 === 0) {
 const mapaAssentos = document.getElementById('mapa-assentos');
 // Adiciona os assentos ao mapa
 for (let i = 1; i <= totalAssentos; i++) {
+  
+ const assento = document.createElement('div');
     
-    const assento = document.createElement('div');
-    assento.className = 'assento';
+
+      const status = listaDeStatus[i - 1];
+      console.log(`Elemento na posição ${i}: ${status[1]}`);
+        let nw = 'ocupado';
+        if(status[1]==nw){
+          console.log('entrou de fato!',i,status[1])
+          assento.className= 'ocupado';
+           
+        }else{
+       assento.className = 'assento';
+    }
+     
     console.log('valor do assento:',assento)
     // Calcula a linha e coluna com base no índice atual
     const colunaAtual = (i - 1) % colunas;
@@ -69,6 +90,9 @@ for (let i = 1; i <= totalAssentos; i++) {
     Se tivermos, 20 assentos e 5 colunas, precisamos considerar que a última linha terá apenas 4 assentos.
     Math.floor((totalAssentos - 1) / colunas): Divide o resultado do passo anterior pelo número de colunas e arredonda para baixo usando Math.floor. 
     Isso nos dá o número da última linha completa na grade de assentos.*/ 
+
+  
+
 
     // Define o estilo de grid para os assentos
     assento.style.gridColumn = colunaAtual + 1;
@@ -113,6 +137,14 @@ for (let i = 1; i <= totalAssentos; i++) {
     // assento.textContent = dadosResposta.payload[i];
 
 
+
+
+
+
+
+
+    
+
     assento.addEventListener('click', () => {
       selecionarAssento(assento, assentoPAPI);
   });
@@ -122,19 +154,53 @@ for (let i = 1; i <= totalAssentos; i++) {
 }
 
 
-}
 
+}
 
 
 // Função para selecionar/deselecionar um assento
 function selecionarAssento(assento, assentoPAPI) {
   assento.classList.toggle('selecionado');
- 
-  console.log('XXX',assentoPAPI)
-  
+  console.log('XXX',assentoPAPI);
+  valorDoAssento = assentoPAPI
 }
 
+async function eviarParaApiMudarStatus(assentoPAPI) {
+  let respostaURL;
+  try {
+    console.log('Enviando dados para a API:', assentoPAPI);
 
+
+    // Adicione um pequeno atraso para facilitar a visualização das mensagens de console
+    await new Promise(resolve => setTimeout(resolve, 1000));
+  
+    
+    // Fazendo a requisição GET sem o corpo
+    respostaURL = await fetch(`http://localhost:3000/updateAssentos`, {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(assentoPAPI)
+    });
+  
+    // console.log('Resposta da API:', await resposta.json());
+    if (respostaURL.ok) {
+      console.log('BUSCA REALIZADA COM SUCESSO');
+      const dadosResposta = await respostaURL.json();
+      console.log("busca aqui",dadosResposta.payload);
+
+
+
+      // limparCamposAeronave();
+    } else {
+      console.log('Erro na busca');
+    }
+  } catch (erro) {
+    console.error(erro);
+  }
+}
 
 // debugando para saber se o codigo esta pegando  a primeira linha e a ultima linha
     
@@ -297,7 +363,7 @@ if (cidadeOrigem === cidadeDestino ) {
 }  })
     for (let i = 0; i < cidades.length; i++){
       const cidade = cidades[i];
-      console.log(cidades)
+      console.log('cidade',cidades)
       console.log("dados da cidades: " + JSON.stringify(cidade));
   
       const row = document.createElement("option");
@@ -718,9 +784,9 @@ function consultaAssentos() {
 
           const tamanhoResposta = dadosResposta.payload.length;
           console.log('Tamanho da resposta:', tamanhoResposta);
-
+          listaDeStatus = dadosResposta.payload;
           CostroiAssento(dadosResposta.payload,tamanhoResposta)
-          console.log("resposta aqui",dadosResposta.payload);
+          console.log("--------",verificadorDestatus(dadosResposta.payload));
     
     
     

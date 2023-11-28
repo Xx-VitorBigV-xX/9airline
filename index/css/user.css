@@ -192,6 +192,18 @@ header .logo span{
         background-size: cover;
         color: black;
     }
+    .ocupado{
+      font-weight: bold;
+      width: 104px;
+      height: 104px;
+      margin: 5px;
+      cursor: pointer;
+      border-radius: 25%;
+      background-image: url(/index/image/assentoGrey.png);
+      /* background-image: url(/index/image/assentoGrey.png); */
+      background-size: cover;
+      color: black;
+  }
 /* cinza -> ocupado 
    azul claro -> seletor
    azul Escuro -> normal*/
