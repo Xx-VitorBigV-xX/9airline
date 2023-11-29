@@ -147,6 +147,7 @@ for (let i = 1; i <= totalAssentos; i++) {
 
     assento.addEventListener('click', () => {
       selecionarAssento(assento, assentoPAPI);
+      
   });
 
 
@@ -797,4 +798,51 @@ function consultaAssentos() {
         console.error(erro);
       }
     }
+const cartao = document.getElementById('svgCartao') 
+ let formulario = document.querySelector('#gabi')
+cartao.addEventListener('click',()=>{
+  console.log('entronou no cartao',formulario)
+  formulario.style.display='block'
   
+})
+const pix = document.getElementById('svgPix') 
+pix.addEventListener('click',()=>{
+  console.log('entronou no pix',formulario)
+  formulario.style.display='none';
+})
+
+
+
+//------------------------------------ validação de entrada 
+const cvv = document.getElementById('cvv');
+const errorMessage = document.getElementById('error-messagecvv');
+
+cvv.addEventListener('input', function() {
+    const maxLength = 3;
+    const minLength =3
+    if (cvv.value.length > maxLength || cvv.value.length < minLength) {
+        cvv.value = cvv.value.slice(0, maxLength);
+        errorMessage.textContent = 'CVV deve ter no máximo 3 dígitos';
+        cvv.classList.add('error');
+    } else {
+        errorMessage.textContent = '';
+        cvv.classList.remove('error');
+    }
+});
+
+function validarData() {
+  const input = document.getElementById('datavalidade');
+  const errorMessage = document.getElementById('error-message');
+  const dateRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+
+  if (!dateRegex.test(input.value)) {
+    errorMessage.textContent = 'Formato inválido. Use MM/AA';
+    input.classList.add('error');
+  } else {
+    errorMessage.textContent = '';
+    input.classList.remove('error');
+  }
+}
+
+const dataInput = document.getElementById('datavalidade');
+dataInput.addEventListener('blur', validarData);
