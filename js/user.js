@@ -770,7 +770,7 @@ function consultaAssentos() {
         respostaURL = await fetch(url, {
           method: 'GET',
           headers: {
-            Accept: 'application/json',
+            Accept: 'applipacation/json',
             'Content-type': 'application/json'
           },
         });
@@ -798,6 +798,8 @@ function consultaAssentos() {
         console.error(erro);
       }
     }
+
+
 const cartao = document.getElementById('svgCartao') 
  let formulario = document.querySelector('#gabi')
  let formularioPix = document.querySelector('#id_pix')
@@ -835,10 +837,16 @@ navVolta.addEventListener('click',()=>{
   let passandoIDvolta = document.getElementById('nav_home_tab')
   passandoIDvolta.className='nav_linkactive';
   selectDestino.className = 'selectAeroportoDestino';
-
-
 })
 
+const btnBuscaVoo=document.getElementById('buscar_voo');
+btnBuscaVoo.addEventListener('click',async()=>{
+  let passandoID = document.getElementById('mostrarBotao')
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  passandoID.className='mostrarBotao';
+  
+  
+})
 
 //------------------------------------ validação de entrada 
 const cvv = document.getElementById('cvv');
