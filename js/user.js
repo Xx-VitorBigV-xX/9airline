@@ -22,6 +22,10 @@ const msgerro = document.querySelector('.erroPgamento')
 msgerro.textContent='Sua passagem aerea foi emitida e enviada para seu endereço de email'
 msgerro.classList.add('aprovado')
 
+
+const =
+
+
 }else{
   console.log('PAGAMENTO NEGADO')
   const msgerro = document.querySelector('.erroPgamento')
@@ -947,3 +951,50 @@ const btnPegar = document.getElementById('btnAssento')
 btnPegar.addEventListener('click',()=>{
   console.log('P A G O U')
 })
+
+
+
+async function enviarParaApiNovoTicket(buscaDataIda) {
+  let respostaURL;
+  try {
+    console.log('Enviando dados para a API DATA:', buscaDataIda);
+
+    // Transformando os parâmetros em uma string de consulta
+    const parametrosConsulta = new URLSearchParams({dia_partida: buscaDataIda.dia_partida}).toString();
+    
+
+    // Adicione um pequeno atraso para facilitar a visualização das mensagens de console
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    console.log("esta vindo@@@",parametrosConsulta)
+
+    // Adicionando os parâmetros de consulta à URL
+    const url = `http://localhost:3000/BuscarVooAtravezDaDataIda?${parametrosConsulta}`;
+
+    // Fazendo a requisição GET sem o corpo
+    respostaURL = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-type': 'application/json'
+      },
+    });
+  
+    // console.log('Resposta da API:', await resposta.json());
+
+
+    if (respostaURL.ok) {
+      console.log('BUSCA REALIZADA COM SUCESSO');
+      const dadosResposta = await respostaURL.json();
+      CriarElementoSelectVoo(dadosResposta.payload);
+      console.log("resposta aqui",dadosResposta.payload);
+
+
+
+    } else {
+      console.log('Erro na busca');
+    }
+  } catch (erro) {
+    console.error(erro);
+  }
+
+}
