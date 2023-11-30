@@ -123,7 +123,7 @@
     
     </div>
     </div> 
-    <form class="form-pagamento" style="margin-top: 150px;display:flex"> 
+    <form class="form-pagamento" style="margin-top: 150px;display:flex; height:290px;"> 
       <div class="inputs">
         <div class="Nome-Email">
            <label for="nomeCompleto">Nome Completo</label>
@@ -131,7 +131,7 @@
            <label for="E-mail">Email</label>
            <input id="E-mail" style="width:400px" type="email">
         </div>   
-      </select><button id="btnAssento">cordenada do assentos</button>
+      </select>
      </div>
      <div class="formaDePagamentos" style=" display: flex" >
       <div class="Box_cartao"><svg  id="svgCartao"  xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 512 512"><rect width="416" height="320" x="48" y="96" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" rx="56" ry="56"/><path fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="60" d="M48 192h416M128 300h48v20h-48z"/></svg></div>
@@ -146,8 +146,12 @@
           <p id="error-message" class="error" ></p>
           <input type="number" id="cvv" placeholder="CVV" name="cvv" oninput="limitarTamanho(this, 3)">
           <p id="error-messagecvv" class="error" ></p>
-        </form>
+          <button id="btnAssento">cordenada do assentos</button>
      </div>
+       <div id="id_pix" class="pix"></div>  
+      </form> 
+   
+   
     </form>
 </section>
 

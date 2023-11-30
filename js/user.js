@@ -6,15 +6,13 @@ let valorselecionadoVoo4Global;
 let valorDoAssento;
 let listaDeStatus;
 let valorDoStatus;
-
+let valorselectdados0Global;
 const btnAssento = document.getElementById('btnAssento')
-btnAssento.addEventListener('click',()=>{
+btnAssento.addEventListener('click',(event)=>{
+  event.preventDefault();
 const json ={
-  FK_numero_de_identificacao:valorSelecionadoVoo6Global,
-  FK_NOME_trecho:valorSelectVoo7Global,
-  horario_partida:valorselecionadoVoo4Global,
-  dia_partida:valorselectdados1Global,
-  numero:valorDoAssento,
+  id_voo:valorselectdados0Global,
+  numero:valorDoAssento
 }
 eviarParaApiMudarStatus(json);
 })
@@ -71,10 +69,10 @@ for (let i = 1; i <= totalAssentos; i++) {
     
 
       const status = listaDeStatus[i - 1];
-      console.log(`Elemento na posição ${i}: ${status[1]}`);
+      console.log(`Elemento na posição ${i}: ${status[0]}`);
         let nw = 'ocupado';
-        if(status[1]==nw){
-          console.log('entrou de fato!',i,status[1])
+        if(status[0]==nw){
+          console.log('entrou de fato!',i,status[0])
           assento.className= 'ocupado';
            
         }else{
@@ -166,10 +164,10 @@ function selecionarAssento(assento, assentoPAPI) {
   valorDoAssento = assentoPAPI
 }
 
-async function eviarParaApiMudarStatus(assentoPAPI) {
+async function eviarParaApiMudarStatus(jason) {
   let respostaURL;
   try {
-    console.log('Enviando dados para a API:', assentoPAPI);
+    console.log('Enviando dados para a API:',jason);
 
 
     // Adicione um pequeno atraso para facilitar a visualização das mensagens de console
@@ -183,7 +181,7 @@ async function eviarParaApiMudarStatus(assentoPAPI) {
         Accept: 'application/json',
         'Content-type': 'application/json'
       },
-      body: JSON.stringify(assentoPAPI)
+      body: JSON.stringify(jason)
     });
   
     // console.log('Resposta da API:', await resposta.json());
@@ -725,6 +723,7 @@ row.innerHTML =
 `;
 
 elementoVooID.appendChild(row);
+  valorselectdados0Global=voo[0];
   valorselectdados1Global=voo[1];
   valorselecionadoVoo4Global=voo[4]
   valorSelectVoo7Global = voo[7];
@@ -739,8 +738,8 @@ console.log("select cidade origem criada?");
 
 function consultaAssentos() {
          console.log("retornou");
-         console.log('parametro^^',valorSelecionadoVoo6Global)
-         enviarParaApiBuscarAssento(valorSelecionadoVoo6Global,valorSelectVoo7Global,valorselectdados1Global,valorselecionadoVoo4Global)
+         console.log('parametro^^',)
+         enviarParaApiBuscarAssento(valorselectdados0Global)
     .catch((e) => {
       console.log("Não foi possível exibir." + e);
     });  
@@ -750,14 +749,14 @@ function consultaAssentos() {
     console.log('voo**:',voo)
 
     }
-    async function enviarParaApiBuscarAssento(valorSelecionadoVoo6Global,valorSelectVoo7Global,valorselectdados1Global,valorselecionadoVoo4Global) {
+    async function enviarParaApiBuscarAssento( valorselectdados0Global) {
       console.log('/**')
       let respostaURL;
       try {
-        console.log('Enviando dados para a API PARA BUSCAR ASSENTO:', valorSelecionadoVoo6Global,valorSelectVoo7Global,valorselectdados1Global,valorselecionadoVoo4Global);
+        console.log('Enviando dados para a API PARA BUSCAR ASSENTO:', valorselectdados0Global);
     
         // Transformando os parâmetros em uma string de consulta
-        const parametrosConsulta = new URLSearchParams({FK_numero_de_identificacao: valorSelecionadoVoo6Global,FK_NOME_trecho:valorSelectVoo7Global,dia_partida:valorselectdados1Global,horario_partida:valorselecionadoVoo4Global}).toString();
+        const parametrosConsulta = new URLSearchParams({id_voo:valorselectdados0Global}).toString();
 
     
         // Adicione um pequeno atraso para facilitar a visualização das mensagens de console
@@ -784,10 +783,11 @@ function consultaAssentos() {
           const dadosResposta = await respostaURL.json();
 
           const tamanhoResposta = dadosResposta.payload.length;
-          console.log('Tamanho da resposta:', tamanhoResposta);
+          console.log('!!!!!Tamanho da resposta:', dadosResposta);
           listaDeStatus = dadosResposta.payload;
+          console.log('-->>',listaDeStatus)
           CostroiAssento(dadosResposta.payload,tamanhoResposta)
-          console.log("--------",verificadorDestatus(dadosResposta.payload));
+          // console.log("--------",listaDeStatus.payload.length);
     
     
     
@@ -800,15 +800,18 @@ function consultaAssentos() {
     }
 const cartao = document.getElementById('svgCartao') 
  let formulario = document.querySelector('#gabi')
+ let formularioPix = document.querySelector('#id_pix')
 cartao.addEventListener('click',()=>{
   console.log('entronou no cartao',formulario)
   formulario.style.display='block'
-  
+  formularioPix.style.display='none';
 })
 const pix = document.getElementById('svgPix') 
 pix.addEventListener('click',()=>{
-  console.log('entronou no pix',formulario)
+  console.log('entronou no pix',formularioPix)
   formulario.style.display='none';
+  formularioPix.style.display='block';
+
 })
 
 

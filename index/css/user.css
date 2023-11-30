@@ -220,8 +220,21 @@ header .logo span{
  }
  .Box_cartao:hover{background-color:rgb(199, 186, 163)}
  .classe{
-  background-color: #F5ED0C;
-  display: none;}
+
+  display: none;
+  position: relative;}
+  .pix{
+    position: relative;
+    width: 350px;
+    height: 250px;
+    display: none;
+    background-color: #3544A0;
+    background: url(/index/image/frame.jpg)no-repeat;
+    background-size: 250px 250px;
+    left:105px ;
+  
+  }
+
   #cvv{
     align-items: center;
     width: 44px;
