@@ -248,7 +248,7 @@ header .logo span{
     background-color: #3544A0;
     background: url(/index/image/frame.jpg)no-repeat;
     background-size: 250px 250px;
-    left:105px ;
+    left:355px ;
   
   }
 
@@ -343,3 +343,14 @@ com base nas características da mídia, como largura da tela, altura da tela, *
  height:34px;
 }
 
+.error{
+  color: red;
+}
+
+#textview{
+  position: absolute;
+  left:500px;
+  bottom: -1900px;
+  left: 40px;
+  
+}

@@ -8,19 +8,24 @@ let listaDeStatus;
 let valorDoStatus;
 let valorselectdados0Global;
 const btnAssento = document.getElementById('btnAssento')
-btnAssento.addEventListener('click',(event)=>{
-
+btnAssento.addEventListener('click',async(event)=>{
   event.preventDefault();
+  await new Promise(resolve => setTimeout(resolve, 700));
 if(Math.floor(Math.random(valorselectdados0Global) * 2)===1){
   const json ={
   id_voo:valorselectdados0Global,
   numero:valorDoAssento
 }
 eviarParaApiMudarStatus(json);
-const msgerro = document.querySelector('')
+
+const msgerro = document.querySelector('.erroPgamento')
+msgerro.textContent='Sua passagem aerea foi emitida e enviada para seu endereço de email'
+msgerro.classList.add('aprovado')
+
 }else{
   console.log('PAGAMENTO NEGADO')
-  const msgerro = document.querySelector('erroPgamento')
+  const msgerro = document.querySelector('.erroPgamento')
+  msgerro.textContent='Lamentamos o contratempo. Verifique os dados de pagamento e tente novamente.'
   msgerro.classList.add('error');
 }
 
@@ -817,7 +822,8 @@ const cartao = document.getElementById('svgCartao')
  let formularioPix = document.querySelector('#id_pix')
 cartao.addEventListener('click',()=>{
   console.log('entronou no cartao',formulario)
-  formulario.style.display='block'
+  formulario.style.display='block';
+  // formulario.style.mar
   formularioPix.style.display='none';
 })
 const pix = document.getElementById('svgPix') 
@@ -876,7 +882,7 @@ cvv.addEventListener('input', function() {
         cvv.classList.remove('error');
     }
 });
-
+//---------------------------------------- valida a data do cartao
 function validarData() {
   const input = document.getElementById('datavalidade');
   const errorMessage = document.getElementById('error-message');
@@ -889,10 +895,33 @@ function validarData() {
     errorMessage.textContent = '';
     input.classList.remove('error');
   }
+}const dataInput = document.getElementById('datavalidade');
+dataInput.addEventListener('blur', validarData);
+//valida a data de partida e ida
+
+function validarDataIda() {
+  const input = document.getElementById('DataIda');
+  const errorMessage = document.getElementById('error-message');
+  const dateRegex = /^(0[1-9]|1[0-2])\/20[23-99]$/;
+
+
+  if (!dateRegex.test(input.value)) {
+    errorMessage.textContent = 'Formato inválido. Use DD/MM/AAAA';
+    input.classList.add('error');
+    const btnBuscarVoo = document.getElementById('buscar_voo')
+    btnBuscarVoo.style.disabled
+  } else {
+    errorMessage.textContent = '';
+    input.classList.remove('error');
+  }
 }
 
-const dataInput = document.getElementById('datavalidade');
-dataInput.addEventListener('blur', validarData);
+const dataIda = document.getElementById('DataIda');
+dataIda.addEventListener('blur', validarData);
+
+
+
+
 
 
 function enviaparaApiDadosPagamento(){
