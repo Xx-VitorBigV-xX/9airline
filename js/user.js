@@ -11,13 +11,19 @@ const btnAssento = document.getElementById('btnAssento')
 btnAssento.addEventListener('click',(event)=>{
 
   event.preventDefault();
-const json ={
+if(Math.floor(Math.random(valorselectdados0Global) * 2)===1){
+  const json ={
   id_voo:valorselectdados0Global,
   numero:valorDoAssento
 }
-
-console.log(Math.floor(Math.random(valorselectdados0Global) * 2));
 eviarParaApiMudarStatus(json);
+}else{
+  console.log('PAGAMENTO NEGADO')
+}
+
+
+console.log('RANDOMICO',);
+
 })
 const mostrarBotao = document.getElementById('mostrarBotao');
         const minhaSecao = document.getElementById('minhaSecao');
