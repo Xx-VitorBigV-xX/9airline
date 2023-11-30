@@ -81,10 +81,11 @@
             
           </select>
          </div>
-         
-                <button id="buscar_voo">buscar</button>
-                <button class="mostrarBotao" id="mostrarBotao">Mostrar Seção</button>
-           
+         <div class="contanier-botoes" style="display:flex;">  <button class="mostrarBotao" id="buscar_voo">buscar</button>
+                <div class="load" style="background: url(/index/image/icons8-aircraft.gif)no-repeat;background-size: 64px 64px; "></div>
+                <div class="botoMapa" style="margin-left:205px"><button class="mostrarBotao" id="mostrarBotao">Assentos</button></div>
+               </div>
+              
            
      </div>
      
@@ -139,7 +140,7 @@
           <p id="error-message" class="error" ></p>
           <input type="number" id="cvv" placeholder="CVV" name="cvv" oninput="limitarTamanho(this, 3)">
           <p id="error-messagecvv" class="error" ></p>
-          <button id="btnAssento">cordenada do assentos</button>
+          <button class="mostrarBotao" id="btnAssento">pagar</button>
      </div>
        <div id="id_pix" class="pix"></div>  
       </form> 

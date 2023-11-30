@@ -814,7 +814,7 @@ pix.addEventListener('click',()=>{
 
 })
 
-
+const selectDestino = document.querySelector('.selectAeroportoDestino')
 const navtabIdaVolta = document.querySelector('.nav-link');
 navtabIdaVolta.addEventListener('click',()=>{
   console.log('clicou no nav-tab',navtabIdaVolta)
@@ -822,7 +822,8 @@ navtabIdaVolta.addEventListener('click',()=>{
   passandoIDvolta.className='nav_linkactiveDisplay';
   let passandoID = document.getElementById('nav-profile-tab')
   passandoID.className='nav-link';
-
+  
+  selectDestino.className = 'selectAeroportoDestinoDisplay';
   
 })
 
@@ -833,7 +834,8 @@ navVolta.addEventListener('click',()=>{
   passandoID.className='nav-linkDisplay';
   let passandoIDvolta = document.getElementById('nav_home_tab')
   passandoIDvolta.className='nav_linkactive';
-  
+  selectDestino.className = 'selectAeroportoDestino';
+
 
 })
 

@@ -59,6 +59,7 @@ header .logo span{
     display: flex;
     /* width: 2440px;*/
     background:url(/index/image/baner-1440x360.jpeg)no-repeat;
+   
     background-size:contain; /*A imagem de fundo é dimensionada para cobrir todo o contêiner, mantendo a proporção e cortando o excesso se necessário.*/
     align-items: center;
     justify-content: center;
@@ -98,7 +99,9 @@ header .logo span{
 .selectAeroportoDestino{
  margin-left: 105px;
  width: 40%;
- 
+}
+.selectAeroportoDestinoDisplay{
+  display: none;
 }
   .selectAeroportoOrigem select{
     /* height: 30px; */
@@ -116,7 +119,9 @@ header .logo span{
     border-radius: 4px;
     border: 1px solid #ccc;
   }
-
+  .load{
+    margin-left: 50px;
+  }
 /* ----------------------------------------- SESSÃO-MAPA-DE-ASSENTOS ---------------- */
     .minhaSecao{
         background-color: #fff;
@@ -310,6 +315,7 @@ com base nas características da mídia, como largura da tela, altura da tela, *
   }
   
 }
+/* nav-tab---------------------------- */
 .nav_linkactive{
   border-radius: 10px;
   width:85px;
@@ -335,3 +341,4 @@ com base nas características da mídia, como largura da tela, altura da tela, *
  width:85px;
  height:34px;
 }
+
