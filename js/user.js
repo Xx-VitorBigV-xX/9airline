@@ -815,6 +815,28 @@ pix.addEventListener('click',()=>{
 })
 
 
+const navtabIdaVolta = document.querySelector('.nav-link');
+navtabIdaVolta.addEventListener('click',()=>{
+  console.log('clicou no nav-tab',navtabIdaVolta)
+  let passandoIDvolta = document.getElementById('nav_home_tab')
+  passandoIDvolta.className='nav_linkactiveDisplay';
+  let passandoID = document.getElementById('nav-profile-tab')
+  passandoID.className='nav-link';
+
+  
+})
+
+const navVolta = document.querySelector('.nav_linkactive');
+navVolta.addEventListener('click',()=>{
+  console.log('clicou no nav-tab',navtabIdaVolta)
+  let passandoID = document.getElementById('nav-profile-tab')
+  passandoID.className='nav-linkDisplay';
+  let passandoIDvolta = document.getElementById('nav_home_tab')
+  passandoIDvolta.className='nav_linkactive';
+  
+
+})
+
 
 //------------------------------------ validação de entrada 
 const cvv = document.getElementById('cvv');
@@ -849,3 +871,8 @@ function validarData() {
 
 const dataInput = document.getElementById('datavalidade');
 dataInput.addEventListener('blur', validarData);
+
+
+function enviaparaApiDadosPagamento(){
+
+}
