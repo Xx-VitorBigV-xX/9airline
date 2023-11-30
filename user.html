@@ -27,7 +27,7 @@
       <nav>
         <div class="nav_nav-tabs" id="nav-tab" role="tablist">
           <button class="nav_linkactive" id="nav_home_tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Ida/Volta</button>
-          <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Ida</button>
+          <button class="nav_linkactiveDisplay" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Ida</button>
         </div>
       </nav>
       <div class="tab-content" id="nav-tabContent">
@@ -74,20 +74,22 @@
          <p id="error-message" class="error" ></p></div>
          <div class="DataVolta"style="margin-left: 80px;">
           <label  for="classe">Data De Volta</label>
-          <input  type="text" class="DataVolta" id="DataVolta" > </div>
-         </div>
+          <input   type="text" class="DataVolta" placeholder="DD/MM/AAAA" id="DataVolta" > 
+          <p id="error-messageVolta" class="error" ></p></div>
+        </div>
+        
          <div class="seletorDeVoo">
           <label for="" class="voos_Disponiveis">voos disponiveis</label>
           <select name="voos_Disponiveis" id="voos_Disponiveis" required>
             
           </select>
          </div>
-         <div class="contanier-botoes" style="display:flex;">  <button class="mostrarBotao" id="buscar_voo">buscar</button>
+         <div class="contanier-botoes" style="display:flex; ">  <button style="margin-right:30%;" class="mostrarBotao" id="buscar_voo">buscar</button>
                 <div class="load" style="background: url(/index/image/icons8-aircraft.gif)no-repeat;background-size: 64px 64px; "></div>
-                <div  style="margin-left:295px"><button class="mostrarBotaodisplay" id="mostrarBotao">Assentos</button></div>
+                <div><button class="mostrarBotaodisplay" id="mostrarBotao">Assentos</button></div>
                </div>
               
-           
+         </div>  
      </div>
      
       
