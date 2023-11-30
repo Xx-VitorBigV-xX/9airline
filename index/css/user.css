@@ -74,8 +74,8 @@ header .logo span{
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px var(---azul_background);
-    
   }
+ 
   form select{
     width: 100%;
   }
@@ -89,6 +89,17 @@ header .logo span{
   .selectAeroportoOrigem{
     width: 40%;
   }
+  .selecDestino{
+    display: flex;
+  }
+.selectCidadeDestino{
+  width: 40%;
+}
+.selectAeroportoDestino{
+ margin-left: 105px;
+ width: 40%;
+ 
+}
   .selectAeroportoOrigem select{
     /* height: 30px; */
   }
@@ -299,3 +310,10 @@ com base nas características da mídia, como largura da tela, altura da tela, *
   }
   
 }
+.nav-linkactive{
+  border-radius: 10px;
+  width:85px;
+  height:34px;
+  box-shadow:   0 0 10px var(---azul_background);;
+}
+

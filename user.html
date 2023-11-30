@@ -3,6 +3,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=10.0">
+  <link rel="icon" href="/index/image/airplane-solid (1).svg" type="image/x-icon">
   <title>9airline</title>
     <link rel="stylesheet" href="/index/css/user.css">
     <link
@@ -23,8 +25,8 @@
  <section class="casa">
     <div class="container" >
       <nav>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-          <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Ida/Volta</button>
+        <div class="nav_nav-tabs" id="nav-tab" role="tablist">
+          <button class="nav-linkactive" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Ida/Volta</button>
           <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Volta</button>
         </div>
       </nav>
@@ -39,48 +41,39 @@
                 <label for="origem">Origem</label>
                 <select name="origem" id="origem" >
                 <option value="*">cidade</option>
-                <!-- <option value="campinas">campinas</option>
-                <option value="São Paulo">São Paulo</option>
-                <option value="Rio de Janeiro">Rio de Janeiro</option> -->
+
       </select>
     </div>
       <div class="selectAeroportoOrigem">
             <label for="origem">Origem</label>
             <select name="origem" id="AeroportoOrigem" >
-              <!-- <option value="*">cidade</option>
-              <option value="campinas">campinas</option>
-              <option value="São Paulo">São Paulo</option>
-              <option value="Rio de Janeiro">Rio de Janeiro</option> -->
+
           </select>
        </div>
       </div>
+      
       <div class="selecDestino">
         <div class="selectCidadeDestino">
                 <label for="Destino">Destino</label>
                 <select name="Destino" id="Destino" >
                 <option value="*">cidade</option>
-                <!-- <option value="campinas">campinas</option>
-                <option value="São Paulo">São Paulo</option>
-                <option value="Rio de Janeiro">Rio de Janeiro</option> -->
+           
       </select>
     </div>
       <div class="selectAeroportoDestino">
             <label for="destino">Destino</label>
             <select name="origem" id="AeroportoDestino" >
-              <!-- <option value="*">cidade</option>
-              <option value="campinas">campinas</option>
-              <option value="São Paulo">São Paulo</option>
-              <option value="Rio de Janeiro">Rio de Janeiro</option> -->
+
           </select>
        </div>
       </div>
-      <div class="data" style="display:flex">
+      <div class="data" style="display:flex; width: auto;">
         <div class="dataIDa">
           <label for="classe">Data de Ida</label>
          <input type="text" class="DataIda" id="DataIda"> </div>
-         <div class="DataVolta">
-          <label for="classe">Data De Volta</label>
-          <input type="date" class="DataVolta" id="DataVolta"> </div>
+         <div class="DataVolta"style="margin-left: 80px;">
+          <label  for="classe">Data De Volta</label>
+          <input  type="text" class="DataVolta" id="DataVolta"> </div>
          </div>
          <div class="seletorDeVoo">
           <label for="" class="voos_Disponiveis">voos disponiveis</label>
