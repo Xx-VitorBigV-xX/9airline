@@ -17,8 +17,11 @@ if(Math.floor(Math.random(valorselectdados0Global) * 2)===1){
   numero:valorDoAssento
 }
 eviarParaApiMudarStatus(json);
+const msgerro = document.querySelector('')
 }else{
   console.log('PAGAMENTO NEGADO')
+  const msgerro = document.querySelector('erroPgamento')
+  msgerro.classList.add('error');
 }
 
 
