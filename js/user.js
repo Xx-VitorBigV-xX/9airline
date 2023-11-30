@@ -9,11 +9,14 @@ let valorDoStatus;
 let valorselectdados0Global;
 const btnAssento = document.getElementById('btnAssento')
 btnAssento.addEventListener('click',(event)=>{
+
   event.preventDefault();
 const json ={
   id_voo:valorselectdados0Global,
   numero:valorDoAssento
 }
+
+console.log(Math.floor(Math.random(valorselectdados0Global) * 2));
 eviarParaApiMudarStatus(json);
 })
 const mostrarBotao = document.getElementById('mostrarBotao');
@@ -886,3 +889,8 @@ dataInput.addEventListener('blur', validarData);
 function enviaparaApiDadosPagamento(){
 
 }
+// PAGAMENTO
+const btnPegar = document.getElementById('btnAssento')
+btnPegar.addEventListener('click',()=>{
+  console.log('P A G O U')
+})
