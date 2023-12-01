@@ -916,44 +916,44 @@ function validarData() {
   }
 }const dataInput = document.getElementById('datavalidade');
 dataInput.addEventListener('blur', validarData);
-//valida a data de partida e ida ------------------------------------------------
-function validarDataIda() {
-  const input = document.getElementById('DataIda');
-  const errorMessage = document.getElementById('error-message');
-  const dateRegex = /^(0[1-9]|1[0-2])\/20[23-99]$/;
+// //valida a data de partida e ida ------------------------------------------------
+// function validarDataIda() {
+//   const input = document.getElementById('DataIda');
+//   const errorMessage = document.getElementById('error-message');
+//   const dateRegex = /^(0[1-9]|1[0-2])\/20[23-99]$/;
 
 
-  if (!dateRegex.test(input.value)) {
-    errorMessage.textContent = 'Formato inválido. Use DD/MM/AAAA';
-    input.classList.add('error');
-    const btnBuscarVoo = document.getElementById('buscar_voo')
-    btnBuscarVoo.style.disabled
-  } else {
-    errorMessage.textContent = '';
-    input.classList.remove('error');
-  }
-}const dataIda = document.getElementById('DataIda');
-dataIda.addEventListener('blur', validarDataIda);
-//validar data volta ---------------------------------------------------------------
+//   if (!dateRegex.test(input.value)) {
+//     errorMessage.textContent = 'Formato inválido. Use DD/MM/AAAA';
+//     input.classList.add('error');
+//     const btnBuscarVoo = document.getElementById('buscar_voo')
+//     btnBuscarVoo.style.disabled
+//   } else {
+//     errorMessage.textContent = '';
+//     input.classList.remove('error');
+//   }
+// }const dataIda = document.getElementById('DataIda');
+// dataIda.addEventListener('blur', validarDataIda);
+// //validar data volta ---------------------------------------------------------------
 
 
-function validarDataVolta() {
-  const input = document.getElementById('DataVolta');
-  const errorMessage = document.getElementById('error-messageVolta');
-  const dateRegex = /^(0[1-9]|1[0-2])\/20[23-99]$/;
+// function validarDataVolta() {
+//   const input = document.getElementById('DataVolta');
+//   const errorMessage = document.getElementById('error-messageVolta');
+//   const dateRegex = /^(0[1-9]|1[0-2])\/20[23-99]$/;
 
 
-  if (!dateRegex.test(input.value)) {
-    errorMessage.textContent = 'Formato inválido. Use DD/MM/AAAA';
-    input.classList.add('error');
-  } else {
-    errorMessage.textContent = '';
-    input.classList.remove('error');
-  }
-}
+//   if (!dateRegex.test(input.value)) {
+//     errorMessage.textContent = 'Formato inválido. Use DD/MM/AAAA';
+//     input.classList.add('error');
+//   } else {
+//     errorMessage.textContent = '';
+//     input.classList.remove('error');
+//   }
+// }
 
-const dataVolta = document.getElementById('DataVolta');
-dataVolta.addEventListener('blur', validarDataVolta);
+// const dataVolta = document.getElementById('DataVolta');
+// dataVolta.addEventListener('blur', validarDataVolta);
 
 
 
