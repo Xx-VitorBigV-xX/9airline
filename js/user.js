@@ -21,9 +21,24 @@ eviarParaApiMudarStatus(json);
 const msgerro = document.querySelector('.erroPgamento')
 msgerro.textContent='Sua passagem aerea foi emitida e enviada para seu endereço de email'
 msgerro.classList.add('aprovado')
+function getInfo(){
+  const  nome =document.getElementById('nomeCompleto')
+const  email=document.getElementById('E-mail')
+if(nome.value.trim()===''||email.value.trim()===''){
+  const msgerro = document.querySelector('.erroPgamento')
+  msgerro.textContent='é Necessario preencher todos os campos .'
+  msgerro.classList.add('error');
+  return;
+}
+// const jsonTickets ={
+//   email:email.value,
+//   nome:nome.value,
+//   FK_id_voo:valorselectdados0Global.value,
+//   assento:
 
+// }
+}
 
-const =
 
 
 }else{
