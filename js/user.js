@@ -10,10 +10,22 @@ este documento esta dividido em 8 sessões
 3-sessão enviar para api:
     funções que recebem parametros para fazer chamadas ou inserções das apis, passando body ou para casos de query, um parametro na url
 4-sessão consulta:
-    funções que consultam uma requisição da api e faz suas validações
+    funções que consultam uma requisição da api e faz suas validações.
 5-sessão cria elemento:
-    funções que criam elementos dinâmicos de acordo com cada parametro recebido
+    funções que criam elementos dinâmicos de acordo com cada parametro recebido.
 6-sessão get informações:
+    funções que recuperam elementos do html especificos e passam para sintaxe json.
+7-sessão listener:
+    através da recuperação de um elemento html, utiliza-se um metodo listener que espera um evento para realizar oq cada um foi programado há fazer
+8-sessão validação:
+    validação dos respectivos elementos.
+
+em cada sessão há comentários a direita com a finalidade de facilitar a busca de um código,  
+para fazer uma busca eficiente (crl+f no windowns) escreva tudo em letras maiúsculas -> (nome da sessão) + a função que aquele codigo faz
+exemplo:
+quero buscar a criação do elemento mapa de assento 
+'CRIA-ELEMENTO-ASSENTOS'
+
     
 
 
@@ -430,9 +442,9 @@ function consultaAssentos() {
 }
 consultaAssentos();
 
-//  ===================================================  SESSÃO-CRIA-ELEMENTOS  =======================================================================
+//  ===================================================  5-SESSÃO-CRIA-ELEMENTOS  =======================================================================
 
-//---------------------------------------------------------------------------------------- CRIA-ASSENTOS
+//---------------------------------------------------------------------------------------- CRIA-ELEMENTO-ASSENTOS
 function CostroiAssento(dadosResposta, tamanho) {
   // Número total de assentos
   // console.log('numero##',tamanho)
@@ -703,7 +715,7 @@ function CriarElementoSelectVoo(voos) {
   console.log("select cidade origem criada?");
 }
 
-// =================================================== SESSÃO-GET-INFORMAÇÕES ===============================================================
+// =================================================== 6-SESSÃO-GET-INFORMAÇÕES ===============================================================
 
 // --------------------------------------------------------------------------------------  GET-DADOS-DIA-DE-IDA
 function getDadosDataIdaForm() {
@@ -819,12 +831,10 @@ mostrarBotao.addEventListener("click", function () {
   console.log("Clicou");
   event.preventDefault();
   consultaAssentos();
-
   CostroiAssento();
 
-  // PegaElemento(valorSelecionadoVoo6Global);
+  
 
-  // Alterna a classe 'oculta' para mostrar ou ocultar a seção
   minhaSecao.classList.toggle("oculta");
 });
 //--------------------------------------------------------------------------------------  LISTENER-SELECT(COMBO-BOX)-CIDADE-ORIGEM

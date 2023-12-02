@@ -1,7 +1,8 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
+<!-- ==================  INICIO-DO-HEAD  ================= -->
+<head> 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=10.0">
   <link rel="icon" href="/index/image/airplane-solid (1).svg" type="image/x-icon">
@@ -13,116 +14,121 @@
     crossorigin=""
   />
     <script type="text/javascript" src="/js/user.js" defer></script>
-    
-</head>
+</head> 
+<!-- ================== INICIO-DO-BODY  ================= -->
 <body>
+<!-- ------------ INICIO-DO-HEADER  ----------------- -->
   <header>
     <a href="/pagina_principal.html" class="logo"
       >9airline <span><i class="ri-flight-takeoff-line"></i></span
     ></a>
   </header>
-
+<!-- ------------ INICIO-DA-SECTION-CASA  ----------------- -->
  <section class="casa">
+<!-- ------------ INICIO-DA-DIV-CONTANIER  ----------------- -->
     <div class="container" >
-      <nav>
-        <div class="nav_nav-tabs" id="nav-tab" role="tablist">
-          <button class="nav_linkactive" id="nav_home_tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Ida/Volta</button>
-          <button class="nav_linkactiveDisplay" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Ida</button>
-        </div>
-      </nav>
-      <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0"></div>
-        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0"></div>
-      </div>
-<!-- ===================================================  FORMULARIO DE BUSCA AEREA ============================================= -->
-    <form class="form"> 
-      <div class="selecOrigem">
-        <div class="selectCidadeOrigem">
-                <label for="origem">Origem</label>
-                <select name="origem" id="origem" required>
-                <option value="*">cidade </option>
-
-      </select>
-    </div>
-      <div class="selectAeroportoOrigem">
-            <label for="origem">Origem</label>
-            <select name="origem" id="AeroportoOrigem" required>
-
-          </select>
-       </div>
-      </div>
-      
-      <div class="selecDestino">
-        <div class="selectCidadeDestino">
-                <label for="Destino">Destino</label>
-                <select name="Destino" id="Destino" required >
-                <option value="*">cidade</option>
-           
-      </select>
-    </div>
-      <div class="selectAeroportoDestino">
-            <label for="destino">Destino</label>
-            <select name="origem" id="AeroportoDestino" required >
-
-          </select>
-       </div>
-      </div>
-      <div class="data" style="display:flex; width: auto;">
-        <div class="dataIDa" style="display: block;">
-          <label for="classe">Data de Ida</label>
-         <input type="text" class="DataIda" id="DataIda"  placeholder="DD/MM/AAAA" required> 
-         <p id="error-message" class="error" ></p></div>
-         <div class="DataVolta"style="margin-left: 80px;">
-          <label  for="classe">Data De Volta</label>
-          <input   type="text" class="DataVolta" placeholder="DD/MM/AAAA" id="DataVolta" > 
-          <p id="error-messageVolta" class="error" ></p></div>
-        </div>
-        
-         <div class="seletorDeVoo">
-          <label for="" class="voos_Disponiveis">voos disponiveis</label>
-          <select name="voos_Disponiveis" id="voos_Disponiveis" required>
-            
-          </select>
-         </div>
-         <div class="contanier-botoes" style="display:flex; ">  <button style="margin-right:30%;" class="mostrarBotao" id="buscar_voo">buscar</button>
+          <!-- INÍCIO-NAV-TAB -->
+          <nav>
+            <!-- DIV-NAV-TAB-IDA-VOLTA/VOLTA -->
+            <div class="nav_nav-tabs" id="nav-tab" role="tablist">
+              <button class="nav_linkactive" id="nav_home_tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Ida/Volta</button>
+              <button class="nav_linkactiveDisplay" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Ida</button>
+            </div>
+          </nav>
+        <!-- ------------  INICIO-DO-FORM  ----------------- -->
+        <form class="form">
+          <!-- DIV-SELECT-ORIGEM -->
+          <div class="selecOrigem">
+            <!-- DIV-SELECT-CIDADE-ORIGEM -->
+            <div class="selectCidadeOrigem">
+                    <label for="origem">Origem</label>
+                    <select name="origem" id="origem" required> 
+                      <option value="*">Cidade </option>
+                    </select>
+            </div>
+            <!-- DIV-SELECT-AEROPORTO-ORIGEM -->
+            <div class="selectAeroportoOrigem">
+                  <label for="origem">Origem</label>
+                  <select name="origem" id="AeroportoOrigem" required>
+                    <option value="*">Aeroporto </option>
+                  </select>
+            </div>
+          </div>
+          <!-- DIV-SELECTs-DESTINO -->
+          <div class="selecDestino">
+            <!-- DIV-SELECT-CIDADE-DESTINO -->
+            <div class="selectCidadeDestino">
+                    <label for="Destino">Destino</label>
+                    <select name="Destino" id="Destino" required >
+                      <option value="*">Cidade</option>
+                    </select>
+            </div>
+            <!-- DIV-SELECT-AEROPORTO-DESTINO -->
+            <div class="selectAeroportoDestino">
+                  <label for="destino">Destino</label>
+                  <select name="origem" id="AeroportoDestino" required >
+                    <option value="*">Aeroporto</option>
+                </select>
+            </div>
+          </div>
+          <!-- DIVS-INPUTS-DATAS -->
+          <div class="data" style="display:flex; width: auto;">
+              <!--DIV-DATA-IDA-->
+              <div class="dataIDa" style="display: block;">
+                <label for="classe">Data de Ida</label>
+                <input type="text" class="DataIda" id="DataIda"  placeholder="DD/MM/AAAA" required> 
+                <p id="error-message" class="error" ></p>
+              </div>
+              <!--DIV-DATA-VOLTA-->
+              <div class="DataVolta"style="margin-left: 80px;">
+                <label  for="classe">Data De Volta</label>
+                <input   type="text" class="DataVolta" placeholder="DD/MM/AAAA" id="DataVolta" > 
+                <p id="error-messageVolta" class="error" ></p>
+              </div>
+          </div>
+          <!-- DIV-SELECT-VOO -->
+          <div class="seletorDeVoo">
+              <label for="" class="voos_Disponiveis">voos disponiveis</label>
+              <select name="voos_Disponiveis" id="voos_Disponiveis" required>
+                <option value="*">VOOS</option>
+              </select>
+          </div>
+          <!-- DIV-BOTÕES-BUSCA/ASSENTOS -->
+          <div class="contanier-botoes" style="display:flex; "> 
+              <button style="margin-right:30%;" class="mostrarBotao" id="buscar_voo">buscar</button>
                 <div class="load" style="background: url(/index/image/icons8-aircraft.gif)no-repeat;background-size: 64px 64px; "></div>
-                <div><button class="mostrarBotaodisplay" id="mostrarBotao">Assentos</button></div>
-               </div>
-              
-         </div>  
-     </div>
-     
-      
-     
-      
-    <!-- ÁEREA DA ESCOLHA DOS ASSENTOS -->
-      
-    </form>
+                <div>
+                  <button class="mostrarBotaodisplay" id="mostrarBotao">Assentos</button>
+                </div>
+          </div>
+        </form>
   </div>
- </section> 
- <section id="minhaSecao" class="oculta" >
-    
+</section>
+<!-- ------------ INÍCIO-SECTION-MAPA-DE-ASSENTOS ------------ -->
+<section id="minhaSecao" class="oculta" >
+    <!-- DIV-CONTANIER-OCULTO -->
     <div class="testeSobreposicao">
+        <!-- DIV-CONTANIER-QUE-ESTA-O-MAPA -->
         <div class="mapa-assentos-contanier">
+          <!-- DIV-LEGENDAS-DO-MAPA-DE-ASSENTOS -->
           <div class="legenda" style="display: block; margin-bottom: 90px;">
               <h2>Mapa de Assentos</h2>
               <div class="AssentoVazio"><img src="/index/image/assentoDarkBlue.png" alt=""><label class="LabelAssentoVazio" for="AssentoVazio">Assento Vazio</label></div>
               <div class="AssentoOcupado"><img src="/index/image/assentoGrey.png" alt=""><label class="LabelAssentoOcupado" for="AssentoOcupado">Assento Ocupado</label></div>
               <div class="AssentoSelecionado"><img src="/index/image/assentoLightBlue.png" alt=""><label class="LabelAssentoSelecionando" for="AssentoSelecionando">Assento selecionado</label></div>
-            </div>
-          
-    <div id="mapa-assentos">
-        <!-- Os assentos serão adicionados dinamicamente aqui -->
-    </div>
-    <div class="Contanier-Pagamneto">
-
-    <div class style="margin-top: 100px;"><h2>Pagamento</h2></div>
-    
-    </div>
+          </div>
+          <!-- DIV-ONDE-VAI-SER-ADICIONADO-DINÂMICAMENTE-O-MAPA -->
+          <div id="mapa-assentos">
+          </div>
+          <!--DIV-CANTANIER-PAGAMENTO -->
+          <div class="Contanier-Pagamneto">
+              <!-- TITULO-PAGAMENTO -->
+              <div class style="margin-top: 100px;"><h2>Pagamento</h2></div>
+          </div>
     </div> 
-    
+    <!-- ------------ DIV-FORM-PAGAMENTOS ------------  -->
     <form class="form-pagamento" style="margin-top: 50px;display:flex; height:290px; padding-left:200px ;"> 
-      
+      <!-- DIVS-INPUTS -->
       <div class="inputs">
         <div class="Nome-Email">
            <label for="nomeCompleto">Nome Completo</label>
@@ -130,15 +136,16 @@
            <label for="E-mail">Email</label>
            <input id="E-mail" style="width:400px" type="email">
         </div>   
-      </select>
      </div>
+     <!-- DIV-SVG-PAGAMENTOS -->
      <div class="formaDePagamentos" style=" display: flex" >
-      <div class="Box_cartao"><svg  id="svgCartao"  xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 512 512"><rect width="416" height="320" x="48" y="96" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" rx="56" ry="56"/><path fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="60" d="M48 192h416M128 300h48v20h-48z"/></svg></div>
-      <div class="Box_cartao"><svg  id="svgPix"  xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 512 512"><path fill="#37b4aa" d="M242.4 292.5c5.4-5.4 14.7-5.4 20.1 0l77 77c14.2 14.2 33.1 22 53.1 22h15.1l-97.1 97.1c-30.3 29.5-79.5 29.5-109.8 0l-97.5-97.4h9.3c20 0 38.9-7.8 53.1-22l76.7-76.7zm20.1-73.6c-6.4 5.5-14.6 5.6-20.1 0l-76.7-76.7c-14.2-15.1-33.1-22-53.1-22h-9.3l97.4-97.44c30.4-30.346 79.6-30.346 109.9 0l97.2 97.14h-15.2c-20 0-38.9 7.8-53.1 22l-77 77zm-149.9-76.2c13.8 0 26.5 5.6 37.1 15.4l76.7 76.7c7.2 6.3 16.6 10.8 26.1 10.8c9.4 0 18.8-4.5 26-10.8l77-77c9.8-9.7 23.3-15.3 37.1-15.3h37.7l58.3 58.3c30.3 30.3 30.3 79.5 0 109.8l-58.3 58.3h-37.7c-13.8 0-27.3-5.6-37.1-15.4l-77-77c-13.9-13.9-38.2-13.9-52.1.1l-76.7 76.6c-10.6 9.8-23.3 15.4-37.1 15.4H80.78l-58.02-58c-30.346-30.3-30.346-79.5 0-109.8l58.02-58.1h31.82z"/></svg></div>
-      <label  id="textview" class="erroPgamento" for=""><p></p> </label>
+          <div class="Box_cartao"><svg  id="svgCartao"  xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 512 512"><rect width="416" height="320" x="48" y="96" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" rx="56" ry="56"/><path fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="60" d="M48 192h416M128 300h48v20h-48z"/></svg></div>
+          <div class="Box_cartao"><svg  id="svgPix"  xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 512 512"><path fill="#37b4aa" d="M242.4 292.5c5.4-5.4 14.7-5.4 20.1 0l77 77c14.2 14.2 33.1 22 53.1 22h15.1l-97.1 97.1c-30.3 29.5-79.5 29.5-109.8 0l-97.5-97.4h9.3c20 0 38.9-7.8 53.1-22l76.7-76.7zm20.1-73.6c-6.4 5.5-14.6 5.6-20.1 0l-76.7-76.7c-14.2-15.1-33.1-22-53.1-22h-9.3l97.4-97.44c30.4-30.346 79.6-30.346 109.9 0l97.2 97.14h-15.2c-20 0-38.9 7.8-53.1 22l-77 77zm-149.9-76.2c13.8 0 26.5 5.6 37.1 15.4l76.7 76.7c7.2 6.3 16.6 10.8 26.1 10.8c9.4 0 18.8-4.5 26-10.8l77-77c9.8-9.7 23.3-15.3 37.1-15.3h37.7l58.3 58.3c30.3 30.3 30.3 79.5 0 109.8l-58.3 58.3h-37.7c-13.8 0-27.3-5.6-37.1-15.4l-77-77c-13.9-13.9-38.2-13.9-52.1.1l-76.7 76.6c-10.6 9.8-23.3 15.4-37.1 15.4H80.78l-58.02-58c-30.346-30.3-30.346-79.5 0-109.8l58.02-58.1h31.82z"/></svg></div>
+          <label  id="textview" class="erroPgamento" for=""><p></p> </label>
     </div>
+    <!-- DIV-CONTANIER-PAGAMENTOS-CARTÃO -->
      <div id="gabi"class="classe" style="margin-left: 355px;">
-          <form id="cartao-forme" style="display: block;" > 
+          <form id="cartao-forme" style="display: block;" >
           <input id="Nome" placeholder="Nome Do Títular" type="text">
           <div><input id="NumeroCartao" type="text" placeholder="Numero do cartão" maxlength="16"></div>
           <p id="error-message" class="error"></p>
