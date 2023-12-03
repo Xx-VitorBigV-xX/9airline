@@ -44,10 +44,11 @@ function CriarElemento(aeronaves) {
     const row = document.createElement("tr");
     row.innerHTML = 
       `<td id="td-Numero_de_identificacao" class="leftText">${aeronave[0]}</td>
+      <td class="leftText">${aeronave[3]}</td>
       <td class="leftText">${aeronave[2]}</td>
-      <td class="leftText">${aeronave[1]}</td>
-      <td class="centerText">${aeronave[4]}</td>
-      <td class="centerText">${aeronave[3]}</td>
+      <td class="text-center">${aeronave[1]}</td>
+      <td class="">${aeronave[4]}</td>
+      <td class="text-center">${aeronave[5]}</td>
       <td class="td-acoes" style="text-align: center;"> <button id="btnExcluir" class="btnExcluir" style="color:withe;cursor:pointer;font-weigth:bold;padding:5px;background-color:red;border-radius:5px;display:inline-block;"> excluir</button>`;
 
     elementoAeronaveID.appendChild(row);
@@ -131,23 +132,24 @@ btnExcluir.addEventListener('click', function (event) {
 
   // Obtenha o elemento do botão clicado
   const botaoClicado = event.target;
+  // console.log(botaoClicado)
 
   // Obtenha o elemento pai da célula do botão clicado (linha da tabela)
   const linha = botaoClicado.closest('tr');
-
+  // console.log(linha)
   // Obtenha o conteúdo da célula na coluna de ID
   const id = linha.querySelector('td:first-child').textContent;
-
+  console.log(id)
   // Criar um objeto com o ID
   const Numero_de_identificacao = {
     Numero_de_identificacao: id
   };
 
   // Enviar para a API excluir
-  enviarParaApiexcluir(Numero_de_identificacao);
+  enviarParaApiexcluirAeronave(Numero_de_identificacao);
 });
 
-//funcção antiga
+// funcção antiga
 // function getDadosInputExcluir(){
 //   const getId=document.querySelector('#td-Numero_de_identificacao')
 //   if (getId.value.trim() === "") {
@@ -160,7 +162,8 @@ btnExcluir.addEventListener('click', function (event) {
 //   return Numero_de_identificacao
 // }
 
-async function enviarParaApiexcluir(Numero_de_identificacao){
+
+async function enviarParaApiexcluirAeronave(Numero_de_identificacao){
   try{
  const resposta = await fetch('http://localhost:3000/excluirAeronave',{
   //especificar o method
@@ -173,7 +176,7 @@ async function enviarParaApiexcluir(Numero_de_identificacao){
   body: JSON.stringify(Numero_de_identificacao)
  })
   if (resposta.ok){
-    limparCampos()
+    console.log('excluido com susseso')
   }else{
     console.log('erro ao excluir aeronave')
   }
@@ -181,9 +184,7 @@ async function enviarParaApiexcluir(Numero_de_identificacao){
   console.error(erro)
 }
 }
-function limparCampos(){
-  document.querySelector('#Numero_de_identificacao').value=''
-}
+
 
 
 

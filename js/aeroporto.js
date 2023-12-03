@@ -101,6 +101,7 @@ function CriarElemento(aeroportos) {
     row.innerHTML = 
       `<td id="td-id_aeroporto" class="leftText">${aeroporto[0]}</td>
       <td class="leftText">${aeroporto[1]}</td>
+  
       <td class="td-acoes" style="text-align: center;"> <button id="btnExcluir" class="btnExcluir" style="color:withe;cursor:pointer;font-weigth:bold;padding:5px;background-color:red;border-radius:5px;display:inline-block;"> excluir</button>`;
 
       elementoAeroportosID.appendChild(row);
@@ -137,17 +138,17 @@ function CriarElemento(aeroportos) {
   });
   
   
-//   function getDadosInputExcluir(){
-//     const getId=document.querySelector('#td-id_aeroporto')
-//     if (getId.value.trim() === "") {
-//       console.log('Campo vazio');
-//       return;
-//     }
-//     const id_aeroporto={
-//       id_aeroporto:getId.value
-//     }
-//     return td-id_aeroporto
-//   }
+  // function getDadosInputExcluir(){
+  //   const getId=document.querySelector('#td-id_aeroporto')
+  //   if (getId.value.trim() === "") {
+  //     console.log('Campo vazio');
+  //     return;
+  //   }
+  //   const id_aeroporto={
+  //     id_aeroporto:getId.value
+  //   }
+  //   return td-id_aeroporto
+  // }
   
   async function enviarParaApiexcluir(id_aeroporto){
     try{
