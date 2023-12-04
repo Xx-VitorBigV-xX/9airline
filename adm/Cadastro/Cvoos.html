@@ -6,6 +6,7 @@
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script type="text/javascript" src="/js/voo.js" defer></script>
+    <link rel="stylesheet" href="/index/css/style.css">
   </head>
   <body data-bs-theme="dark">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
@@ -86,7 +87,7 @@
           </div>
         </div>
     </nav>
-    <div class="container" style="margin-top:50px;margin-left:545px;  ">
+    <div class="container" style="margin-top:50px;margin-left:345px;  ">
         <div class="rox">
             <h1>Cdastrar Voo</h1>
         </div>
@@ -96,7 +97,11 @@
             <form>
              <div  id="Voo" class="form-container">
                 <div class="mb-3" style="display: flex; ">
-                  <div class="dia-contanier" style="background-color: rgb(82, 82, 90);width: 340px;">
+                  <div class="dia-contanier" style=" background-color: rgb(76,76,76);
+                  padding: 20px;
+                  border-radius: 8px;
+                  box-shadow: 0 0 10px black;
+                  border:black">
                     <label for="dia-partida" style="margin-left:70px; margin-bottom: 2px; margin-top: 25px;">Dia</label><label for="dia-partida" style="margin-left:80px; margin-bottom: 2px;">Hora</label>
 
                     <div class="dia-subContanier" style="display: flex; padding: 2px; ">
@@ -110,11 +115,15 @@
                       <label for="txtValor" class="form-label" style="padding: 3px;"> chegada</label>  
                     </div>
                     <div id="valorHelp" style="margin-left:65px;"  class="form-text">Digite apenas numeros.</div>
-                    <div class="botao" style="margin-top: 50px;margin-left: 80px"><button   id="btncadastroVoo" >Cadastrar Voo</button>
+                    <div ><button  class="btncadastro" id="btncadastroVoo" >Cadastrar Voo</button>
                     </div>
                   </div>
 
-                  <div class="select" style="background-color: rgb(92, 88, 88); width: 40%;">
+                  <div class="select" style=" background-color: rgb(76,76,76);
+                  padding: 20px;
+                  border-radius: 8px;
+                  box-shadow: 0 0 10px black;
+                  border:black">
                      <div class="mb-3" style="margin-top: 30px; margin-left:20%;">
                         
                         <select id="SelectAeronave"  class="form-label"  aria-describedby="emailHelp">
@@ -170,28 +179,27 @@
         </div>
       </div>
       <div>
-        <div class="col-md-8" style=" width: 1920px; height: 740px;">
+        <div class="col-md-8" style=" margin-left:25px; width: 1420px; height: 740px;">
         <!-- aqui vai a tabela de lançamentos -->
     
-        <table class="table table-dark table-striped" id="listagem-aeronaves">
+        <table   style="padding: 0px;" class="table table-dark table-striped" id="listagem-aeronaves" style="padding: 0px;">
           <thead>
             <tr>
-              <th scope="col">id</th>
-              <th scope="col" class="text-start">data de partida</th>
-              <th scope="col" class="text-start">data de chegada</th>
-              <th scope="col" class="text-center">Hora de partida</th>
-              <th scope="col" class="text-center">Hora de chegada</th>
-              <th scope="col" class="text-start">Valor</th>
-              <th scope="col" class="text-start">Modelo</th>
-              <th scope="col" class="text-center">Hora de chegada</th>
-              <th scope="col" class="text-center">Origem</th>
-              <th scope="col" class="text-center">Aeroporto</th>
-              <th scope="col" class="text-center">Destino</th>
-              <th scope="col" class="text-center">Aeroporto</th>
-              <th scope="col" class="text-center">Ação</th>
+              <th scope="col" style="width:75px;"  >id</th>
+              <th scope="col" style="width:75px;"  class="text-start">data de partida</th>
+              <th scope="col" style="width:125px;"  class="text-start">data de chegada</th>
+              <th scope="col" style="width:80px;"  class="text-center">H/partida</th>
+              <th scope="col" style="width:80px;"  class="text-center">H/chegada</th>
+              <th scope="col" style="width:125px;"  class="text-start">Valor</th>
+              <th scope="col" style="width:80px;"  class="text-start">Modelo</th>
+              <th scope="col" style="width:150px;"  class="text-center">Hora de chegada</th>
+              <th scope="col" style="width:125px;"  class="text-center">Origem</th>
+              <th scope="col" style="width:10px;"  class="text-center">Aeroporto</th>
+              <th scope="col" style="width:50px;" class="text-center">Ação</th>
+
             </tr>
           </thead>
-           <tbody id="ListVoo"> 
+           <tbody  style="padding: 0px; margin:0px;"  id="ListVoo"> 
           </tbody>
         </table>
       </div>

@@ -6,6 +6,7 @@
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script type="text/javascript" src="/js/cidade.js" defer></script>
+    <link rel="stylesheet" href="/index/css/style.css">
   </head>
   <body data-bs-theme="dark">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
@@ -87,38 +88,36 @@
         </div>
     </nav>
     <div class="container" style="margin-top:50px">
-        <div class="rox">
-            <h1>Cadastrar Cidade</h1>
-        </div>
+       
         <div class="row">
-          <div class="col-md-4"> <!-- md-4 é o tamanho da tabelha, são 12 unidades ao todo -->
+          <div   style=" background-color: rgb(76, 76, 76);
+          padding: 20px;
+          border-radius: 8px;
+          box-shadow: 0 0 10px black;
+          border:black"  class="col-md-4"> <!-- md-4 é o tamanho da tabelha, são 12 unidades ao todo -->
             <!-- aqui vai o form -->
-            <form>
+           
              
+                        <div class="rox">
+                        <h1>Cidades</h1>
+                    </div>
             
-                <form>
                     <p>
-                        <label for="cidade">nome</label>
+                        <label style="margin-bottom: 10px;"  for="cidade">nome</label>
                         <input type="text" class="form-control" id="cidade" name="cidade"><br>
-
-                        <label for="id-aeroporto">id do aeroporto</label>
-                        <input type="number"  class="form-control" id="id-aeroporto" name="id-aeroporto"><br>
                     </p>
-                  <button id="btnCadastrarCidade">Cadastrar Cidade</button><br>
+                  <button  class="btncadastro" id="btnCadastrarCidade">Cadastrar Cidade</button><br>
                 </div>
-            </form>
+         
             
           
           <div class="col-md-8" >
             <!-- aqui vai a tabela de lançamentos -->
-            <table class="table table-dark table-striped" >
+            <table class="table table-dark table-striped" id="listagem-cidade" >
                 <thead>
                   <tr>
                     <th scope="col">id</th>
-                    <th scope="col">fabricante</th>
-                    <th scope="col">modelo</th>
-                    <th scope="col">Assento</th>
-                    <th scope="col" class="text-end">data de fabricação</th>
+                    <th scope="col">Cidade</th>
                     <th scope="col" class="text-center">Ações</th>
                   </tr>
                 </thead>

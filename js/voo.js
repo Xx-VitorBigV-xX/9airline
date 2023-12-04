@@ -158,9 +158,7 @@ function CriarElementoListvoo(voos) {
         <td class="text-start">R$:${voo[5]}</td>
         <td class="text-start">${voo[6]}</td>
         <td class="text-center">${voo[7]}</td>
-        <td class="text-center">${voo[8]}</td>
         <td class="text-center">${voo[9]}</td>
-        <td class="text-center">${voo[10]}</td>
         <td class="text-center">${voo[11]}</td>
         <td class="td-acoes" style="text-align: center;"> <button id="btnExcluir" class="btnExcluir" style="color:withe;cursor:pointer;font-weigth:bold;padding:5px;background-color:red;border-radius:5px;display:inline-block;"> excluir</button>`;
         ;

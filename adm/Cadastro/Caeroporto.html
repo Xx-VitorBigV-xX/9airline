@@ -122,7 +122,13 @@
                     <input type="text" class="form-control" id="aeroporto" name="aeroporto"><br><!-- INFORMAÇÃO DO INPUT É PEGO PELO JAVSCRIPT E MANIPULADO E ENVIADO PARA API-->
                 </p>
                 </div>
-                <p>
+                <div  style="display: block; margin-bottom: 30px;"  class="selectCidadeOrigem">
+                  <div style="margin-bottom: 5px;"><label for="origem">Origem</label></div>
+                  <select  style="padding: 5px; width:100px;" name="origem" id="origem" required> 
+                    <option value="*">Cidade </option>
+                  </select>
+                </div>
+        
                     <button  class="btncadastro" id="btnCadastrarAeroporto">Cadastrar aeroporto</button><br><!-- EXISTE UM LISTENER ONVINDO QUANDO SERÁ CLICADO PARA PEGAR OS VALORES  DO INPUT-->
               </form><!--FINAL DO FORMULÁRIO===================================================================================================================================== -->
           </div>
@@ -132,6 +138,7 @@
                   <tr>
                     <th scope="col">id</th>
                     <th scope="col">Aeroporto</th>
+                    <th scope="col">Cidade</th>
                     <th scope="col" class="text-center">Ações</th>
                   </tr>
                   <!-- adicionar uma coluna de cidade -->

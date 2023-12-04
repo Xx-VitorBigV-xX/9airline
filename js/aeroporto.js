@@ -14,12 +14,15 @@ btnCadasAeroporto.addEventListener('click', async (event) => {
 
 function getDadosFormAeroporto() {
     const getNome = document.querySelector('#aeroporto');
+    const elementoCidadesID = document.getElementById("origem");
+
     if (getNome.value.trim() === "") {
         console.log('Campo vazio');
         return;
     }
     const aeroporto = {
-        nome: getNome.value
+        nome: getNome.value,
+        fk_nome_cidade:elementoCidadesID.value
     };
     return aeroporto;
 }
@@ -68,6 +71,17 @@ async function requestListaCidade() {//função assincrona que vai requerir a ap
   const response = await fetch('http://localhost:3000/listarAeroporto', requestOptions);
   return response.json();
 }
+async function requestListaAeroportos() {
+  const requestOptions = {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  };
+  const response = await fetch(
+    "http://localhost:3000/listarAeroporto",
+    requestOptions
+  );
+  return response.json();
+}
 
 
 async function consultaAeroporto() {
@@ -89,6 +103,7 @@ async function consultaAeroporto() {
 }
 
 function CriarElemento(aeroportos) {
+  console.log(aeroportos)
 
   const elementoAeroportosID=document.getElementById("aeroportoLista");
  
@@ -101,7 +116,7 @@ function CriarElemento(aeroportos) {
     row.innerHTML = 
       `<td id="td-id_aeroporto" class="leftText">${aeroporto[0]}</td>
       <td class="leftText">${aeroporto[1]}</td>
-  
+      <td class="leftText">${aeroporto[2]}</td>
       <td class="td-acoes" style="text-align: center;"> <button id="btnExcluir" class="btnExcluir" style="color:withe;cursor:pointer;font-weigth:bold;padding:5px;background-color:red;border-radius:5px;display:inline-block;"> excluir</button>`;
 
       elementoAeroportosID.appendChild(row);
@@ -173,5 +188,58 @@ function CriarElemento(aeroportos) {
   }
   }
   
+
+
+  async function requestListCidade() {
+    const requestOptions = {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    };
+    const response = await fetch(
+      "http://localhost:3000/listarCidades",
+      requestOptions
+    );
+    return response.json();
+  }
+
+
+
+  function CriarElementoSelectCidades(cidades) {
+    // Seletor da cidade de origem
+    const elementoCidadesID = document.getElementById("origem");
+    // Seletor da cidade de destino
+    for (let i = 0; i < cidades.length; i++) {
+      const cidade = cidades[i];
+      console.log(cidades);
+      console.log("dados da cidades: " + JSON.stringify(cidade));
   
+      const row = document.createElement("option");
+      row.innerHTML = `<option value="${cidade[1]}">${cidade[1]}</option>
+          `;
+      elementoCidadesID.appendChild(row);
+    }
+    console.log("select cidade origem criada?");
+  }
   
+  async function consultacidade() {
+    requestListCidade()
+      .then((customResponse) => {
+        if (customResponse.status === "SUCCESS") {
+          console.log("retornou cidade");
+          console.log(customResponse.payload);
+          CriarElementoSelectCidades(
+            JSON.parse(JSON.stringify(customResponse.payload))
+          );
+  
+          CriarElementoSelectCidadesDestino(
+            JSON.parse(JSON.stringify(customResponse.payload))
+          );
+        } else {
+          console.log(customResponse.message);
+        }
+      })
+      .catch((e) => {
+        console.log("Não foi possível exibir." + e);
+      });
+  }
+  consultacidade();
