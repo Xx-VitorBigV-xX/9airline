@@ -1,5 +1,5 @@
 //------------------------------LISTAR-VOOS---------------------------------------------
-
+let idTrecho;
 
 //========================================== REQUISIÇÕES HTTPS DA API
 async function requestListAeroporto() {
@@ -36,7 +36,7 @@ async function requestListTrecho() {
     headers: { 'Content-Type': 'application/json' },
   };
   const response = await fetch('http://localhost:3000/listarTrecho', requestOptions);
-  return response.json();
+ return response.json();
 }
 
 async function requestListaVoo() {
@@ -108,6 +108,8 @@ async function consultavoo() {
          console.log("retornou Trecho");
          console.log(customResponse.payload);
          CriarElementoSelectTrecho(JSON.parse(JSON.stringify(customResponse.payload)))
+      
+
       } else {
         console.log(customResponse.message);
       }
@@ -255,7 +257,7 @@ function CriarElementoSelectAeronave(aeronaves) {
 
     const row = document.createElement("option");
     row.innerHTML = 
-      `<option  value="${aeronave[0]}">${aeronave[1]}</option>
+      `<option  value="${aeronave[0]}">${aeronave[0]}</option>
       `;
 
     elementoAeronaveID.appendChild(row);
@@ -271,7 +273,6 @@ function CriarElementoSelectTrecho(trechos) {
       const trecho = trechos[i];
       console.log(trechos)
       console.log("dados da aeronave: " + JSON.stringify(trecho));
-  
       const row = document.createElement("option");
       row.innerHTML = 
         `<option  value="${trecho[0]}">${trecho[1]}</option>
@@ -290,3 +291,104 @@ consultaTrecho();
 consultaAeronaves();
 consultavoo();
 
+
+
+
+// function getTrecho(idTrecho){
+//   const selectTrecho=document.getElementById('SelectTrecho')
+//   console.log('TRECHOS:',selectTrecho.value)
+//   const jsonTrecho={
+//     nome:selectTrecho.value
+//   }
+//   console.log('idtrecho-->',idTrecho)
+//   enviarParaApiBuscarTrecho(jsonTrecho)
+// }getTrecho();
+
+const btncadastrarVoo = document.querySelector('#btncadastroVoo')
+btncadastrarVoo.addEventListener('click',async(event)=>{
+  event.preventDefault()
+  consultaTrecho()
+  
+  console.log('C L I C O U')
+  const diaChegada=document.getElementById('Dia-Chegada')
+  const HoraChegada=document.getElementById('Hora-Chegada')
+  const diaPartida=document.getElementById('Dia-Partida')
+  const horaPartida=document.getElementById('Hora-Partida')
+  const selectAeronave=document.getElementById('SelectAeronave')
+  const selectTrecho=document.getElementById('SelectTrecho')
+  const valor=document.getElementById('getValor')
+  const SelectCidadeOrigem=document.getElementById('SelectCidadeOrigem')
+  const SelectCidadeDestino=document.getElementById('SelectCidadeDestino')
+  const SelectnomeAeroporto=document.getElementById('SelectNomeAeroporto')
+  const SelectnomeAeroportoDestino=document.getElementById('SelectNomeAeroportoDestino')
+  
+
+
+  const jsonVoo={
+ dia_partida : diaPartida.value,
+ dia_chegada :  diaChegada.value,
+ horario_chegada : HoraChegada.value,
+ horario_partida :  horaPartida.value,
+ valor : valor.value,
+ FK_numero_de_identificacao : selectAeronave.value,
+ FK_NOME_trecho : selectTrecho.value,
+ FK_nome_cidade_origem :  SelectCidadeOrigem.value,
+ FK_nome_aeroporto_origem : SelectnomeAeroporto.value,
+ FK_nome_cidade_destino : SelectCidadeDestino.value,
+ FK_nome_aeroporto_destino : SelectnomeAeroportoDestino.value
+  }
+  console.log('jsdonvoo->',jsonVoo)
+  enviarParaApiinserirVoo(jsonVoo)
+ 
+})
+
+
+async function enviarParaApi(){
+  try{
+ const resposta = await fetch('http://localhost:3000/listarTrecho',{
+  //especificar o method
+  method: 'GET',
+  //especificando os dados
+  headers:{
+      Accept: 'application/json',
+      'Content-type':'application/json'
+  },
+ })
+ console.log('Resposta da API Lista Trecho:', resposta);
+  if (resposta.ok){
+    console.log('ok')
+    const rp = await resposta.payload
+    idTrecho = rp
+    console.log('#@#@#',idTrecho)
+  }else{
+    console.error('erro ao incluir aeroporto')
+  }
+}catch(erro){
+  console.error(erro)
+}
+}
+
+
+
+async function enviarParaApiinserirVoo(jsonVoo){
+  try{
+ const resposta = await fetch('http://localhost:3000/inserirvoo',{
+  //especificar o method
+  method: 'PUT',
+  //especificando os dados
+  headers:{
+      Accept: 'application/json',
+      'Content-type':'application/json'
+  },
+  body: JSON.stringify(jsonVoo)
+ })
+ console.log('Resposta da API:', resposta);
+  if (resposta.ok){
+    console.log('ok')
+  }else{
+    console.error('erro ao incluir aeroporto')
+  }
+}catch(erro){
+  console.error(erro)
+}
+}

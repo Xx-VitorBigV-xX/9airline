@@ -243,3 +243,58 @@ function CriarElemento(aeroportos) {
       });
   }
   consultacidade();
+
+
+
+
+//==========================================================
+
+const btnAttAeroporto = document.querySelector('#btnAtualizarAeroporto')
+btnAttAeroporto.addEventListener('click',()=>{
+  console.log('clicou')
+  //pegar os dados e enviar para api
+  const codigo=getDadosAtualizarAeroporto()
+  enviarParaApiAtualizarAeroporto(codigo)
+
+})
+function getDadosAtualizarAeroporto(){
+  const getIdAeroporto=document.querySelector('#id_Aeroporto')
+  const getnome=document.querySelector('#attAeroporto')
+  if (getIdAeroporto.value.trim() === ''||getnome.value.trim()==='') {
+    console.log('Campo vazio');
+    return;
+  }
+  const codigo={
+    
+    nome:getnome.value,
+    id_aeroporto:getIdAeroporto.value
+  }
+  return codigo
+}
+
+async function enviarParaApiAtualizarAeroporto(codigo){
+  try{
+ const resposta = await fetch('http://localhost:3000/atualizarAeroporto',{
+  //especificar o method
+  method: 'PUT',
+  //especificando os dados
+  headers:{
+      Accept: 'application/json',
+      'Content-type':'application/json'
+  },
+  body: JSON.stringify(codigo)
+ })
+  if (resposta.status === 201){
+    limparCampos()
+  }else{
+    console.log('erro ao atualizar')
+  }
+}catch(erro){
+  console.error(erro)
+}
+}
+function limparCampos(){
+  document.querySelector('#id_Aeroporto').value=''
+  document.querySelector('#attAeroporto').value=''
+}
+

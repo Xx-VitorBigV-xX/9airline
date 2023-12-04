@@ -20,6 +20,7 @@
   text-decoration: none;
   text-transform: capitalize;
   transition: 0.2 linear;
+  
 
 /*margin:  Define a margem de um elemento como zero. A margem é o espaço fora da borda de um elemento.
 padding:  Define o preenchimento de um elemento como zero. O preenchimento é o espaço entre o conteúdo de um elemento e sua borda.
@@ -81,6 +82,7 @@ form {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px var(---azul_background);
+  margin-bottom: 50px;
 }
 
 form select {
@@ -362,4 +364,28 @@ com base nas características da mídia, como largura da tela, altura da tela, *
   left: 500px;
   bottom: -1900px;
   left: 40px;
+}
+#mensagemErro {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: red;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 9999;
+
+}
+#mensagemPos {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: green;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 9999;
+
 }

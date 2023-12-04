@@ -1,0 +1,233 @@
+/*READ ME     O BANCO  DE DADOS FOI CRIADO DE MANEIRA SYSBDA COM O SERVIDFOR NO COMPUTADOR, OU SEJA O UM USUÁRIO SYS,
+É JUSTAMENTE POR ISSO QUE NA API TEM 'SYS.' ANTES DE EXECUTAR ALGO, DESTE MODO RECOMENDA-SE COLOCAR O CODIGO ORACLE SQL EM UM BANCO DE DADOS PRÓPRIO PARA CORREÇÃO
+ FEITO ISTO, NÃO É NECESSÁRIO DEIXAR O SYS ANTES DA EXECUÇÃO NA API,
+ NA API O CODIGO EXISTE O APP.JS QUE É A TRADUÇÃO EM JAVASCRIPT DO CÓDIGO ESCRITO EM TYPESCRIPT
+ - BASTA IR AO TERMINAL DA PASTA NA PASTA SRC E NA PASTA APP.TS E EXECUTAR O COMANDO  NPM START PARA RODAR O SERVIDOR
+ - COM O SERVIDOR RODANDO, RECOMENDO USAR O THUNDERCLIENT UMA EXTENÇÃO DO VISUALSTUDIO, MUITO PARECIDO COM O POSTMAN QUE TAMBÉM EXISTE UMA EXTENÇÃO NO VISUALSTUDIO.
+ FAÇA O TESTE DOS SERVIÇOS
+ - NO FRONTEND  EXISTE UMA PASTA CHAMADA PÁGINA PRINCIPAL, QUE É COMO O NOME SUGERE A PASGINA PRINCIPAL DA APLICAÇÃO, TENDO UM BOTÃO ESCRITO   'COMPRAR AGORA'.
+ ELA REDIRECIONA A OUTRA PASTA CHAMDA USER.HTML QUE TEM REFERÊNCIAS AO USER.JS E USER.CSS. NESTA NOVA PAGINA TEM TODOS OS REQUISITOS DO MODÓLO CLIENTE 
+ NAS PAGINAS MENCIONADAS ANTES ESTA DOCUMENTADO CADA SESSÃO E FUNCIONAMENTO DA PÁGINA 
+ 
+ */
+
+
+
+
+--SEQUENCIAS--
+--SEQUENCIAS--
+--SEQUENCIAS--
+
+-- SEQUENCIA ID AERONAVE
+CREATE SEQUENCE SEQ_AERONAVES 
+START WITH 1 INCREMENT BY 1;
+-- SEQUENCIA AEROPORTO
+CREATE SEQUENCE SEQ_AEROPORTOS
+START WITH 1 INCREMENT BY 1;
+-- SEQUENCIA DO REGISTRO DA AERONAVE
+CREATE SEQUENCE SEQ_REGISTRO_AERONAVE  
+START WITH 1 INCREMENT BY 1;
+-- SEQUENCIA DO ID CIADADE
+CREATE SEQUENCE SEQ_CIDADES
+START WITH 1 INCREMENT BY 1;
+-- SEQUENCIA ID VOO
+CREATE SEQUENCE SEQ_VOO
+START WITH 1 INCREMENT BY 1;
+-- SEQUENCIA ID TICKETS
+CREATE SEQUENCE SEQ_TICKET
+START WITH 1 INCREMENT BY 1;
+-- SEQUENCIA DO ID TRECHO
+CREATE SEQUENCE SEQ_TRECHO
+START WITH 1 INCREMENT BY 1;
+
+-- TABELAS--
+-- TABELAS--
+-- TABELAS--
+
+-- tabela aeronave
+CREATE TABLE AERONAVES(
+    Numero_de_identificacao INT PRIMARY KEY,
+    Resgistro int not null,
+    Modelo VARCHAR2(44),
+    Fabricante VARCHAR2(44) NOT NULL,
+    ano_de_fabricação DATE NOT NULL,
+    qtdAssento INT NOT NULL
+); 
+-- tabela aeroporto
+CREATE TABLE AEROPORTOS(
+    id_aeroporto INT PRIMARY KEY,
+    nome VARCHAR2(44) UNIQUE,
+    fk_nome_cidade VARCHAR2(44), 
+    CONSTRAINT fK_NOME_CIDADE
+            FOREIGN KEY(FK_NOME_CIDADE)
+            REFERENCES CIDADES(NOME)
+); 
+-- tabela cidades
+CREATE TABLE CIDADES(
+    id_cidade INT PRIMARY KEY,
+    nome VARCHAR2(44) UNIQUE
+); 
+
+-- tabela trechos
+CREATE TABLE TRECHOS(
+    id_trecho INT PRIMARY KEY,
+    nome varchar2(44) unique,
+    
+    FK_id_cidade_origem INT NOT NULL,
+    FK_nome_cidade_origem VARCHAR2(44) NOT NULL,
+    FK_id_aeroporto_origem INT NOT NULL,
+    FK_nome_aeroporto_origem VARCHAR2(44) NOT NULL,
+ 
+    FK_id_cidade_destino INT NOT NULL,
+    FK_nome_cidade_destino VARCHAR2(44) NOT NULL,
+    FK_id_aeroporto_destino INT NOT NULL ,
+    FK_nome_aeroporto_destino VARCHAR2(44) NOT NULL,
+    
+    CONSTRAINT FK_id_cidade_origem 
+        FOREIGN KEY (FK_id_cidade_origem)
+        REFERENCES CIDADES(id_cidade),
+     CONSTRAINT FK_nome_cidade_origem
+        FOREIGN KEY (FK_nome_cidade_origem)
+        REFERENCES CIDADES(nome),
+        
+        CONSTRAINT   FK_id_aeroporto_origem
+        FOREIGN KEY (FK_id_aeroporto_origem)
+        REFERENCES AEROPORTOS(id_aeroporto),
+     CONSTRAINT  FK_nome_aeroporto_origem
+        FOREIGN KEY ( FK_nome_aeroporto_origem)
+        REFERENCES AEROPORTOS(NOME),
+        
+        CONSTRAINT FK_id_cidade_destino
+        FOREIGN KEY (FK_id_cidade_destino)
+        REFERENCES CIDADES(id_cidade),
+     CONSTRAINT FK_nome_cidade_destino
+        FOREIGN KEY (FK_nome_cidade_destino)
+        REFERENCES CIDADES(nome),
+        
+        CONSTRAINT   FK_id_aeroporto_destino
+        FOREIGN KEY (FK_id_aeroporto_destino)
+        REFERENCES AEROPORTOS(id_aeroporto),
+     CONSTRAINT  FK_nome_aeroporto_destino
+        FOREIGN KEY (FK_nome_aeroporto_destino)
+        REFERENCES AEROPORTOS(NOME)
+        
+);
+-- tabela assentos
+create table assentos(
+	codigo integer primary key,
+	numero integer not null,
+	status varchar(20) not null,
+	fk_aeronave int not null,
+      CONSTRAINT fK_AERONAVE
+        FOREIGN KEY (fK_AERONAVE)
+        REFERENCES AERONAVES(Numero_de_identificacao)
+);
+
+-- tabela voos
+CREATE TABLE VOOS(
+    id_voo INT PRIMARY KEY,
+    dia_partida VARCHAR2(10) NOT NULL,
+    dia_chegada VARCHAR2(10) NOT NULL,
+    horario_chegada VARCHAR2(5)  NOT NULL,
+    horario_partida VARCHAR2(5) NOT NULL, 
+    valor INT NOT NULL,
+    FK_numero_de_identificacao int NOT NULL,
+    FK_NOME_trecho VARCHAR2(44)NOT NULL,
+    FK_nome_cidade_origem VARCHAR2(44) NOT NULL,
+    FK_nome_aeroporto_origem VARCHAR2(44) NOT NULL,
+    FK_nome_cidade_destino VARCHAR2(44) NOT NULL,
+    FK_nome_aeroporto_destino VARCHAR2(44) NOT NULL,
+     
+     CONSTRAINT  FK_numero_de_identificacao
+        FOREIGN KEY (FK_numero_de_identificacao)
+        REFERENCES AERONAVES(numero_de_identificacao),
+    CONSTRAINT   FK_NOME_trecho_VOO
+        FOREIGN KEY (FK_NOME_trecho)
+        REFERENCES TRECHOS(nome),
+        
+    CONSTRAINT FK_nome_cidade_origem_VOO
+        FOREIGN KEY (FK_nome_cidade_origem)
+        REFERENCES CIDADES(nome),
+    CONSTRAINT  FK_nome_aeroporto_origem_VOO
+        FOREIGN KEY ( FK_nome_aeroporto_origem)
+        REFERENCES AEROPORTOS(NOME),
+    
+     CONSTRAINT FK_nome_cidade_destino_VOO
+        FOREIGN KEY (FK_nome_cidade_destino)
+        REFERENCES CIDADES(nome),
+     CONSTRAINT  FK_nome_aeroporto_destino_VOO
+        FOREIGN KEY (FK_nome_aeroporto_destino)
+        REFERENCES AEROPORTOS(NOME)
+);
+
+
+
+-- tabela tickets
+CREATE TABLE TICKETS(
+    id_tikets int primary key,
+    email varchar(66)NOT NULL,
+    nome varchar2(44)NOT NULL,
+    FK_id_voo INT,
+    assento int,
+    CONSTRAINT  FK_id_voo
+        FOREIGN KEY (FK_id_voo)
+        REFERENCES voos(id_voo)
+);
+
+
+
+
+-- Criação de um backup do assento da aeronave de acordo com o id do voo
+DECLARE
+   nome_tabela VARCHAR2(50);
+   seq_numero NUMBER;
+BEGIN
+   -- Gera um número único usando uma sequência
+   SELECT seq_voo currval INTO seq_numero FROM DUAL;
+
+   -- Cria uma tabela temporária
+   EXECUTE IMMEDIATE 'CREATE TABLE Assentos_voo_' || seq_numero || ' AS
+                      SELECT codigo, numero, status, fk_aeronave
+                      FROM assentos
+                      WHERE fk_aeronave = 203'; -- Substitua '202' pelo ID da aeronave desejada
+
+END;
+
+
+
+
+-- DECLARAÇÃO PARA O STORED PRODUCED preencher tabela ASSENTOS
+DECLARE
+    v_numero_de_identificacao NUMBER := 1;  -- Substitua pelo valor desejado
+    v_qtd_assento NUMBER;
+    v_registro int;
+
+BEGIN
+    SELECT MAX(Numero_de_identificacao) INTO v_numero_de_identificacao FROM aeronaves;
+
+    -- Obter o valor de qtdAssento da tabela aeronaves
+    SELECT qtdAssento,Resgistro INTO v_qtd_assento,v_registro FROM aeronaves WHERE Numero_de_identificacao = v_numero_de_identificacao;
+
+    -- Chamar o procedimento para inserir assentos
+    INSERIR_ASSENTOS(v_numero_de_identificacao, v_qtd_assento);
+
+    -- Commit para salvar as alterações
+    COMMIT;
+END;
+
+
+--stored produced
+create or replace NONEDITIONABLE PROCEDURE INSERIR_ASSENTOS (
+    p_numero_de_identificacao IN NUMBER,
+    p_qtd_assento IN NUMBER
+)
+AS
+BEGIN
+    FOR i IN 1..p_qtd_assento LOOP
+        INSERT INTO assentos (codigo, numero, status, fk_aeronave)
+        VALUES (seq_assento.nextval, i, 'normal', p_numero_de_identificacao);
+    END LOOP;
+END INSERIR_ASSENTOS;
+
+
+

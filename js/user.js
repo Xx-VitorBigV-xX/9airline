@@ -721,7 +721,7 @@ function CriarElementoSelectVoo(voos) {
 function getDadosDataIdaForm() {
   const getdataIda = document.querySelector("#DataIda");
   if (getdataIda.value.trim() === "") {
-    console.erro("campo Vazio");
+    exibirMensagemErro('ERRO')
     return;
   }
   const buscaDataIda = {
@@ -785,9 +785,7 @@ btnAssento.addEventListener("click", async (event) => {
   await new Promise((resolve) => setTimeout(resolve, 700));
 
   if (nome.value.trim() == "" || email.value.trim() == "") {
-    const msgerro = document.querySelector(".erroPgamento");
-    msgerro.textContent = "é Necessario preencher todos os campos .";
-    msgerro.classList.add("error");
+   exibirMensagemErro("é Necessario preencher todos os campos .");
     return;
   } else {
     console.log("...>>>>:>", email.value);
@@ -800,10 +798,7 @@ btnAssento.addEventListener("click", async (event) => {
       };
       eviarParaApiMudarStatus(json);
 
-      const msgerro = document.querySelector(".erroPgamento");
-      msgerro.textContent =
-        "Sua passagem aerea foi emitida e enviada para seu endereço de email";
-      msgerro.classList.add("aprovado");
+        exibirMensagemPositiva("Sua passagem aerea foi emitida e enviada para seu endereço de email");
       console.log(email.value);
       const jsonTickets = {
         email: email.value,
@@ -814,16 +809,15 @@ btnAssento.addEventListener("click", async (event) => {
       enviarParaApiNovoTicket(jsonTickets);
     } else {
       console.log("PAGAMENTO NEGADO");
-      const msgerro = document.querySelector(".erroPgamento");
-      msgerro.textContent =
-        "Lamentamos o contratempo. Verifique os dados de pagamento e tente novamente.";
-      msgerro.classList.add("error");
+      
+      exibirMensagemErro("Lamentamos o contratempo. Verifique os dados de pagamento e tente novamente.")
+        
     }
 
     console.log("RANDOMICO");
   }
 });
-//--------------------------------------------------------------------------------------  LISTENER-BOTÃO-BUSCAR
+//--------------------------------------------------------------------------------------  LISTENER-BOTÃO-ASSENTO
 const mostrarBotao = document.getElementById("mostrarBotao");
 const minhaSecao = document.getElementById("minhaSecao");
 // Adiciona um ouvinte de evento para o clique no botão
@@ -832,10 +826,8 @@ mostrarBotao.addEventListener("click", function () {
   event.preventDefault();
   consultaAssentos();
   CostroiAssento();
-
-  
-
   minhaSecao.classList.toggle("oculta");
+
 });
 //--------------------------------------------------------------------------------------  LISTENER-SELECT(COMBO-BOX)-CIDADE-ORIGEM
 const selectorOrigem = document.getElementById("origem");
@@ -868,23 +860,40 @@ selectorDestino.addEventListener("change", async (event) => {
     enviarParaApiInserir2(buscaDestino);
   }
 });
-//--------------------------------------------------------------------------------------  LISTENER-BOTÃO-ASSENTOS
+//--------------------------------------------------------------------------------------  LISTENER-BOTÃO-BUSCAR-VOO
 const btnBuscaVoo = document.getElementById("buscar_voo");
 btnBuscaVoo.addEventListener("click", async (event) => {
   event.preventDefault();
   const buscaDataIda = getDadosDataIdaForm();
-  enviarParaApiBuscarVoo(buscaDataIda);
+  const cidadeOrigem =document.getElementById('origem')
+  const aeroportoOrigem =document.getElementById('AeroportoOrigem')
+  const cidadeDestino =document.getElementById('Destino')
+  const aeroporoDestino =document.getElementById('AeroportoDestino')
+  const dataIda =document.getElementById('DataIda')
+  const dataVolta =document.getElementById('DataVolta')
+  const vos =document.getElementById('voos_Disponiveis')
+
+  if(cidadeOrigem.value.trim()==='*' || aeroportoOrigem.value.trim()==='Aeroporto' || cidadeDestino.value.trim()==='Cidade' || aeroporoDestino.value.trim()==='Aeroporto' || dataIda.value.trim()==='' || vos.value.trim()==='VOOS'){
+    exibirMensagemErro('todos os campos devem ser preenchidos!')
+    console.log('ERRROOO')
+    return;}else{
+       enviarParaApiBuscarVoo(buscaDataIda);
   let passandoID = document.getElementById("mostrarBotao");
   await new Promise((resolve) => setTimeout(resolve, 1000));
   passandoID.className = "mostrarBotao";
 
   console.log(
-    "<|><|><|><|><|>",
+    "---------->>>>>>>>>>>>>>>",
     getDadosForm(),
     getDadosFormDestino(),
     getDadosDataIdaForm(),
     getDadosDataVoltaForm()
   );
+    }
+
+
+
+ 
 });
 //--------------------------------------------------------------------------------------  LISTENER-SVG-CARTÃO
 const cartao = document.getElementById("svgCartao");
@@ -894,16 +903,9 @@ const selectDestino = document.querySelector(".DataVolta"); //!!!!!
 const navtabIdaVolta = document.querySelector(".nav_linkactiveDisplay");
 cartao.addEventListener("click", () => {
   console.log("entronou no cartao", formulario);
+
   formulario.style.display = "block";
-  // formulario.style.mar
   formularioPix.style.display = "none";
-});
-//--------------------------------------------------------------------------------------  LISTENER-SVG-PIX
-const pix = document.getElementById("svgPix");
-pix.addEventListener("click", () => {
-  console.log("entronou no pix", formularioPix);
-  formulario.style.display = "none";
-  formularioPix.style.display = "block";
 });
 //--------------------------------------------------------------------------------------  LISTENER-NAV-TAB-IDA-E-VOLTA
 navtabIdaVolta.addEventListener("click", () => {
@@ -925,6 +927,47 @@ navVolta.addEventListener("click", () => {
   passandoIDvolta.className = "nav_linkactive";
   selectDestino.className = "DataVolta";
 });
+//--------------------------------------------------------------------------------------  LISTENER-BOTÃO-PIX
+
+const idpix = document.getElementById('svgPix')
+
+idpix.addEventListener('click',async(event)=>{
+  await new Promise((resolve) => setTimeout(resolve,700))
+  event.preventDefault()
+  const msgerro = document.querySelector(".erroPgamento");
+  msgerro.textContent = "";
+  
+  if (nome.value.trim() == "" || email.value.trim() == "") {
+   exibirMensagemErro('É necessário preecher todos os campos')
+    return;
+  }else{
+    formulario.style.display = "none";
+    formularioPix.style.display = "block";
+  if (Math.floor(Math.random(valorselectdados0Global) * 2) === 1) {
+    const json = {
+      id_voo: valorselectdados0Global,
+      numero: valorDoAssento,
+    };
+    eviarParaApiMudarStatus(json);
+
+   exibirMensagemPositiva('Sua passagem aerea foi emitida e enviada para seu endereço de email');
+    console.log(email.value);
+    const jsonTickets = {
+      email: email.value,
+      nome: nome.value,
+      FK_id_voo: valorselectdados0Global,
+      assento: valorDoAssento,
+    };
+    enviarParaApiNovoTicket(jsonTickets);
+  } else {
+    console.log("PAGAMENTO NEGADO");
+    
+      exibirMensagemErro("Lamentamos o contratempo. Verifique os dados de pagamento e tente novamente.");
+   
+  }
+
+  console.log("RANDOMICO");}
+})
 
 // =================================================== SESSÃO-VALIDAÇÃO ===========================================================
 
@@ -946,16 +989,24 @@ cvv.addEventListener("input", function () {
 //--------------------------------------------------------------------------------------  VALIDAÇÃO-ENVIA-MENSAGEM-DE-ERRO
 // Função para exibir mensagem de erro na página
 function exibirMensagemErro(mensagem) {
-  // Crie um elemento de parágrafo para a mensagem de erro
   const mensagemErro = document.createElement("p");
-  mensagemErro.style.color = "red"; //
+  mensagemErro.id = "mensagemErro";
   mensagemErro.textContent = mensagem;
+ 
   setTimeout(() => {
     mensagemErro.style.display = "none";
   }, 3000);
-  // Adicione a mensagem de erro ao corpo do documento (ou ao local desejado na sua estrutura HTML)
   document.body.appendChild(mensagemErro);
 }
+function exibirMensagemPositiva(mensagem) {
+  const mensagemPos = document.createElement("p");
+  mensagemPos.id = "mensagemPos";
+  mensagemPos.textContent = mensagem;
+
+  setTimeout(() => {
+    mensagemPos.style.display = "none";
+  }, 3000);
+  document.body.appendChild(mensagemPos);}
 //-------------------------------------------------------------------------------------- VALIDAÇÃO-PADRÃO-DATA
 function validarData() {
   const input = document.getElementById("datavalidade");
