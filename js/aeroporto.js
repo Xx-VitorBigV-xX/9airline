@@ -1,5 +1,33 @@
-const btnCadasAeroporto = document.querySelector('#btnCadastrarAeroporto');
+/*GLOSSÁRIO*/ 
 
+
+// ========================================== REQUISIÇÕES ==========================================
+  async function requestListCidade() {
+    const requestOptions = {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    };
+    const response = await fetch(
+      "http://localhost:3000/listarCidades",
+      requestOptions
+    );
+    return response.json();
+  }
+async function requestListaAeroportos() {
+  const requestOptions = {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  };
+  const response = await fetch(
+    "http://localhost:3000/listarAeroporto",
+    requestOptions
+  );
+  return response.json();
+}
+
+
+
+const btnCadasAeroporto = document.querySelector('#btnCadastrarAeroporto');
 btnCadasAeroporto.addEventListener('click', async (event) => {
     event.preventDefault();
     console.log('Clicou no botão');
@@ -11,6 +39,29 @@ btnCadasAeroporto.addEventListener('click', async (event) => {
     
     enviarParaApiaeroporto(aeroporto);
 });
+  const btnExcluir = document.querySelector('#listagem-aeroporto')
+  btnExcluir.addEventListener('click', function (event) {
+    console.log('clicou');
+  
+    // Obtenha o elemento do botão clicado
+    const botaoClicado = event.target;
+  
+    // Obtenha o elemento pai da célula do botão clicado (linha da tabela)
+    const linha = botaoClicado.closest('tr');
+  
+    // Obtenha o conteúdo da célula na coluna de ID
+    const id = linha.querySelector('td:first-child').textContent;
+  
+    // Criar um objeto com o ID
+    const id_aeroporto = {
+        id_aeroporto: id
+    };
+  
+    // Enviar para a API excluir
+    enviarParaApiexcluir(id_aeroporto);
+  });
+
+
 
 function getDadosFormAeroporto() {
     const getNome = document.querySelector('#aeroporto');
@@ -60,30 +111,6 @@ function limparCampos() {
     document.querySelector('#aeroporto').value = '';
 }
 /*-----------------------------------------------------LISTAR AERONAVE---------------------------------------------------*/ 
-
-
-
-async function requestListaCidade() {//função assincrona que vai requerir a api listaaeronave com o (metodoGET) 
-  const requestOptions = {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
-  };
-  const response = await fetch('http://localhost:3000/listarAeroporto', requestOptions);
-  return response.json();
-}
-async function requestListaAeroportos() {
-  const requestOptions = {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-  };
-  const response = await fetch(
-    "http://localhost:3000/listarAeroporto",
-    requestOptions
-  );
-  return response.json();
-}
-
-
 async function consultaAeroporto() {
 
     requestListaAeroportos().then(customResponse => {
@@ -100,7 +127,7 @@ async function consultaAeroporto() {
   });
     
     
-}
+} consultaAeroporto();
 
 function CriarElemento(aeroportos) {
   console.log(aeroportos)
@@ -123,36 +150,8 @@ function CriarElemento(aeroportos) {
   }
   console.log("Tabela criada?");
   }
-
-
-
-  consultaAeroporto();
-
   //----------------------------------------------------------EXCLUIR-----------------------------------------------------//
 
-  const btnExcluir = document.querySelector('#listagem-aeroporto')
-  btnExcluir.addEventListener('click', function (event) {
-    console.log('clicou');
-  
-    // Obtenha o elemento do botão clicado
-    const botaoClicado = event.target;
-  
-    // Obtenha o elemento pai da célula do botão clicado (linha da tabela)
-    const linha = botaoClicado.closest('tr');
-  
-    // Obtenha o conteúdo da célula na coluna de ID
-    const id = linha.querySelector('td:first-child').textContent;
-  
-    // Criar um objeto com o ID
-    const id_aeroporto = {
-        id_aeroporto: id
-    };
-  
-    // Enviar para a API excluir
-    enviarParaApiexcluir(id_aeroporto);
-  });
-  
-  
   // function getDadosInputExcluir(){
   //   const getId=document.querySelector('#td-id_aeroporto')
   //   if (getId.value.trim() === "") {
@@ -190,17 +189,7 @@ function CriarElemento(aeroportos) {
   
 
 
-  async function requestListCidade() {
-    const requestOptions = {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    };
-    const response = await fetch(
-      "http://localhost:3000/listarCidades",
-      requestOptions
-    );
-    return response.json();
-  }
+
 
 
 

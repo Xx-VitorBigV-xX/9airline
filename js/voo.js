@@ -1,7 +1,7 @@
-//------------------------------LISTAR-VOOS---------------------------------------------
+
 let idTrecho;
 
-//========================================== REQUISIÇÕES HTTPS DA API
+// ========================================== REQUISIÇÕES-HTTPS-DA-API =================================================
 async function requestListAeroporto() {
   const requestOptions = {
     method: 'GET',
@@ -48,7 +48,8 @@ async function requestListaVoo() {
     return response.json();
   }
 
-//================================================= CONSULTAS  
+// ================================================= CONSULTAS  =================================================
+
 async function consultaAeroporto() {
 
   requestListAeroporto().then(customResponse => {
@@ -64,7 +65,7 @@ async function consultaAeroporto() {
   .catch((e) => {
     console.log("Não foi possível exibir." + e);
   }); 
-}
+}consultaAeroporto();
 
 async function consultacidade() {
 
@@ -82,7 +83,7 @@ async function consultacidade() {
   .catch((e) => {
     console.log("Não foi possível exibir." + e);
   }); 
-}
+}consultacidade();
 
 async function consultavoo() {
 
@@ -100,7 +101,7 @@ async function consultavoo() {
     });
       
       
-  }
+  }consultavoo();
   async function consultaTrecho() {
 
     requestListTrecho().then(customResponse => {
@@ -119,7 +120,7 @@ async function consultavoo() {
     });
       
       
-  }
+  }consultaTrecho();
 
 async function consultaAeronaves() {
 
@@ -137,8 +138,10 @@ async function consultaAeronaves() {
   });
     
     
-}
-//============================================ FUNÇÕES DE CRIAÇÃO DE ELEMENTO
+}consultaAeronaves();
+
+// ============================================ FUNÇÕES-DE-CRIAÇÃO-DE-ELEMENTO =================================================
+
 //----------------------------------------------------------------  CRIADOR TABELA VOO 
 function CriarElementoListvoo(voos) {
 
@@ -168,7 +171,7 @@ function CriarElementoListvoo(voos) {
       elementoVooID.appendChild(row);
     }
     console.log("Tabela criada?");
-    }
+  }
 
 //----------------------------------------------------------------  CRIADOR SELECT AEROPORTO
 function CriarElementoSelectNomeAeroporto(aeroportos) {
@@ -282,16 +285,6 @@ function CriarElementoSelectTrecho(trechos) {
     }
     console.log("Tabela criada?");
     }
-//----------------------------------------------------------------  CHAMADA DA FUNÇÃO
-
-
-consultaAeroporto();
-consultacidade();
-consultaTrecho();
-consultaAeronaves();
-consultavoo();
-
-
 
 
 // function getTrecho(idTrecho){
@@ -303,6 +296,8 @@ consultavoo();
 //   console.log('idtrecho-->',idTrecho)
 //   enviarParaApiBuscarTrecho(jsonTrecho)
 // }getTrecho();
+
+// ============================================ LISTENER =================================================
 
 const btncadastrarVoo = document.querySelector('#btncadastroVoo')
 btncadastrarVoo.addEventListener('click',async(event)=>{
@@ -342,6 +337,8 @@ btncadastrarVoo.addEventListener('click',async(event)=>{
  
 })
 
+// ============================================ ENVIA-PARA-API =================================================
+// definições e protocolos para a criação de aplicações de softwares
 
 async function enviarParaApi(){
   try{
@@ -367,9 +364,6 @@ async function enviarParaApi(){
   console.error(erro)
 }
 }
-
-
-
 async function enviarParaApiinserirVoo(jsonVoo){
   try{
  const resposta = await fetch('http://localhost:3000/inserirvoo',{
