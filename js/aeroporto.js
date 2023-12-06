@@ -78,34 +78,7 @@ function getDadosFormAeroporto() {
     return aeroporto;
 }
 
-async function enviarParaApiaeroporto(aeroporto) {
-    try {
-        console.log('Enviando dados para a API:', aeroporto);
 
-        // Adicionar um pequeno atraso para facilitar a visualização das mensagens de console
-        await new Promise(resolve => setTimeout(resolve, 1000));
-
-        const resposta = await fetch('http://localhost:3000/inserirAeroporto', {
-            method: 'PUT',
-            headers: {
-                Accept: 'application/json',
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(aeroporto)
-        });
-
-        console.log('Resposta da API:', resposta);
-
-        if (resposta.ok) {
-            console.log('Aeroporto cadastrado com sucesso');
-            limparCampos();
-        } else {
-            console.log('Erro ao cadastrar aeroporto');
-        }
-    } catch (erro) {
-        console.error('Erro:', erro);
-    }
-}
 
 function limparCampos() {
     document.querySelector('#aeroporto').value = '';
@@ -150,20 +123,7 @@ function CriarElemento(aeroportos) {
   }
   console.log("Tabela criada?");
   }
-  //----------------------------------------------------------EXCLUIR-----------------------------------------------------//
-
-  // function getDadosInputExcluir(){
-  //   const getId=document.querySelector('#td-id_aeroporto')
-  //   if (getId.value.trim() === "") {
-  //     console.log('Campo vazio');
-  //     return;
-  //   }
-  //   const id_aeroporto={
-  //     id_aeroporto:getId.value
-  //   }
-  //   return td-id_aeroporto
-  // }
-  
+// ========================================== ENVIAR-PARA-API ==========================================
   async function enviarParaApiexcluir(id_aeroporto){
     try{
    const resposta = await fetch('http://localhost:3000/excluirAeroporto',{
@@ -185,7 +145,50 @@ function CriarElemento(aeroportos) {
   }catch(erro){
     console.error(erro)
   }
-  }
+  }//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+async function enviarParaApiaeroporto(aeroporto) {
+    try {
+        console.log('Enviando dados para a API:', aeroporto);
+
+        // Adicionar um pequeno atraso para facilitar a visualização das mensagens de console
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        const resposta = await fetch('http://localhost:3000/inserirAeroporto', {
+            method: 'PUT',
+            headers: {
+                Accept: 'application/json',
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(aeroporto)
+        });
+
+        console.log('Resposta da API:', resposta);
+
+        if (resposta.ok) {
+            console.log('Aeroporto cadastrado com sucesso');
+            limparCampos();
+        } else {
+            console.log('Erro ao cadastrar aeroporto');
+        }
+    } catch (erro) {
+        console.error('Erro:', erro);
+    }
+}
+  //----------------------------------------------------------EXCLUIR-----------------------------------------------------//
+
+  // function getDadosInputExcluir(){
+  //   const getId=document.querySelector('#td-id_aeroporto')
+  //   if (getId.value.trim() === "") {
+  //     console.log('Campo vazio');
+  //     return;
+  //   }
+  //   const id_aeroporto={
+  //     id_aeroporto:getId.value
+  //   }
+  //   return td-id_aeroporto
+  // }
+  
+
   
 
 
