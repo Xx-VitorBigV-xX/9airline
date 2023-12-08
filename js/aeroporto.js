@@ -110,7 +110,7 @@ function CriarElemento(aeroportos) {
   for (let i = 0; i < aeroportos.length; i++){
     const aeroporto = aeroportos[i];
     console.log(aeroportos)
-    console.log("dados da aeronave: " + JSON.stringify(aeroporto));
+    console.log("dados do aeroporto: " + JSON.stringify(aeroporto));
 
     const row = document.createElement("tr");
     row.innerHTML = 

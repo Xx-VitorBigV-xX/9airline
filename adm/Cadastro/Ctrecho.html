@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -91,22 +91,30 @@
                         <label style="margin-bottom: 10px;"  for="cidade">Cidade Origem</label>
                         <input type="text" class="form-control" id="cidade" name="cidade"><br>
                     </p>
-                  <button  class="btncadastro" id="btnCadastrarCidade">Cadastrar trecho</button><br>
+                    <p>
+                        <label style="margin-bottom: 10px;"  for="cidade">Cidade Origem</label>
+                        <input type="text" class="form-control" id="cidade" name="cidade"><br>
+                    </p>
+                  <button  class="btncadastro" id="btnCadastrarTrechos">Cadastrar trecho</button><br>
                 </div>
          
             
           
           <div class="col-md-8" >
             <!-- aqui vai a tabela de lançamentos -->
-            <table class="table table-dark table-striped" id="listagem-cidade" >
+            <table class="table table-dark table-striped" id="listagem-Trechos" >
                 <thead>
                   <tr>
                     <th scope="col">id</th>
-                    <th scope="col">Cidade</th>
+                    <th scope="col">Trecho</th>
+                    <th scope="col">Origem</th>
+                    <th scope="col">Aeroporto Orig</th>
+                    <th scope="col">Destino</th>
+                    <th scope="col">Aeroporto Dis</th>
                     <th scope="col" class="text-center">Ações</th>
                   </tr>
                 </thead>
-                 <tbody id="td-cidades"> 
+                 <tbody id="td-trechos"> 
                 </tbody>
               </table>
           </div>

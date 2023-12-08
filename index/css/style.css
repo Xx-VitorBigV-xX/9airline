@@ -329,3 +329,11 @@ header .navbar a:hover{
     border-radius: 5px;
     padding: 5px;
 }
+.btncadastro:hover{
+    transform: scale(1.1);
+}
+
+.td-acoes:hover{
+    transform: scale(1.1);
+
+}

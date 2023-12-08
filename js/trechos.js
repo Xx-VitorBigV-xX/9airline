@@ -31,13 +31,13 @@ async function requestListaTrechos() {
       headers: { "Content-Type": "application/json" },
     };
     const response = await fetch(
-      "http://localhost:3000/http://localhost:3000/listarTrecho",
+      "http://localhost:3000/listarTrecho",
       requestOptions
     );
     return response.json();
   }
 
-const btnCadasAeroporto = document.querySelector('#btnCadastrarAeroporto');
+const btnCadasAeroporto = document.querySelector('#btnCadastrarTrechos');
 btnCadasAeroporto.addEventListener('click', async (event) => {
     event.preventDefault();
     console.log('Clicou no botão');
@@ -49,7 +49,7 @@ btnCadasAeroporto.addEventListener('click', async (event) => {
     
     enviarParaApiaeroporto(aeroporto);
 });
-  const btnExcluir = document.querySelector('#listagem-aeroporto')
+  const btnExcluir = document.querySelector('#listagem-Trechos')
   btnExcluir.addEventListener('click', function (event) {
     console.log('clicou');
   
@@ -94,113 +94,139 @@ function limparCampos() {
     document.querySelector('#aeroporto').value = '';
 }
 /*-----------------------------------------------------LISTAR AERONAVE---------------------------------------------------*/ 
-async function consultaAeroporto() {
+// async function consultaAeroporto() {
 
-    requestListaAeroportos().then(customResponse => {
-    if (customResponse.status === "SUCCESS") {
-       console.log("retornou");
-       console.log(customResponse.payload);
-      CriarElemento(JSON.parse(JSON.stringify(customResponse.payload)))
-    } else {
-      console.log(customResponse.message);
-    }
-  })
-  .catch((e) => {
-    console.log("Não foi possível exibir." + e);
-  });
+//     requestListaAeroportos().then(customResponse => {
+//     if (customResponse.status === "SUCCESS") {
+//        console.log("retornou");
+//        console.log(customResponse.payload);
+//       CriarElemento(JSON.parse(JSON.stringify(customResponse.payload)))
+//     } else {
+//       console.log(customResponse.message);
+//     }
+//   })
+//   .catch((e) => {
+//     console.log("Não foi possível exibir." + e);
+//   });
     
     
-} consultaAeroporto();
+// } consultaAeroporto();
 
-function CriarElemento(aeroportos) {
-  console.log(aeroportos)
+// function CriarElemento(aeroportos) {
+//   console.log(aeroportos)
 
-  const elementoAeroportosID=document.getElementById("aeroportoLista");
+//   const elementoAeroportosID=document.getElementById("");
  
-  for (let i = 0; i < aeroportos.length; i++){
-    const aeroporto = aeroportos[i];
-    console.log(aeroportos)
-    console.log("dados da aeronave: " + JSON.stringify(aeroporto));
+//   for (let i = 0; i < aeroportos.length; i++){
+//     const aeroporto = aeroportos[i];
+//     console.log(aeroportos)
+//     console.log("dados da aeronave: " + JSON.stringify(aeroporto));
 
-    const row = document.createElement("tr");
-    row.innerHTML = 
-      `<td id="td-id_aeroporto" class="leftText">${aeroporto[0]}</td>
-      <td class="leftText">${aeroporto[1]}</td>
-      <td class="leftText">${aeroporto[2]}</td>
-      <td class="td-acoes" style="text-align: center;"> <button id="btnExcluir" class="btnExcluir" style="color:withe;cursor:pointer;font-weigth:bold;padding:5px;background-color:red;border-radius:5px;display:inline-block;"> excluir</button>`;
+//     const row = document.createElement("tr");
+//     row.innerHTML = 
+//       `<td id="td-id_aeroporto" class="leftText">${aeroporto[0]}</td>
+//       <td class="leftText">${aeroporto[1]}</td>
+//       <td class="leftText">${aeroporto[2]}</td>
+//       <td class="td-acoes" style="text-align: center;"> <button id="btnExcluir" class="btnExcluir" style="color:withe;cursor:pointer;font-weigth:bold;padding:5px;background-color:red;border-radius:5px;display:inline-block;"> excluir</button>`;
 
-      elementoAeroportosID.appendChild(row);
-  }
-  console.log("Tabela criada?");
-  }
+//       elementoAeroportosID.appendChild(row);
+//   }
+//   console.log("Tabela criada?");
+//   }
 
 
   async function ConsultaTrecho(){
     requestListaTrechos().then(customResponse=>{
-        if(customResponse.status==="SUCCES"){
+        if(customResponse.message==="Dados obtidos"){
             console.log("retornou");
             console.log(customResponse.payload);
             CriarElementoTabelaTrechos(JSON.parse(JSON.stringify(customResponse.payload)))
         }else{
             console.log(customResponse.message);
+            console.log('entrou?')
         }
-    }).catch((e=>{
-        console.log("Não fi possível exibir." + e);
-    }))
-  }ConsultaTrecho()
+    })
+    .catch((e) => {
+            console.log("Não foi possível exibir." + e);
+          });
+  }ConsultaTrecho();
+ function  CriarElementoTabelaTrechos(trechos){
+    console.log('trechos->',trechos)
+    const elementoTrechoId=document.getElementById('td-trechos');
+    for (let i = 0; i < trechos.length; i++){
+        const trecho = trechos[i];
+        console.log('recebendo->',trecho)
+        console.log("dados do trecho: ", + JSON.stringify(trecho));
+        const row = document.createElement("tr");
+        row.innerHTML = 
+        `<td id="td-id_trecho" class="leftText">${trecho[0]}</td>
+        <td class="leftText">${trecho[1]}</td>
+        <td class="leftText">${trecho[3]}</td>
+        <td class="leftText">${trecho[5]}</td>
+        <td class="leftText">${trecho[7]}</td>
+        <td class="leftText">${trecho[9]}</td>
 
+
+
+
+        <td class="td-acoes" style="text-align: center;"> <button id="btnExcluir" class="btnExcluir" style="color:withe;cursor:pointer;font-weigth:bold;padding:5px;background-color:red;border-radius:5px;display:inline-block;"> excluir</button>`;
+  
+        elementoTrechoId.appendChild(row);
+    }
+    console.log("Tabela criada?");
+ }
 
 // ========================================== ENVIAR-PARA-API ==========================================
-  async function enviarParaApiexcluir(id_aeroporto){
-    try{
-   const resposta = await fetch('http://localhost:3000/excluirAeroporto',{
-    //especificar o method
-    method: 'DELETE',
-    //especificando os dados
-    headers:{
-        Accept: 'application/json',
-        'Content-type':'application/json'
-    },
-    body: JSON.stringify(id_aeroporto)
-   })
-   console.log('Resposta da API:', resposta);
-    if (resposta.ok){
-      console.log('ok')
-    }else{
-      console.error('erro ao excluir aeroporto')
-    }
-  }catch(erro){
-    console.error(erro)
-  }
-  }//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-async function enviarParaApiaeroporto(aeroporto) {
-    try {
-        console.log('Enviando dados para a API:', aeroporto);
+//   async function enviarParaApiexcluir(id_aeroporto){
+//     try{
+//    const resposta = await fetch('http://localhost:3000/excluirAeroporto',{
+//     //especificar o method
+//     method: 'DELETE',
+//     //especificando os dados
+//     headers:{
+//         Accept: 'application/json',
+//         'Content-type':'application/json'
+//     },
+//     body: JSON.stringify(id_aeroporto)
+//    })
+//    console.log('Resposta da API:', resposta);
+//     if (resposta.ok){
+//       console.log('ok')
+//     }else{
+//       console.error('erro ao excluir aeroporto')
+//     }
+//   }catch(erro){
+//     console.error(erro)
+//   }
+//   }//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// async function enviarParaApiaeroporto(aeroporto) {
+//     try {
+//         console.log('Enviando dados para a API:', aeroporto);
 
-        // Adicionar um pequeno atraso para facilitar a visualização das mensagens de console
-        await new Promise(resolve => setTimeout(resolve, 1000));
+//         // Adicionar um pequeno atraso para facilitar a visualização das mensagens de console
+//         await new Promise(resolve => setTimeout(resolve, 1000));
 
-        const resposta = await fetch('http://localhost:3000/inserirAeroporto', {
-            method: 'PUT',
-            headers: {
-                Accept: 'application/json',
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(aeroporto)
-        });
+//         const resposta = await fetch('http://localhost:3000/inserirAeroporto', {
+//             method: 'PUT',
+//             headers: {
+//                 Accept: 'application/json',
+//                 'Content-type': 'application/json'
+//             },
+//             body: JSON.stringify(aeroporto)
+//         });
 
-        console.log('Resposta da API:', resposta);
+//         console.log('Resposta da API:', resposta);
 
-        if (resposta.ok) {
-            console.log('Aeroporto cadastrado com sucesso');
-            limparCampos();
-        } else {
-            console.log('Erro ao cadastrar aeroporto');
-        }
-    } catch (erro) {
-        console.error('Erro:', erro);
-    }
-}
+//         if (resposta.ok) {
+//             console.log('Aeroporto cadastrado com sucesso');
+//             limparCampos();
+//         } else {
+//             console.log('Erro ao cadastrar aeroporto');
+//         }
+//     } catch (erro) {
+//         console.error('Erro:', erro);
+//     }
+// }
   //----------------------------------------------------------EXCLUIR-----------------------------------------------------//
 
   // function getDadosInputExcluir(){
@@ -223,97 +249,97 @@ async function enviarParaApiaeroporto(aeroporto) {
 
 
 
-  function CriarElementoSelectCidades(cidades) {
-    // Seletor da cidade de origem
-    const elementoCidadesID = document.getElementById("origem");
-    // Seletor da cidade de destino
-    for (let i = 0; i < cidades.length; i++) {
-      const cidade = cidades[i];
-      console.log(cidades);
-      console.log("dados da cidades: " + JSON.stringify(cidade));
+//   function CriarElementoSelectCidades(cidades) {
+//     // Seletor da cidade de origem
+//     const elementoCidadesID = document.getElementById("origem");
+//     // Seletor da cidade de destino
+//     for (let i = 0; i < cidades.length; i++) {
+//       const cidade = cidades[i];
+//       console.log(cidades);
+//       console.log("dados da cidades: " + JSON.stringify(cidade));
   
-      const row = document.createElement("option");
-      row.innerHTML = `<option value="${cidade[1]}">${cidade[1]}</option>
-          `;
-      elementoCidadesID.appendChild(row);
-    }
-    console.log("select cidade origem criada?");
-  }
+//       const row = document.createElement("option");
+//       row.innerHTML = `<option value="${cidade[1]}">${cidade[1]}</option>
+//           `;
+//       elementoCidadesID.appendChild(row);
+//     }
+//     console.log("select cidade origem criada?");
+//   }
   
-  async function consultacidade() {
-    requestListCidade()
-      .then((customResponse) => {
-        if (customResponse.status === "SUCCESS") {
-          console.log("retornou cidade");
-          console.log(customResponse.payload);
-          CriarElementoSelectCidades(
-            JSON.parse(JSON.stringify(customResponse.payload))
-          );
+//   async function consultacidade() {
+//     requestListCidade()
+//       .then((customResponse) => {
+//         if (customResponse.status === "SUCCESS") {
+//           console.log("retornou cidade");
+//           console.log(customResponse.payload);
+//           CriarElementoSelectCidades(
+//             JSON.parse(JSON.stringify(customResponse.payload))
+//           );
   
-          CriarElementoSelectCidadesDestino(
-            JSON.parse(JSON.stringify(customResponse.payload))
-          );
-        } else {
-          console.log(customResponse.message);
-        }
-      })
-      .catch((e) => {
-        console.log("Não foi possível exibir." + e);
-      });
-  }
-  consultacidade();
+//           CriarElementoSelectCidadesDestino(
+//             JSON.parse(JSON.stringify(customResponse.payload))
+//           );
+//         } else {
+//           console.log(customResponse.message);
+//         }
+//       })
+//       .catch((e) => {
+//         console.log("Não foi possível exibir." + e);
+//       });
+//   }
+//   consultacidade();
 
 
 
 
 //==========================================================
 
-const btnAttAeroporto = document.querySelector('#btnAtualizarAeroporto')
-btnAttAeroporto.addEventListener('click',()=>{
-  console.log('clicou')
-  //pegar os dados e enviar para api
-  const codigo=getDadosAtualizarAeroporto()
-  enviarParaApiAtualizarAeroporto(codigo)
+// const btnAttAeroporto = document.querySelector('#btnAtualizarAeroporto')
+// btnAttAeroporto.addEventListener('click',()=>{
+//   console.log('clicou')
+//   //pegar os dados e enviar para api
+//   const codigo=getDadosAtualizarAeroporto()
+//   enviarParaApiAtualizarAeroporto(codigo)
 
-})
-function getDadosAtualizarAeroporto(){
-  const getIdAeroporto=document.querySelector('#id_Aeroporto')
-  const getnome=document.querySelector('#attAeroporto')
-  if (getIdAeroporto.value.trim() === ''||getnome.value.trim()==='') {
-    console.log('Campo vazio');
-    return;
-  }
-  const codigo={
+// })
+// function getDadosAtualizarAeroporto(){
+//   const getIdAeroporto=document.querySelector('#id_Aeroporto')
+//   const getnome=document.querySelector('#attAeroporto')
+//   if (getIdAeroporto.value.trim() === ''||getnome.value.trim()==='') {
+//     console.log('Campo vazio');
+//     return;
+//   }
+//   const codigo={
     
-    nome:getnome.value,
-    id_aeroporto:getIdAeroporto.value
-  }
-  return codigo
-}
+//     nome:getnome.value,
+//     id_aeroporto:getIdAeroporto.value
+//   }
+//   return codigo
+// }
 
-async function enviarParaApiAtualizarAeroporto(codigo){
-  try{
- const resposta = await fetch('http://localhost:3000/atualizarAeroporto',{
-  //especificar o method
-  method: 'PUT',
-  //especificando os dados
-  headers:{
-      Accept: 'application/json',
-      'Content-type':'application/json'
-  },
-  body: JSON.stringify(codigo)
- })
-  if (resposta.status === 201){
-    limparCampos()
-  }else{
-    console.log('erro ao atualizar')
-  }
-}catch(erro){
-  console.error(erro)
-}
-}
-function limparCampos(){
-  document.querySelector('#id_Aeroporto').value=''
-  document.querySelector('#attAeroporto').value=''
-}
+// async function enviarParaApiAtualizarAeroporto(codigo){
+//   try{
+//  const resposta = await fetch('http://localhost:3000/atualizarAeroporto',{
+//   //especificar o method
+//   method: 'PUT',
+//   //especificando os dados
+//   headers:{
+//       Accept: 'application/json',
+//       'Content-type':'application/json'
+//   },
+//   body: JSON.stringify(codigo)
+//  })
+//   if (resposta.status === 201){
+//     limparCampos()
+//   }else{
+//     console.log('erro ao atualizar')
+//   }
+// }catch(erro){
+//   console.error(erro)
+// }
+// }
+// function limparCampos(){
+//   document.querySelector('#id_Aeroporto').value=''
+//   document.querySelector('#attAeroporto').value=''
+// }
 
