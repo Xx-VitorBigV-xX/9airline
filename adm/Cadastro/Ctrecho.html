@@ -84,17 +84,34 @@
                     </div>
             
                     <p>
-                        <label style="margin-bottom: 10px;"  for="cidade">Nome</label>
-                        <input type="text" class="form-control" id="cidade" name="cidade"><br>
+                        <label style="margin-bottom: 10px;"  for="trecho">Nome</label>
+                        <input type="text" class="form-control" id="trechos" name="trecho"><br>
                     </p>
                     <p>
-                        <label style="margin-bottom: 10px;"  for="cidade">Cidade Origem</label>
-                        <input type="text" class="form-control" id="cidade" name="cidade"><br>
+                      <p>
+                        <label for="" style="margin-right: 257px;margin-left:25px">Origem </label>
+                        <label for="" >Destino </label>
+
+                      </p>
+                      <select  style="padding: 5px; width:100px; margin-right: 195px;" id="CidadeOrigem" required> 
+                        <option value="*">Cidade </option>
+                    </select>
+                        <select  style="padding: 5px; width:100px;" name="origem" id="CidadeDestino" required> 
+                      <option value="*">Cidade </option>
+                    </select>
                     </p>
+                    
                     <p>
-                        <label style="margin-bottom: 10px;"  for="cidade">Cidade Origem</label>
-                        <input type="text" class="form-control" id="cidade" name="cidade"><br>
-                    </p>
+                    <select  style="padding: 5px; width:100px; margin-right: 195px;" name="origem" id="AeroportoOrigem" required> 
+                      <option value="*">Aeroporto </option>
+                    </select>
+
+                    
+                    <select  style="padding: 5px; width:100px; margin-bottom: 25px;" name="origem" id="AeroportoDestino" required> 
+                      <option value="*">Aeroporto </option>
+                    </select>
+                </p>
+              
                   <button  class="btncadastro" id="btnCadastrarTrechos">Cadastrar trecho</button><br>
                 </div>
          
