@@ -1,18 +1,21 @@
-/*GLOSSÁRIO*/ 
+/*GLOSSÁRIO*/
 
-let CidadeOrigem 
+let idCidadeOrigem;
+let idCidadeDestino;
+let idAeroportoOrigem;
+let idAeroportodestino;
 // ========================================== REQUISIÇÕES ==========================================
 async function requestListCidade() {
-    const requestOptions = {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    };
-    const response = await fetch(
-      "http://localhost:3000/listarCidades",
-      requestOptions
-    );
-    return response.json();
-  }
+  const requestOptions = {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  };
+  const response = await fetch(
+    "http://localhost:3000/listarCidades",
+    requestOptions
+  );
+  return response.json();
+}
 async function requestListaAeroportos() {
   const requestOptions = {
     method: "GET",
@@ -26,118 +29,141 @@ async function requestListaAeroportos() {
 }
 
 async function requestListaTrechos() {
-    const requestOptions = {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    };
-    const response = await fetch(
-      "http://localhost:3000/listarTrecho",
-      requestOptions
-    );
-    return response.json();
-  }
+  const requestOptions = {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  };
+  const response = await fetch(
+    "http://localhost:3000/listarTrecho",
+    requestOptions
+  );
+  return response.json();
+}
 
-
-
-
-
-
-
-
-
-const CadastrarTrechos= document.querySelector('#btnCadastrarTrechos');
-CadastrarTrechos.addEventListener('click', async (event) => {
+const CadastrarTrechos = document.querySelector("#btnCadastrarTrechos");
+CadastrarTrechos.addEventListener("click", async (event) => {
+  try {
     event.preventDefault();
-    console.log('Clicou no botão');
-  
+    console.log("Clicou no botão");
+    console.log('%**>', idAeroportodestino);
+
     // Pegar os dados e enviar para a API
-    const nome=document.getElementById('trechos')
-    const cidadeOrigem=document.getElementById('CidadeOrigem')
-    const cidadeDestino=document.getElementById('CidadeDestino')
-    const aeroportoOrigem=document.getElementById('AeroportoOrigem')
-    const aeroportoDestino=document.getElementById('AeroportoDestino')
-    // const JsonTrecho = {
-    //   nome:nome
-    //   FK_id_cidade_origem:
-    //   FK_nome_cidade_origem:cidadeOrigem
-    //   FK_id_aeroporto_origem:
-    //   FK_nome_aeroporto_origem:aeroportoOrigem
-    //   FK_id_cidade_destino:
-    //   FK_nome_cidade_destino:cidadeDestino
-    //   FK_id_aeroporto_destino:
-    //   FK_nome_aeroporto_destino:aeroportoDestino
-    // }
+    const nome = document.getElementById("trechos");
+    const cidadeOrigem = document.getElementById("CidadeOrigem");
+    const cidadeDestino = document.getElementById("CidadeDestino");
+    const aeroportoOrigem = document.getElementById("AeroportoOrigem");
+    const aeroportoDestino = document.getElementById("AeroportoDestino");
 
-    console.log('Dados do trecho:>', trecho);
-  
+    const JsonTrecho = {
+      nome: nome.value,
+      FK_id_cidade_origem: idCidadeOrigem,
+      FK_nome_cidade_origem: cidadeOrigem.value, 
+      FK_id_aeroporto_origem: idAeroportoOrigem,
+      FK_nome_aeroporto_origem: aeroportoOrigem.value,
+      FK_id_cidade_destino: idCidadeDestino,
+      FK_nome_cidade_destino: cidadeDestino.value,
+      FK_id_aeroporto_destino: idAeroportodestino,
+      FK_nome_aeroporto_destino: aeroportoDestino.value,
+    }
+
+    console.log("Dados do trecho:>", JsonTrecho);
     
-    enviarParaApiInserirTrecho(trecho);
+    await enviarParaApiInserirTrecho(JsonTrecho);
+
+   
+  } catch (error) {
+    console.error("Erro:", error);
+  }
 });
-  const btnExcluir = document.querySelector('#listagem-Trechos')
-  btnExcluir.addEventListener('click', function (event) {
-    console.log('clicou');
-  
-    // Obtenha o elemento do botão clicado
-    const botaoClicado = event.target;
-  
-    // Obtenha o elemento pai da célula do botão clicado (linha da tabela)
-    const linha = botaoClicado.closest('tr');
-  
-    // Obtenha o conteúdo da célula na coluna de ID
-    const id = linha.querySelector('td:first-child').textContent;
-  
-    // Criar um objeto com o ID
-    const id_aeroporto = {
-        id_aeroporto: id
-    };
-  
-    // Enviar para a API excluir
-    enviarParaApiexcluir(id_aeroporto);
-  });
 
 
+
+
+
+
+
+
+const btnExcluir = document.querySelector("#listagem-Trechos");
+btnExcluir.addEventListener("click", function (event) {
+  console.log("clicou");
+
+  // Obtenha o elemento do botão clicado
+  const botaoClicado = event.target;
+
+  // Obtenha o elemento pai da célula do botão clicado (linha da tabela)
+  const linha = botaoClicado.closest("tr");
+
+  // Obtenha o conteúdo da célula na coluna de ID
+  const id = linha.querySelector("td:first-child").textContent;
+
+  // Criar um objeto com o ID
+  const id_aeroporto = {
+    id_aeroporto: id,
+  };
+
+  // Enviar para a API excluir
+  enviarParaApiexcluir(id_aeroporto);
+});
 
 function getDadosFormAeroporto() {
-    const getNome = document.querySelector('#aeroporto');
-    const elementoCidadesID = document.getElementById("origem");
+  const getNome = document.querySelector("#aeroporto");
+  const elementoCidadesID = document.getElementById("origem");
 
-    if (getNome.value.trim() === "") {
-        console.log('Campo vazio');
-        return;
-    }
-    const aeroporto = {
-        nome: getNome.value,
-        fk_nome_cidade:elementoCidadesID.value
-    };
-    return aeroporto;
+  if (getNome.value.trim() === "") {
+    console.log("Campo vazio");
+    return;
+  }
+  const aeroporto = {
+    nome: getNome.value,
+    fk_nome_cidade: elementoCidadesID.value,
+  };
+  return aeroporto;
 }
-
-
 
 function limparCampos() {
-    document.querySelector('#aeroporto').value = '';
+  document.querySelector("#aeroporto").value = "";
 }
-/*-----------------------------------------------------LISTAR AERONAVE---------------------------------------------------*/ 
+/*-----------------------------------------------------LISTAR AERONAVE---------------------------------------------------*/
 async function consultaAeroporto() {
+  requestListaAeroportos()
+    .then((customResponse) => {
+      if (customResponse.status === "SUCCESS") {
+        console.log("retornou lista aeroporot");
+        console.log(customResponse.payload);
+        aeroporto = JSON.parse(JSON.stringify(customResponse.payload));
+        console.log("kakak", aeroporto);
+        const aeroportoOrigem = document.getElementById("AeroportoOrigem");
+        aeroportoOrigem.addEventListener("change", (event) => {
+          console.log("->>", aeroportoOrigem.value);
 
-    requestListaAeroportos().then(customResponse => {
-    if (customResponse.status === "SUCCESS") {
-       console.log("retornou");
-       console.log(customResponse.payload);
-       CriarElementoSelectCidades(JSON.parse(JSON.stringify(customResponse.payload)))
-    } else {
-      console.log(customResponse.message);
-    }
-  })
-  .catch((e) => {
-    console.log("Não foi possível exibir." + e);
-  });
-
-
-} consultaAeroporto();
-
+          for (let i = 0; i < aeroporto.length; i++) {
+            aeroportos = aeroporto[i];
+            console.log("entrou", aeroportos[1]);
+            if (aeroportos[1] == aeroportoOrigem.value) {
+              console.log("igual =->", aeroportos[1]);
+              idAeroportoOrigem = aeroportos[0];
+              return;
+            } else {
+              console.log("nao achou aeroporto igual");
+            }
+          }
+        });
+      } else {
+        console.log(customResponse.message);
+      }
+    })
+    .catch((e) => {
+      console.log("Não foi possível exibir." + e);
+    });
+}
+consultaAeroporto();
+const aeroportoDestino=document.getElementById("AeroportoDestino")
+aeroportoDestino.addEventListener('change',(event)=>{
+  console.log('entrouuuuuu')
+  idAeroportodestino=event.target.options[event.target.selectedIndex].getAttribute("dados-Aeroporto-Destino-id");
+  console.log('@',idAeroportodestino)
+})
 //-------------------------------------------------------------------------------------------------------------------------
-
 
 async function consultacidade() {
   requestListCidade()
@@ -173,9 +199,10 @@ function CriarElementoSelectCidades(cidades) {
     const row = document.createElement("option");
     row.innerHTML = `<option id="cddOrigem" value="${cidade[0]}">${cidade[1]}</option>
         `;
+
+    row.setAttribute("dados-cidade-id", cidade[0]);
+
     elementoCidadesID.appendChild(row);
-    
-    
   }
   console.log("select cidade origem criada?");
 }
@@ -192,6 +219,7 @@ function CriarElementoSelectCidadesDestino(cidades) {
     row.innerHTML = `<option  value="${cidade[1]}">${cidade[1]}</option>
         `;
     elementoCidadesID.appendChild(row);
+    row.setAttribute("data-cidade-Destino-id", cidade[0]);
   }
   console.log("select cidade origem criada?");
 }
@@ -222,52 +250,61 @@ async function CriarElementoSelectAeroportoDestino(buscaDestino) {
     console.log("dados da busca: " + JSON.stringify(buscas));
 
     const row = document.createElement("option");
-    row.innerHTML = `<option  value="${buscas[0]}">${buscas[0]}</option>
+    row.innerHTML = `<option  value="${buscas[1]}">${buscas[0]}</option>
         `;
+        row.setAttribute("dados-Aeroporto-Destino-id", buscas[1]);
     elementoAeroportoDestinoID.appendChild(row);
   }
   console.log("select aeroporto criada?");
 }
 
 const selectorOrigem = document.getElementById("CidadeOrigem");
+const idCdd = idCidadeOrigem;
 selectorOrigem.addEventListener("change", async (event) => {
   const busca = getDadosForm();
+  idCidadeOrigem =
+    event.target.options[event.target.selectedIndex].getAttribute(
+      "dados-cidade-id"
+    );
   console.log("seletor origem -> ", selectorOrigem.value);
-  console.log('>>>>>>>',CidadeOrigem)
-  
+  console.log("sletor id origem -> ", idCidadeOrigem);
+
   // if (selectorOrigem.value === selectorDestino.value) {
   //   exibirMensagemErro(
   //     "A cidade de destino não pode ser igual à cidade de origem."
   //   );
   // } else {
-    console.log("Dados da -- após getDadosForm:", busca);
-    // CriarElementoSelectAeroportoOrigem(busca)
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    enviarParaApiInserir(busca);
+  console.log("Dados da -- após getDadosForm:", busca);
+  // CriarElementoSelectAeroportoOrigem(busca)
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  enviarParaApiInserir(busca);
   // }
 });
-
 
 const selectorDestino = document.getElementById("CidadeDestino");
 selectorDestino.addEventListener("change", async (event) => {
   const buscaDestino = getDadosFormDestino();
+  idCidadeDestino = event.target.options[
+    event.target.selectedIndex
+  ].getAttribute("data-cidade-Destino-id");
+  console.log("seletor origem -> ", selectorDestino.value);
+  console.log("sletor id origem -> ", idCidadeDestino);
   console.log("Dados da -- após getDadosForm:", buscaDestino);
   // if (selectorOrigem.value === selectorDestino.value) {
   //   exibirMensagemErro(
   //     "A cidade de destino não pode ser igual à cidade de origem."
   //   );
   // } else {
-    CriarElementoSelectAeroportoDestino(buscaDestino);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    enviarParaApiInserir2(buscaDestino);
+  CriarElementoSelectAeroportoDestino(buscaDestino);
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  enviarParaApiInserir2(buscaDestino);
   // }
 });
 
 function getDadosForm() {
   // pegando o dado do formulario e checando se nao esta vazio
   const getCidadeOrigem = document.getElementById("CidadeOrigem");
-  const getCddOrigem =document.getElementById('cddOrigem')
-  console.log('>>>>',getCddOrigem)
+
   if (getCidadeOrigem.value.trim() === "") {
     console.error("Campo vazio");
     return;
@@ -292,32 +329,34 @@ function getDadosFormDestino() {
   return buscaDestino;
 }
 
-
-  async function ConsultaTrecho(){
-    requestListaTrechos().then(customResponse=>{
-        if(customResponse.message==="Dados obtidos"){
-            console.log("retornou");
-            console.log(customResponse.payload);
-            CriarElementoTabelaTrechos(JSON.parse(JSON.stringify(customResponse.payload)))
-        }else{
-            console.log(customResponse.message);
-            console.log('entrou?')
-        }
+async function ConsultaTrecho() {
+  requestListaTrechos()
+    .then((customResponse) => {
+      if (customResponse.message === "Dados obtidos") {
+        console.log("retornou");
+        console.log(customResponse.payload);
+        CriarElementoTabelaTrechos(
+          JSON.parse(JSON.stringify(customResponse.payload))
+        );
+      } else {
+        console.log(customResponse.message);
+        console.log("entrou?");
+      }
     })
     .catch((e) => {
-            console.log("Não foi possível exibir." + e);
-          });
-  }ConsultaTrecho();
- function  CriarElementoTabelaTrechos(trechos){
-    console.log('trechos->',trechos)
-    const elementoTrechoId=document.getElementById('td-trechos');
-    for (let i = 0; i < trechos.length; i++){
-        const trecho = trechos[i];
-        console.log('recebendo->',trecho)
-        console.log("dados do trecho: ", + JSON.stringify(trecho));
-        const row = document.createElement("tr");
-        row.innerHTML = 
-        `<td id="td-id_trecho" class="leftText">${trecho[0]}</td>
+      console.log("Não foi possível exibir." + e);
+    });
+}
+ConsultaTrecho();
+function CriarElementoTabelaTrechos(trechos) {
+  console.log("trechos->", trechos);
+  const elementoTrechoId = document.getElementById("td-trechos");
+  for (let i = 0; i < trechos.length; i++) {
+    const trecho = trechos[i];
+    console.log("recebendo->", trecho);
+    console.log("dados do trecho: ", +JSON.stringify(trecho));
+    const row = document.createElement("tr");
+    row.innerHTML = `<td id="td-id_trecho" class="leftText">${trecho[0]}</td>
         <td class="leftText">${trecho[1]}</td>
         <td class="leftText">${trecho[3]}</td>
         <td class="leftText">${trecho[5]}</td>
@@ -328,15 +367,13 @@ function getDadosFormDestino() {
 
 
         <td class="td-acoes" style="text-align: center;"> <button id="btnExcluir" class="btnExcluir" style="color:withe;cursor:pointer;font-weigth:bold;padding:5px;background-color:red;border-radius:5px;display:inline-block;"> excluir</button>`;
-  
-        elementoTrechoId.appendChild(row);
-    }
-    console.log("Tabela criada?");
- }
 
+    elementoTrechoId.appendChild(row);
+  }
+  console.log("Tabela criada?");
+}
 
-
- async function enviarParaApiInserir(busca) {
+async function enviarParaApiInserir(busca) {
   let respostaURL;
   try {
     console.log("Enviando dados para a API:", busca);
@@ -369,7 +406,7 @@ function getDadosFormDestino() {
     if (respostaURL.ok) {
       console.log("BUSCA REALIZADA COM SUCESSO");
       console.log(
-        "oq tem no elemento dentro da api",
+        "oq tem no elemento dentro da api"
         // elementoCidadesDestinoID.value
       );
       console.log("oq tem no elemento dentro da api", elementoCidadesID.value);
@@ -436,39 +473,31 @@ async function enviarParaApiInserir2(busca) {
   }
 }
 
-
-
-
-
-
-
-
-
 async function enviarParaApiInserirTrecho(Trecho) {
   try {
-      console.log('Enviando dados para a API:', Trecho);
+    console.log("Enviando dados para a API:", Trecho);
 
-      // Adicionar um pequeno atraso para facilitar a visualização das mensagens de console
-      await new Promise(resolve => setTimeout(resolve, 1000));
+    // Adicionar um pequeno atraso para facilitar a visualização das mensagens de console
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      const resposta = await fetch('http://localhost:3000/inserirTrecho', {
-          method: 'PUT',
-          headers: {
-              Accept: 'application/json',
-              'Content-type': 'application/json'
-          },
-          body: JSON.stringify(Trecho)
-      });
+    const resposta = await fetch("http://localhost:3000/inserirTrecho", {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(Trecho),
+    });
 
-      console.log('Resposta da API:', resposta);
+    console.log("Resposta da API:", resposta);
 
-      if (resposta.ok) {
-          console.log('Aeroporto cadastrado com sucesso');
-          limparCampos();
-      } else {
-          console.log('Erro ao cadastrar trecho');
-      }
+    if (resposta.ok) {
+      console.log("Aeroporto cadastrado com sucesso");
+      limparCampos();
+    } else {
+      console.log("Erro ao cadastrar trecho");
+    }
   } catch (erro) {
-      console.error('Erro:', erro);
+    console.error("Erro:", erro);
   }
 }
