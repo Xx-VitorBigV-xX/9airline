@@ -143,7 +143,7 @@ btnExcluir.addEventListener('click', function (event) {
   const Numero_de_identificacao = {
     Numero_de_identificacao: id
   };
-
+  console.log('>',Numero_de_identificacao)
   // Enviar para a API excluir
   enviarParaApiexcluirAeronave(Numero_de_identificacao);
 });
@@ -163,6 +163,7 @@ btnExcluir.addEventListener('click', function (event) {
 
 
 async function enviarParaApiexcluirAeronave(Numero_de_identificacao){
+  console.log('>',Numero_de_identificacao)
   try{
  const resposta = await fetch('http://localhost:3000/excluirAeronave',{
   //especificar o method
@@ -187,7 +188,6 @@ async function enviarParaApiexcluirAeronave(Numero_de_identificacao){
 
 
 
-//-------------------------------------------------ATUALIZAR AERONAVE------------------------------------------------------
 
 const btnAttAeronave = document.querySelector('#btnAA')
 btnAttAeronave.addEventListener('click',()=>{
