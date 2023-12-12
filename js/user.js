@@ -25,13 +25,8 @@ para fazer uma busca eficiente (crl+f no windowns) escreva tudo em letras maiús
 exemplo:
 quero buscar a criação do elemento mapa de assento 
 'CRIA-ELEMENTO-ASSENTOS'
-
-    
-
-
-
 */
-
+//all code was (Made by Vitor Hugo Amaro) 
 // 1-SESSÃO-VARIAVEIS GLOBAIS ============================================================================================================
 
 let valorSelecionadoVoo6Global;

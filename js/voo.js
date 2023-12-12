@@ -1,4 +1,4 @@
-
+//all code was (Made by Vitor Hugo Amaro) 
 let idTrecho;
 
 // ========================================== REQUISIÇÕES-HTTPS-DA-API =================================================

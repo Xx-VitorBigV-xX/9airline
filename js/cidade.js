@@ -1,3 +1,4 @@
+//all code was (Made by Vitor Hugo Amaro) 
 const btnCadasCidade = document.querySelector('#btnCadastrarCidade')
 btnCadasCidade.addEventListener('click',()=>{
     

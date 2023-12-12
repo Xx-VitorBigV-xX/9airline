@@ -1,4 +1,4 @@
-
+//all code was (Made by Vitor Hugo Amaro) 
 
 const elementoAeronaves = document.querySelector('#aeronaves')
 
@@ -148,18 +148,7 @@ btnExcluir.addEventListener('click', function (event) {
   enviarParaApiexcluirAeronave(Numero_de_identificacao);
 });
 
-// funcção antiga
-// function getDadosInputExcluir(){
-//   const getId=document.querySelector('#td-Numero_de_identificacao')
-//   if (getId.value.trim() === "") {
-//     console.log('Campo vazio');
-//     return;
-//   }
-//   const Numero_de_identificacao={
-//     id_aeroporto:getId.value
-//   }
-//   return Numero_de_identificacao
-// }
+
 
 
 async function enviarParaApiexcluirAeronave(Numero_de_identificacao){

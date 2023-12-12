@@ -1,5 +1,5 @@
 /*GLOSSÁRIO*/
-
+//all code was (Made by Vitor Hugo Amaro) 
 let idCidadeOrigem;
 let idCidadeDestino;
 let idAeroportoOrigem;

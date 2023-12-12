@@ -1,5 +1,5 @@
 /*GLOSSÁRIO*/ 
-
+//all code was (Made by Vitor Hugo Amaro) 
 
 // ========================================== REQUISIÇÕES ==========================================
   async function requestListCidade() {
